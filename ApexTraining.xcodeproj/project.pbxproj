@@ -7,32 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5B0E55D729DCE3C7002EC0D5 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E55D629DCE3C7002EC0D5 /* Set.swift */; };
-		5B3A295529DBC9D0005DDD9D /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3A295429DBC9D0005DDD9D /* Exercise.swift */; };
-		5B3A295729DBCA5F005DDD9D /* ExerciseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3A295629DBCA5F005DDD9D /* ExerciseVM.swift */; };
 		5B48E0CF29D9056300A29142 /* ApexTrainingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48E0CE29D9056300A29142 /* ApexTrainingApp.swift */; };
-		5B48E0D129D9056300A29142 /* ExerciseV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48E0D029D9056300A29142 /* ExerciseV.swift */; };
 		5B48E0D329D9056400A29142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D229D9056400A29142 /* Assets.xcassets */; };
 		5B48E0D629D9056400A29142 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D529D9056400A29142 /* Preview Assets.xcassets */; };
 		5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */; };
-		5BAC05E629DD05220021A626 /* SetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC05E529DD05220021A626 /* SetVM.swift */; };
-		5BAC05E829DD08EB0021A626 /* SetV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAC05E729DD08EB0021A626 /* SetV.swift */; };
 		CD3E01948632D62C4E6C0A41 /* Pods_ApexTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApexTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B0E55D629DCE3C7002EC0D5 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
-		5B3A295429DBC9D0005DDD9D /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		5B3A295629DBCA5F005DDD9D /* ExerciseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseVM.swift; sourceTree = "<group>"; };
 		5B48E0CB29D9056300A29142 /* ApexTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApexTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B48E0CE29D9056300A29142 /* ApexTrainingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexTrainingApp.swift; sourceTree = "<group>"; };
-		5B48E0D029D9056300A29142 /* ExerciseV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseV.swift; sourceTree = "<group>"; };
 		5B48E0D229D9056400A29142 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B48E0D529D9056400A29142 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		5BAC05E529DD05220021A626 /* SetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetVM.swift; sourceTree = "<group>"; };
-		5BAC05E729DD08EB0021A626 /* SetV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetV.swift; sourceTree = "<group>"; };
 		61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.debug.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.release.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,7 +48,6 @@
 		5B3A295129DBC8A6005DDD9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5BAC05E929DE23380021A626 /* TestingViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -68,8 +55,6 @@
 		5B3A295229DBC8B9005DDD9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5B3A295429DBC9D0005DDD9D /* Exercise.swift */,
-				5B0E55D629DCE3C7002EC0D5 /* Set.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -77,8 +62,6 @@
 		5B3A295329DBC8C2005DDD9D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5B3A295629DBCA5F005DDD9D /* ExerciseVM.swift */,
-				5BAC05E529DD05220021A626 /* SetVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -121,15 +104,6 @@
 				5B48E0D529D9056400A29142 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		5BAC05E929DE23380021A626 /* TestingViews */ = {
-			isa = PBXGroup;
-			children = (
-				5B48E0D029D9056300A29142 /* ExerciseV.swift */,
-				5BAC05E729DD08EB0021A626 /* SetV.swift */,
-			);
-			path = TestingViews;
 			sourceTree = "<group>";
 		};
 		6D5C3CA828874F94066C7A9B /* Pods */ = {
@@ -256,13 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B0E55D729DCE3C7002EC0D5 /* Set.swift in Sources */,
-				5BAC05E829DD08EB0021A626 /* SetV.swift in Sources */,
-				5BAC05E629DD05220021A626 /* SetVM.swift in Sources */,
-				5B48E0D129D9056300A29142 /* ExerciseV.swift in Sources */,
 				5B48E0CF29D9056300A29142 /* ApexTrainingApp.swift in Sources */,
-				5B3A295729DBCA5F005DDD9D /* ExerciseVM.swift in Sources */,
-				5B3A295529DBC9D0005DDD9D /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

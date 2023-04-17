@@ -18,8 +18,7 @@ struct ApexTrainingApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //ExerciseV()
-            SetV()
+            Text("Hello World")
         }
     }
     
