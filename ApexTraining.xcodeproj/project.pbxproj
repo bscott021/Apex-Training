@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		5B34590029ECCC4700364936 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3458FF29ECCC4700364936 /* HomeView.swift */; };
 		5B34590229ECCC6000364936 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590129ECCC6000364936 /* HistoryView.swift */; };
+		5B34590429ECEE1A00364936 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590329ECEE1A00364936 /* SignInView.swift */; };
+		5B34590729ECEEE900364936 /* ApexTrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590629ECEEE900364936 /* ApexTrainingModel.swift */; };
+		5B34590929ECEF4900364936 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590829ECEF4900364936 /* LaunchView.swift */; };
+		5B34590C29ECF53000364936 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590B29ECF53000364936 /* Constants.swift */; };
+		5B34590E29EE27FF00364936 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590D29EE27FF00364936 /* User.swift */; };
+		5B34591029EE28CA00364936 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590F29EE28CA00364936 /* UserService.swift */; };
 		5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48E0CE29D9056300A29142 /* ApexTraining.swift */; };
 		5B48E0D329D9056400A29142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D229D9056400A29142 /* Assets.xcassets */; };
 		5B48E0D629D9056400A29142 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D529D9056400A29142 /* Preview Assets.xcassets */; };
@@ -20,6 +26,12 @@
 		3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApexTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B3458FF29ECCC4700364936 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B34590129ECCC6000364936 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		5B34590329ECEE1A00364936 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		5B34590629ECEEE900364936 /* ApexTrainingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexTrainingModel.swift; sourceTree = "<group>"; };
+		5B34590829ECEF4900364936 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		5B34590B29ECF53000364936 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5B34590D29EE27FF00364936 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5B34590F29EE28CA00364936 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		5B48E0CB29D9056300A29142 /* ApexTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApexTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B48E0CE29D9056300A29142 /* ApexTraining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexTraining.swift; sourceTree = "<group>"; };
 		5B48E0D229D9056400A29142 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,11 +61,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5B34590529ECEE1F00364936 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				5B34590329ECEE1A00364936 /* SignInView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		5B34590A29ECF51100364936 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				5B34590B29ECF53000364936 /* Constants.swift */,
+				5B34590F29EE28CA00364936 /* UserService.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		5B3A295129DBC8A6005DDD9D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5B34590829ECEF4900364936 /* LaunchView.swift */,
 				5B3458FF29ECCC4700364936 /* HomeView.swift */,
 				5B34590129ECCC6000364936 /* HistoryView.swift */,
+				5B34590529ECEE1F00364936 /* Account */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -61,6 +92,7 @@
 		5B3A295229DBC8B9005DDD9D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5B34590D29EE27FF00364936 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -68,6 +100,7 @@
 		5B3A295329DBC8C2005DDD9D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				5B34590629ECEEE900364936 /* ApexTrainingModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -97,6 +130,7 @@
 				5B3A295129DBC8A6005DDD9D /* Views */,
 				5B3A295329DBC8C2005DDD9D /* ViewModels */,
 				5B3A295229DBC8B9005DDD9D /* Models */,
+				5B34590A29ECF51100364936 /* General */,
 				5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */,
 				5B48E0D229D9056400A29142 /* Assets.xcassets */,
 				5B48E0D429D9056400A29142 /* Preview Content */,
@@ -237,7 +271,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
+				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
+				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
 				5B34590229ECCC6000364936 /* HistoryView.swift in Sources */,
+				5B34590729ECEEE900364936 /* ApexTrainingModel.swift in Sources */,
+				5B34590E29EE27FF00364936 /* User.swift in Sources */,
+				5B34590C29ECF53000364936 /* Constants.swift in Sources */,
+				5B34590429ECEE1A00364936 /* SignInView.swift in Sources */,
 				5B34590029ECCC4700364936 /* HomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

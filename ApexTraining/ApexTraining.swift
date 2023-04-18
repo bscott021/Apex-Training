@@ -12,8 +12,6 @@ import FirebaseFirestore
 @main
 struct ApexTraining: App {
     
-    @State var tabSelectionId = 1
-    
     init() {
         FirebaseApp.configure()
     }
@@ -21,23 +19,8 @@ struct ApexTraining: App {
     var body: some Scene {
         WindowGroup {
             
-            TabView(selection: $tabSelectionId) {
-                
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house")
-                        Text("Home")
-                    }
-                    .tag(1)
-                
-                HistoryView()
-                    .tabItem {
-                        Image(systemName: "doc")
-                        Text("History")
-                    }
-                    .tag(2)
-                
-            }
+            LaunchView()
+                .environmentObject(ApexTrainingModel())
             
         }
     }
