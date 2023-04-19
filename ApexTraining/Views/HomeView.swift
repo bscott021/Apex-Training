@@ -6,10 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct HomeView: View {
+    
+    @EnvironmentObject var model:ApexTrainingModel
+    
     var body: some View {
-        Text("Home View")
+        
+        VStack {
+            Text("Home View")
+            
+            //TODO: Find a better spot for this
+            Button {
+                try! Auth.auth().signOut()
+                model.checkSignIn()
+            } label: {
+                Text(Constants.signOut)
+            }
+        }
+        
     }
 }
 
