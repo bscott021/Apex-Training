@@ -12,7 +12,7 @@ import FirebaseAuth
 class ApexTrainingModel: ObservableObject {
     
     @Published var signedIn = false
-    
+
     func checkSignIn() {
         
         signedIn = Auth.auth().currentUser != nil ? true : false
@@ -22,6 +22,7 @@ class ApexTrainingModel: ObservableObject {
         }
         
     }
+    
     
     func getUserData() {
         

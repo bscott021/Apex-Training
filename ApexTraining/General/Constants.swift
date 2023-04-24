@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     
-    // User
+    // MARK: User
     static let signIn = "Sign In"
     static let signOut = "Sign Out"
     static let createAccount = "Create Account"
@@ -23,7 +23,7 @@ struct Constants {
         case createAccount
     }
     
-    // Tab and Navigation
+    // MARK: Tab and Navigation
     static let home = "Home"
     static let homeTabImage = "house"
     static let history = "History"
@@ -33,5 +33,26 @@ struct Constants {
         case homeView
         case historyView
     }
+    
+    // MARK: General
+    
+    // Fields
+    static let nameText = "Name"
+    static let descriptionText = "Description"
+    static let numWeeksText = "Number of Weeks"
+    
+    // Error
+    static let customeErrorTextPrefix = "Custom Error Message: "
+    
+    // MARK: Home View
+    static let editProgramsText = "Edit Programs"
+    static let editProgramText = "Edit Program"
+    static let createProgramText = "Create a Program"
+    
+    // MARK: Program Template
+    // Collections
+    static let programTemplateCollection = "programTemplates"
+    
+    
     
 }

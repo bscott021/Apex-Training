@@ -38,14 +38,7 @@ struct LaunchView: View {
                     .tag(Constants.tabSelectionId.historyView)
                 
             }
-            // TODO: Get and Save Data Here
-            /*.onAppear {
-                model.getDatabaseData()
-            }*/
-            /*.onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) {
-                _ in
-                model.saveData(writeToDatabase: true)
-            }*/
+        
         }
         
     }

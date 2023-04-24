@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1B953529F613A000EA3C40 /* StartedTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */; };
 		5B34590029ECCC4700364936 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3458FF29ECCC4700364936 /* HomeView.swift */; };
 		5B34590229ECCC6000364936 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590129ECCC6000364936 /* HistoryView.swift */; };
 		5B34590429ECEE1A00364936 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590329ECEE1A00364936 /* SignInView.swift */; };
@@ -19,11 +20,15 @@
 		5B48E0D329D9056400A29142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D229D9056400A29142 /* Assets.xcassets */; };
 		5B48E0D629D9056400A29142 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D529D9056400A29142 /* Preview Assets.xcassets */; };
 		5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */; };
+		5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */; };
+		5BB7164E29EF99A300AE0C9B /* ProgramTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164D29EF99A300AE0C9B /* ProgramTemplate.swift */; };
+		5BB7165029EF9B0800AE0C9B /* ProgramTemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164F29EF9B0800AE0C9B /* ProgramTemplateModel.swift */; };
 		CD3E01948632D62C4E6C0A41 /* Pods_ApexTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApexTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartedTemplatesModel.swift; sourceTree = "<group>"; };
 		5B3458FF29ECCC4700364936 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5B34590129ECCC6000364936 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		5B34590329ECEE1A00364936 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -37,6 +42,9 @@
 		5B48E0D229D9056400A29142 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B48E0D529D9056400A29142 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateView.swift; sourceTree = "<group>"; };
+		5BB7164D29EF99A300AE0C9B /* ProgramTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplate.swift; sourceTree = "<group>"; };
+		5BB7164F29EF9B0800AE0C9B /* ProgramTemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateModel.swift; sourceTree = "<group>"; };
 		61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.debug.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.release.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +92,7 @@
 				5B34590829ECEF4900364936 /* LaunchView.swift */,
 				5B3458FF29ECCC4700364936 /* HomeView.swift */,
 				5B34590129ECCC6000364936 /* HistoryView.swift */,
+				5BB7164829EF839100AE0C9B /* Program Templates */,
 				5B34590529ECEE1F00364936 /* Account */,
 			);
 			path = Views;
@@ -93,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				5B34590D29EE27FF00364936 /* User.swift */,
+				5BB7164D29EF99A300AE0C9B /* ProgramTemplate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -101,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				5B34590629ECEEE900364936 /* ApexTrainingModel.swift */,
+				5BB7164F29EF9B0800AE0C9B /* ProgramTemplateModel.swift */,
+				5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -144,6 +156,14 @@
 				5B48E0D529D9056400A29142 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5BB7164829EF839100AE0C9B /* Program Templates */ = {
+			isa = PBXGroup;
+			children = (
+				5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */,
+			);
+			path = "Program Templates";
 			sourceTree = "<group>";
 		};
 		6D5C3CA828874F94066C7A9B /* Pods */ = {
@@ -271,6 +291,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
+				5B1B953529F613A000EA3C40 /* StartedTemplatesModel.swift in Sources */,
+				5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */,
+				5BB7165029EF9B0800AE0C9B /* ProgramTemplateModel.swift in Sources */,
+				5BB7164E29EF99A300AE0C9B /* ProgramTemplate.swift in Sources */,
 				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
 				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
 				5B34590229ECCC6000364936 /* HistoryView.swift in Sources */,
