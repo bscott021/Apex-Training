@@ -29,6 +29,7 @@ struct LaunchView: View {
                         Text(Constants.home)
                     }
                     .tag(Constants.tabSelectionId.homeView)
+                    .environmentObject(StartedTemplatesModel())
                 
                 HistoryView()
                     .tabItem {

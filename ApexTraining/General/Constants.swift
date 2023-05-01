@@ -41,6 +41,15 @@ struct Constants {
     static let descriptionText = "Description"
     static let numWeeksText = "Number of Weeks"
     
+    // Delete Related
+    static let deleteText = "Delete"
+    static let deleteImage = "trash"
+    
+    // Workout Verbage
+    static let workoutsText = "Workouts"
+    static let addWorkoutText = "Add Workout"
+    static let editWorkoutText = "Edit Workout"
+    
     // Error
     static let customeErrorTextPrefix = "Custom Error Message: "
     
@@ -52,6 +61,11 @@ struct Constants {
     // MARK: Program Template
     // Collections
     static let programTemplateCollection = "programTemplates"
+    
+    // MARK: Workout Template
+    // Collections
+    static let workoutTemplateCollection = "workoutTemplates"
+    
     
     
     

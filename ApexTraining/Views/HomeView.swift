@@ -11,8 +11,11 @@ import FirebaseAuth
 struct HomeView: View {
     
     @EnvironmentObject var model:ApexTrainingModel
+    @EnvironmentObject var startedTemplatesModel:StartedTemplatesModel
     
-    @ObservedObject var startedTemplatesModel = StartedTemplatesModel()
+    @State var showingProgramTemplateView = false
+    @State var showingNewProgramTemplateView = false
+    @State var hideHomeNavBar = false
     
     var body: some View {
         
@@ -21,11 +24,12 @@ struct HomeView: View {
             VStack {
                 
                 Text(Constants.editProgramsText)
-                    .font(.title)
+                    .font(.title2)
                 
                 // List of "Started Templates"
                 List (startedTemplatesModel.startedTemplates) { pt in
-                    NavigationLink(destination: ProgramTemplateView().environmentObject(ProgramTemplateModel(docId: pt.id))) {
+                    
+                    NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel(programTemplateDocId: pt.id))) {
                         VStack(alignment: .leading) {
                             Text(pt.programName)
                                 .font(.title2)
@@ -33,34 +37,34 @@ struct HomeView: View {
                                 .font(.body)
                         }
                     }
-                }
-                .onAppear {
-                    startedTemplatesModel.getProgramTemplates()
+
                 }
                 
                 Spacer()
                 
+                
                 // Link to "Create a Program"
                 ZStack {
-                    
                     Rectangle()
                         .frame(height: 40)
                         .foregroundColor(.red)
                         .cornerRadius(10)
                         .padding(20)
-                    
                     // Button to create a new ProgramTemplate
-                    NavigationLink(destination: ProgramTemplateView().environmentObject(ProgramTemplateModel()), label: {
-                        Text(Constants.createProgramText)
-                    })
-                    .environmentObject(model)
-                    .foregroundColor(.white)
-                     
+                    VStack {
+                        NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel()), isActive: $showingNewProgramTemplateView) { EmptyView() }
+                        Button(Constants.createProgramText) {
+                            self.showingNewProgramTemplateView = true
+                        }
+                        .foregroundColor(.white)
+                    }
                 }
                 
                 
             }
+            //.navigationViewStyle(.stack)
             .navigationTitle(Constants.home)
+            .navigationBarHidden(hideHomeNavBar)
             .navigationBarItems(trailing:
                 // "Sign Out" Button
                 Button {
@@ -72,13 +76,18 @@ struct HomeView: View {
             )
             
         }
+        .onAppear {
+            startedTemplatesModel.getProgramTemplates()
+        }
         
     }
     
 }
 
+/*
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
     }
 }
+*/

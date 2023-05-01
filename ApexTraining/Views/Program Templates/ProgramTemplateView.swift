@@ -10,7 +10,10 @@ import SwiftUI
 struct ProgramTemplateView: View {
     
     @EnvironmentObject var model:ApexTrainingModel
-    @EnvironmentObject var programTemplateModel:ProgramTemplateModel
+    @ObservedObject var programTemplateModel:ProgramTemplateModel
+    
+    @State var showingWorkoutTemplateView = false
+    @State var showingNewWorkoutTempalteView = false
     
     @State var programName = ""
     @State var programDescription = ""
@@ -21,6 +24,9 @@ struct ProgramTemplateView: View {
         NavigationView {
             
             VStack {
+                    
+                Text(Constants.editProgramText)
+                    .font(.title2)
                 
                 // Form to enter the program template high level data
                 Form {
@@ -28,19 +34,67 @@ struct ProgramTemplateView: View {
                     TextField(Constants.descriptionText, text: $programDescription)
                     TextField(Constants.numWeeksText, text: $numberOfWeeks)
                 }
+                .onAppear {
+                    // Assign state properties to retrieved properites
+                    programName = programTemplateModel.programTemplate.programName
+                    programDescription = programTemplateModel.programTemplate.programDescription
+                    numberOfWeeks = programTemplateModel.programTemplate.numCycles
+                }
+                
+                
+                // Edit the Workout Templates for this Program Template
+                Text(Constants.workoutsText)
+                    .font(.title2)
+                
+                // Link to "Create a Workout"
+                ZStack {
+                    Rectangle()
+                        .frame(height: 40)
+                        .foregroundColor(.red)
+                        .cornerRadius(10)
+                        .padding(20)
+                    
+                    // Button to create a new WorkoutTemplate
+                    VStack {
+                        NavigationLink(destination: WorkoutTemplateView(workoutTemplateModel: WorkoutTemplateModel(programTemplateDocId: programTemplateModel.programTemplate.id)), isActive: $showingNewWorkoutTempalteView) { EmptyView() }
+                        Button(Constants.addWorkoutText) {
+                            self.showingNewWorkoutTempalteView = true
+                            programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks)
+                        }
+                        .foregroundColor(.white)
+                    }
+                }
+                
+                
+                // Workout Template List
+                List (programTemplateModel.workoutTemplates) { wt in
+                    VStack {
+                        NavigationLink(destination: WorkoutTemplateView(workoutTemplateModel: WorkoutTemplateModel(programTemplateDocId: programTemplateModel.programTemplate.id, workoutTemplate: wt)), isActive: $showingWorkoutTemplateView) { EmptyView() }
+                        Button(wt.workoutName) {
+                            self.showingWorkoutTemplateView = true
+                        }
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button {
+                            programTemplateModel.deleteWorkoutTemplate(workoutTemplateToDelete: wt)
+                        } label: {
+                            Label(Constants.deleteText, systemImage: Constants.deleteImage)
+                        }
+                        .tint(.red)
+                    }
+                }
+                .onAppear {
+                    programTemplateModel.getWorkoutTemplates()
+                }
                 
                 Spacer()
                 
+                
             }
-            .padding(.horizontal, 20)
-            .navigationTitle(Constants.editProgramText)
+            
+            
         }
-        .onAppear {
-            // Assign state properties to retrieved properites
-            programName = programTemplateModel.programTemplate.programName
-            programDescription = programTemplateModel.programTemplate.programDescription
-            numberOfWeeks = programTemplateModel.programTemplate.numCycles
-        }
+        .navigationBarTitle(Constants.editProgramText)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) {
             _ in
             programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks)
@@ -48,10 +102,13 @@ struct ProgramTemplateView: View {
         
     }
     
+    
 }
 
+/*
 struct ProgramTemplateView_Previews: PreviewProvider {
     static var previews: some View {
         ProgramTemplateView()
     }
 }
+*/

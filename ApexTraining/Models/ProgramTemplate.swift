@@ -7,11 +7,11 @@
 
 import Foundation
 
-class ProgramTempalte: Identifiable {
+class ProgramTemplate: Identifiable {
     
     var id:String = ""
     var programName:String = ""
     var programDescription:String = ""
-    var numCycles:String = "" 
+    var numCycles:String = ""
     
 }
