@@ -12,7 +12,6 @@ struct ProgramTemplateView: View {
     @EnvironmentObject var model:ApexTrainingModel
     @ObservedObject var programTemplateModel:ProgramTemplateModel
     
-    @State var showingWorkoutTemplateView = false
     @State var showingNewWorkoutTempalteView = false
     
     @State var programName = ""
@@ -69,9 +68,8 @@ struct ProgramTemplateView: View {
                 // Workout Template List
                 List (programTemplateModel.workoutTemplates) { wt in
                     VStack {
-                        NavigationLink(destination: WorkoutTemplateView(workoutTemplateModel: WorkoutTemplateModel(programTemplateDocId: programTemplateModel.programTemplate.id, workoutTemplate: wt)), isActive: $showingWorkoutTemplateView) { EmptyView() }
-                        Button(wt.workoutName) {
-                            self.showingWorkoutTemplateView = true
+                        NavigationLink(destination: WorkoutTemplateView(workoutTemplateModel: WorkoutTemplateModel(programTemplateDocId: programTemplateModel.programTemplate.id, workoutTemplate: wt))) {
+                            Text(wt.workoutName)
                         }
                     }
                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {

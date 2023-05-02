@@ -23,6 +23,8 @@ struct Constants {
         case createAccount
     }
     
+    static let submitText = "Submit"
+    
     // MARK: Tab and Navigation
     static let home = "Home"
     static let homeTabImage = "house"
@@ -66,7 +68,13 @@ struct Constants {
     // Collections
     static let workoutTemplateCollection = "workoutTemplates"
     
-    
+    // Exercise Set
+    static let exerciseNameText = "Exercise Name"
+    static var numSetsText = "Number of Sets"
+    static var numRepsText = "Number of Reps"
+    static let exercisesText = "Exercises"
+    static let addExercisesText = "Add Exercises"
+    static let updateExerciseText = "Update Exercise"
     
     
 }

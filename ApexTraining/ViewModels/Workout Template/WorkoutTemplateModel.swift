@@ -14,6 +14,7 @@ class WorkoutTemplateModel: ObservableObject {
     // MARK: Properties
     @Published var programTemplateDocId = ""
     @Published var workoutTemplate = WorkoutTemplate()
+    @Published var exerciseSetTemplates = [ExerciseSetTemplate]()
     
     // MARK: Init
     // Create blank
@@ -50,7 +51,6 @@ class WorkoutTemplateModel: ObservableObject {
         }
         
     }
-    
     
     // Save a Wokrout Template to the View Model and the database if the scenario requires it. If there is already a document, update it. Otherwise create a new document.
     func saveWorkoutTemplate(saveDB: Bool, name: String) {
@@ -92,5 +92,137 @@ class WorkoutTemplateModel: ObservableObject {
         }
         
     }
+    
+    // Get all the Exercise Set Tempaltes for the Workout Template
+    func getExerciseSetTemplates() {
+        
+        if programTemplateDocId != "", workoutTemplate.id != "" {
+        
+            guard Auth.auth().currentUser != nil else {
+                return
+            }
+            
+            let db = Firestore.firestore()
+            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+            workoutTemplateDoc.collection("exerciseSetTemplates").getDocuments { snapshot, error in
+                if error == nil {
+                    if let snapshot = snapshot {
+                        // Update the startedTemplates property in the main thread
+                        DispatchQueue.main.async {
+                            self.exerciseSetTemplates = snapshot.documents.map { e in
+                                // Create a ProgramTemplate for each document returned
+                                let temp = ExerciseSetTemplate()
+                                temp.id = e.documentID
+                                temp.exerciseName = e["exerciseName"] as? String ?? ""
+                                temp.numReps = e["numReps"] as? Int ?? 0
+                                temp.numSets = e["numSets"] as? Int ?? 0
+                                return temp
+                            }
+                        }
+                    }
+                }
+                else {
+                    // Handle Error
+                    print("\(Constants.customeErrorTextPrefix)\(error.debugDescription)")
+                }
+            
+            }
+            
+        }
+        
+    }
+    
+    // Add New Exercise Set Template
+    func addExerciseSetTemplate(saveDB: Bool, name: String, numSets: Int, numReps: Int) {
+        
+        if programTemplateDocId != "", workoutTemplate.id != "" {
+        
+            guard Auth.auth().currentUser != nil else {
+                return
+            }
+            
+            if saveDB {
+                
+                let db = Firestore.firestore()
+                let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
+                let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+                
+                // Create New Exercise Set Template
+                workoutTemplateDoc.collection("exerciseSetTemplates").addDocument(data: [
+                    "exerciseName": name,
+                    "numSets": numSets,
+                    "numReps": numReps
+                ]) { error in
+                    if let e = error {
+                        // Error adding program template
+                        print("\(Constants.customeErrorTextPrefix)\(e)")
+                    }
+                }
+                
+            }
+            
+        }
+
+    }
+    
+    // Update Existing Exercise Set Template
+    func updateExerciseSetTemplate(exerciseSetTemplateId: String, name: String, numSets: Int, numReps: Int) {
+        
+        if programTemplateDocId != "", workoutTemplate.id != "" {
+        
+            guard Auth.auth().currentUser != nil else {
+                return
+            }
+            
+            let db = Firestore.firestore()
+            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+            let exerciseSetTemplateDoc = workoutTemplateDoc.collection("exerciseSetTemplates").document(exerciseSetTemplateId)
+            exerciseSetTemplateDoc.setData([
+                "exerciseName": name,
+                "numSets": numSets,
+                "numReps": numReps
+            ], merge: true)
+            
+        }
+        
+    }
+    
+    // Delete Exercise Sert Template
+    func deleteExerciseSetTemplate(exerciseSetTemplateToDelete: ExerciseSetTemplate) {
+        
+        if programTemplateDocId != "", workoutTemplate.id != "" {
+            
+            guard Auth.auth().currentUser != nil else {
+                return
+            }
+            
+            let db = Firestore.firestore()
+            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+            workoutTemplateDoc.collection("exerciseSetTemplates").document(exerciseSetTemplateToDelete.id).delete() { error in
+                // Check for errors
+                if error == nil {
+                    // No errors
+                    // Update the UI from the main thread
+                    DispatchQueue.main.async {
+                        self.exerciseSetTemplates.removeAll { exerciseSetTemplate in
+                            // Check for the Exercise to remove
+                            return exerciseSetTemplate.id == exerciseSetTemplateToDelete.id
+                        }
+                    }
+                }
+                else {
+                    // Handle Error
+                    print("\(Constants.customeErrorTextPrefix)\(error.debugDescription)")
+                }
+            }
+            
+        }
+        
+    }
+    
+    // MARK: End
     
 }

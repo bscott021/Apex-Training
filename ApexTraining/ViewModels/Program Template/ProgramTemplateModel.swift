@@ -54,7 +54,6 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    
     // Save a program template to the view model and the database if the scenario requires it. If there is already a document, update it. Otherwise create a new document.
     func saveProgramTemplate(saveDB: Bool, name: String, description: String, numWeeks: String) {
         
@@ -166,6 +165,6 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    
+    // MARK: End
     
 }
