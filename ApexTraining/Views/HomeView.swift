@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var model:ApexTrainingModel
     @EnvironmentObject var startedTemplatesModel:StartedTemplatesModel
+    @EnvironmentObject var readyTemplatesModel:ReadyTemplatesModel
     
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
@@ -23,6 +24,23 @@ struct HomeView: View {
             
             VStack {
                 
+                // Select Program from "Ready" programs
+                Text(Constants.selectProgramText)
+                    .font(.title2)
+                
+                // List of programs that are in a Ready status
+                List (readyTemplatesModel.readyTemplates) { rpt in
+                    //Text(rpt.programName)
+                    NavigationLink(destination: Text("Todo")) {
+                        VStack(alignment: .leading) {
+                            Text(rpt.programName)
+                                .font(.title2)
+                            //Text(pt.programDescription).font(.body)
+                        }
+                    }
+                }
+                
+                // Started Programs
                 Text(Constants.editProgramsText)
                     .font(.title2)
                 
@@ -78,6 +96,7 @@ struct HomeView: View {
         }
         .onAppear {
             startedTemplatesModel.getProgramTemplates()
+            readyTemplatesModel.getReadyProgramTemplates()
         }
         
     }

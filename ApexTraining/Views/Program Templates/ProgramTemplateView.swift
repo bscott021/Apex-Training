@@ -17,6 +17,8 @@ struct ProgramTemplateView: View {
     @State var programName = ""
     @State var programDescription = ""
     @State var numberOfWeeks = ""
+    @State var programTemplateStatus: Constants.programTemplateStatus = .Started
+    @State var statusToggleEnabled = true
     
     var body: some View {
         
@@ -33,12 +35,26 @@ struct ProgramTemplateView: View {
                     TextField(Constants.descriptionText, text: $programDescription)
                     TextField(Constants.numWeeksText, text: $numberOfWeeks)
                 }
-                .onAppear {
-                    // Assign state properties to retrieved properites
-                    programName = programTemplateModel.programTemplate.programName
-                    programDescription = programTemplateModel.programTemplate.programDescription
-                    numberOfWeeks = programTemplateModel.programTemplate.numCycles
+                
+                
+                Toggle(isOn: Binding(
+                    get: { self.programTemplateStatus == .Ready },
+                    set: { self.programTemplateStatus = $0 ? .Ready : .Started }
+                    )) {
+                    Text(Constants.markReadyText)
                 }
+                .padding(20)
+                .onChange(of: programTemplateStatus) { newValue in
+                    // If the new value is Ready then check to make sure it's a valid program template
+                    if newValue == .Ready {
+                        let valid = programTemplateModel.checkValid(programName: programTemplateModel.programTemplate.programName)
+                        // If it is not a valid program template then turn the switch back
+                        if valid == false {
+                            self.programTemplateStatus = .Started
+                        }
+                    }
+                }
+                .disabled(!statusToggleEnabled)
                 
                 
                 // Edit the Workout Templates for this Program Template
@@ -58,7 +74,7 @@ struct ProgramTemplateView: View {
                         NavigationLink(destination: WorkoutTemplateView(workoutTemplateModel: WorkoutTemplateModel(programTemplateDocId: programTemplateModel.programTemplate.id)), isActive: $showingNewWorkoutTempalteView) { EmptyView() }
                         Button(Constants.addWorkoutText) {
                             self.showingNewWorkoutTempalteView = true
-                            programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks)
+                            programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks, status: programTemplateStatus.stringValue)
                         }
                         .foregroundColor(.white)
                     }
@@ -89,13 +105,25 @@ struct ProgramTemplateView: View {
                 
                 
             }
+            .onAppear {
+                // Assign state properties to retrieved properites
+                programName = programTemplateModel.programTemplate.programName
+                programDescription = programTemplateModel.programTemplate.programDescription
+                numberOfWeeks = programTemplateModel.programTemplate.numCycles
+                if programTemplateModel.programTemplate.status == "Ready" {
+                    programTemplateStatus = .Ready
+                }
+                else {
+                    programTemplateStatus = .Started
+                }
+            }
             
             
         }
         .navigationBarTitle(Constants.editProgramText)
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) {
             _ in
-            programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks)
+            programTemplateModel.saveProgramTemplate(saveDB: true, name: programName, description: programDescription, numWeeks: numberOfWeeks, status: programTemplateStatus.stringValue)
         }
         
     }

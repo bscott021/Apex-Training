@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import SwiftUI
 
 class ProgramTemplateModel: ObservableObject {
     
@@ -50,12 +51,13 @@ class ProgramTemplateModel: ObservableObject {
             self.programTemplate.programName = data?["programName"] as? String ?? ""
             self.programTemplate.programDescription = data?["programDescription"] as? String ?? ""
             self.programTemplate.numCycles = data?["numCycles"] as? String ?? ""
+            self.programTemplate.status = data?["status"] as? String ?? ""
         }
         
     }
     
     // Save a program template to the view model and the database if the scenario requires it. If there is already a document, update it. Otherwise create a new document.
-    func saveProgramTemplate(saveDB: Bool, name: String, description: String, numWeeks: String) {
+    func saveProgramTemplate(saveDB: Bool, name: String, description: String, numWeeks: String, status: String) {
         
         guard Auth.auth().currentUser != nil else {
             return
@@ -65,6 +67,7 @@ class ProgramTemplateModel: ObservableObject {
         programTemplate.programName = name
         programTemplate.programDescription = description
         programTemplate.numCycles = numWeeks
+        programTemplate.status = status
         
         if saveDB {
             let db = Firestore.firestore()
@@ -74,7 +77,8 @@ class ProgramTemplateModel: ObservableObject {
                 doc.setData([
                     "programName": name,
                     "programDescription": description,
-                    "numCycles": numWeeks
+                    "numCycles": numWeeks,
+                    "status": status
                 ], merge: true)
             }
             // Create a new Program Template in the db
@@ -82,7 +86,8 @@ class ProgramTemplateModel: ObservableObject {
                 let ref = db.collection(Constants.programTemplateCollection).addDocument(data: [
                     "programName": name,
                     "programDescription": description,
-                    "numCycles": numWeeks
+                    "numCycles": numWeeks,
+                    "status": status
                 ]) { error in
                     if let e = error {
                         // Error adding program template
@@ -164,6 +169,79 @@ class ProgramTemplateModel: ObservableObject {
         }
         
     }
+    
+    // Check to see if the program template is valid. This requires at least one workout template to exist. Each workout template must have at least one exercise set template.
+    func checkValid(programName: String) -> Bool {
+        
+        var valid = true
+        
+        // Refresh the workout template from the database
+        self.getWorkoutTemplates()
+        
+        if programName == "" {
+            return false
+        }
+        
+        if self.workoutTemplates.count > 0 {
+            // Loop through the templates to check if there are exercise set templates for each wokrout
+            workoutTemplates.forEach { wt in
+                // valid = validExerciseSetTemplates(workoutTemplateDocId: wt.id)
+            }
+        }
+        else {
+            // If there are no workout templates then this cannot be a valid program template
+            valid = false
+        }
+        
+        // print("Returning \(valid) valid status for program template \(programTemplate.programName)")
+        
+        // Return true for valid and false for not valid
+        return valid
+        
+    }
+    
+    // Return the number of exercise set templates for a workout template
+    // This is commented out because I kept having issues with getting the status to be correct. This will be added and fixed later
+    /*func validExerciseSetTemplates(workoutTemplateDocId: String) -> Bool {
+        
+        var validExerciseSetTemplate = false
+        var returnedValue = false
+        
+        if programTemplate.id != "", workoutTemplateDocId != "" {
+        
+            guard Auth.auth().currentUser != nil else {
+                return false
+            }
+            
+            let db = Firestore.firestore()
+            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplate.id)
+            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplateDocId)
+            let col = workoutTemplateDoc.collection(Constants.exerciseSetTemplateCollection)
+            
+            col.getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    print("Query Snapshot is Empty (\(querySnapshot.do)): \(querySnapshot?.isEmpty ?? true)")
+                    if querySnapshot?.isEmpty == false {
+                        // We do have a snapshot if it's false
+                        returnedValue = true
+                    }
+                }
+            }
+            
+            // print("\(Constants.programTemplateCollection) > \(programTemplate.id) > \(Constants.workoutTemplateCollection) >  \(workoutTemplateDocId) > \(Constants.exerciseSetTemplateCollection)")
+            
+        }
+        
+        if returnedValue {
+            validExerciseSetTemplate = true
+        }
+        
+        return validExerciseSetTemplate
+        
+    } */
+    
     
     // MARK: End
     

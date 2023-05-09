@@ -28,6 +28,7 @@
 		5BCDEE7629F62B8D006F2343 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDEE7529F62B8D006F2343 /* WorkoutTemplate.swift */; };
 		5BCDEE7929F62FC8006F2343 /* WorkoutTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDEE7829F62FC8006F2343 /* WorkoutTemplateView.swift */; };
 		5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */; };
+		5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */; };
 		CD3E01948632D62C4E6C0A41 /* Pods_ApexTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		5BCDEE7529F62B8D006F2343 /* WorkoutTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplate.swift; sourceTree = "<group>"; };
 		5BCDEE7829F62FC8006F2343 /* WorkoutTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateView.swift; sourceTree = "<group>"; };
 		5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplate.swift; sourceTree = "<group>"; };
+		5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyTemplatesModel.swift; sourceTree = "<group>"; };
 		61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.debug.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.debug.xcconfig"; sourceTree = "<group>"; };
 		A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.release.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,8 +177,9 @@
 		5B9106E229F77794000608A5 /* Program Template */ = {
 			isa = PBXGroup;
 			children = (
-				5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */,
 				5B2AB9F729FF2FE400C9B9E2 /* ProgramTemplateModel.swift */,
+				5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */,
+				5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */,
 			);
 			path = "Program Template";
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			files = (
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
 				5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */,
+				5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */,
 				5B2AB9F829FF2FE400C9B9E2 /* ProgramTemplateModel.swift in Sources */,
 				5B1B953529F613A000EA3C40 /* StartedTemplatesModel.swift in Sources */,
 				5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */,

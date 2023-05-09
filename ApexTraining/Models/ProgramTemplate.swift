@@ -13,5 +13,6 @@ class ProgramTemplate: Identifiable {
     var programName:String = ""
     var programDescription:String = ""
     var numCycles:String = ""
+    var status:String = ""
     
 }

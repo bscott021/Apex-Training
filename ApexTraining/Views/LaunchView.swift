@@ -30,6 +30,7 @@ struct LaunchView: View {
                     }
                     .tag(Constants.tabSelectionId.homeView)
                     .environmentObject(StartedTemplatesModel())
+                    .environmentObject(ReadyTemplatesModel())
                 
                 HistoryView()
                     .tabItem {

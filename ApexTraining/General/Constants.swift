@@ -56,6 +56,7 @@ struct Constants {
     static let customeErrorTextPrefix = "Custom Error Message: "
     
     // MARK: Home View
+    static let selectProgramText = "Select a Program"
     static let editProgramsText = "Edit Programs"
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
@@ -64,9 +65,30 @@ struct Constants {
     // Collections
     static let programTemplateCollection = "programTemplates"
     
+    static let markReadyText = "Mark as Ready"
+    
+    enum programTemplateStatus {
+        case Ready
+        case Started
+        
+        var stringValue: String {
+            switch self {
+                case .Ready:
+                    return "Ready"
+                case .Started:
+                    return "In Progress"
+            }
+        }
+        
+    }
+    
     // MARK: Workout Template
     // Collections
     static let workoutTemplateCollection = "workoutTemplates"
+    
+    // MARK: Exercise Set Template
+    // Collections
+    static let exerciseSetTemplateCollection = "exerciseSetTemplates"
     
     // Exercise Set
     static let exerciseNameText = "Exercise Name"
