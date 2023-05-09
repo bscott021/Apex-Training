@@ -25,40 +25,53 @@ struct WorkoutTemplateView: View {
     var body: some View {
         
         NavigationView {
-            VStack {
+            
+            VStack(alignment: .leading) {
                 
                 // Workout Title
                 Text(Constants.editWorkoutText)
                     .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.leading)
                 
                 // Workout Info Form
-                Form {
-                    TextField(Constants.nameText, text: $workoutName)
+                List {
+                    HStack {
+                        Text(Constants.nameLabel)
+                        TextField(Constants.nameText, text: $workoutName)
+                    }
                 }
+                .listStyle(PlainListStyle())
                 
-                // Exercise Set Text
-                Text(Constants.exercisesText)
-                    .font(.title2)
-                
-                // Add Exercises
-                Button(Constants.addExercisesText) {
-                    exerciseName = ""
-                    numSets = ""
-                    numReps = ""
-                    showAddSheet.toggle()
-                }
-                .sheet(isPresented: $showAddSheet) {
-                    VStack {
-                        ExerciseSetTemplateView(heading: Constants.addExercisesText, exerciseName: $exerciseName, numSets: $numSets, numReps: $numReps)
-                        Button(Constants.submitText) {
-                            workoutTemplateModel.addExerciseSetTemplate(saveDB: true, name: exerciseName, numSets: Int(numSets) ?? 0, numReps: Int(numReps) ?? 0)
-                            workoutTemplateModel.getExerciseSetTemplates()
-                            exerciseName = ""
-                            numSets = ""
-                            numReps = ""
+                HStack {
+                    // Exercise Set Text
+                    Text(Constants.exercisesText)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Spacer()
+                    
+                    // Add Exercises
+                    Button(Constants.addExercisesText) {
+                        exerciseName = ""
+                        numSets = ""
+                        numReps = ""
+                        showAddSheet.toggle()
+                    }
+                    .sheet(isPresented: $showAddSheet) {
+                        VStack {
+                            ExerciseSetTemplateView(heading: Constants.addExercisesText, exerciseName: $exerciseName, numSets: $numSets, numReps: $numReps)
+                            Button(Constants.submitText) {
+                                workoutTemplateModel.addExerciseSetTemplate(saveDB: true, name: exerciseName, numSets: Int(numSets) ?? 0, numReps: Int(numReps) ?? 0)
+                                workoutTemplateModel.getExerciseSetTemplates()
+                                exerciseName = ""
+                                numSets = ""
+                                numReps = ""
+                            }
                         }
                     }
                 }
+                .padding(.horizontal)
                 
                 // Exercise Set Template List
                 List (workoutTemplateModel.exerciseSetTemplates) { est in
@@ -91,6 +104,7 @@ struct WorkoutTemplateView: View {
                 .onAppear {
                     workoutTemplateModel.getExerciseSetTemplates()
                 }
+                .listStyle(PlainListStyle())
                 
                 Spacer()
                 

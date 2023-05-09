@@ -19,13 +19,24 @@ struct ExerciseSetTemplateView: View {
         VStack {
             Text(heading)
                 .font(.title2)
-            Form {
-                TextField(Constants.exerciseNameText, text: $exerciseName)
-                TextField(Constants.numSetsText, text: $numSets)
-                TextField(Constants.numRepsText, text: $numReps)
+                .fontWeight(.bold)
+            List {
+                HStack {
+                    Text(Constants.nameLabel)
+                    TextField(Constants.exerciseNameText, text: $exerciseName)
+                }
+                HStack {
+                    Text(Constants.numSetsLabel)
+                    TextField(Constants.numSetsText, text: $numSets)
+                }
+                HStack {
+                    Text(Constants.numRepsLabel)
+                    TextField(Constants.numRepsText, text: $numReps)
+                }
             }
-
+            .listStyle(PlainListStyle())
         }
+        .padding(.top)
         
     }
     

@@ -16,17 +16,19 @@ struct HomeView: View {
     
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
-    @State var hideHomeNavBar = false
     
     var body: some View {
         
         NavigationView {
             
-            VStack {
+            VStack(alignment: .leading) {
                 
                 // Select Program from "Ready" programs
                 Text(Constants.selectProgramText)
                     .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.leading)
+                
                 
                 // List of programs that are in a Ready status
                 List (readyTemplatesModel.readyTemplates) { rpt in
@@ -39,14 +41,31 @@ struct HomeView: View {
                         }
                     }
                 }
+                .listStyle(PlainListStyle())
                 
-                // Started Programs
-                Text(Constants.editProgramsText)
-                    .font(.title2)
+                
+                // Edit or Create a Program
+                HStack {
+                    // Edit Programs
+                    Text(Constants.editProgramsText)
+                        .font(.title2)
+                        .fontWeight(.bold)
+                    
+                    Spacer()
+                    
+                    // Link to "Create a Program"
+                    VStack {
+                        NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel()), isActive:$showingNewProgramTemplateView) { EmptyView() }
+                        Button(Constants.createProgramText) {
+                            self.showingNewProgramTemplateView = true
+                        }
+                    }
+                }
+                .padding(.horizontal)
+                
                 
                 // List of "Started Templates"
                 List (startedTemplatesModel.startedTemplates) { pt in
-                    
                     NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel(programTemplateDocId: pt.id))) {
                         VStack(alignment: .leading) {
                             Text(pt.programName)
@@ -55,34 +74,14 @@ struct HomeView: View {
                                 .font(.body)
                         }
                     }
-
                 }
+                .listStyle(PlainListStyle())
                 
                 Spacer()
                 
-                
-                // Link to "Create a Program"
-                ZStack {
-                    Rectangle()
-                        .frame(height: 40)
-                        .foregroundColor(.red)
-                        .cornerRadius(10)
-                        .padding(20)
-                    // Button to create a new ProgramTemplate
-                    VStack {
-                        NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel()), isActive: $showingNewProgramTemplateView) { EmptyView() }
-                        Button(Constants.createProgramText) {
-                            self.showingNewProgramTemplateView = true
-                        }
-                        .foregroundColor(.white)
-                    }
-                }
-                
-                
             }
-            //.navigationViewStyle(.stack)
+            .navigationViewStyle(.stack)
             .navigationTitle(Constants.home)
-            .navigationBarHidden(hideHomeNavBar)
             .navigationBarItems(trailing:
                 // "Sign Out" Button
                 Button {

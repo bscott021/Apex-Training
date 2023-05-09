@@ -43,6 +43,13 @@ struct Constants {
     static let descriptionText = "Description"
     static let numWeeksText = "Number of Weeks"
     
+    // Text Field Labels
+    static let nameLabel = "Name: "
+    static let descriptionLabel = "Description: "
+    static let numWeeksLabel = "Number of Weeks: "
+    static let numSetsLabel = "Sets: "
+    static let numRepsLabel = "Reps: "
+    
     // Delete Related
     static let deleteText = "Delete"
     static let deleteImage = "trash"
@@ -65,7 +72,7 @@ struct Constants {
     // Collections
     static let programTemplateCollection = "programTemplates"
     
-    static let markReadyText = "Mark as Ready"
+    static let markReadyText = "Ready"
     
     enum programTemplateStatus {
         case Ready
