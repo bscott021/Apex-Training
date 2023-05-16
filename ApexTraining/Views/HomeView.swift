@@ -10,10 +10,14 @@ import FirebaseAuth
 
 struct HomeView: View {
     
+    let user = UserService.shared.user
+    
     @EnvironmentObject var model:ApexTrainingModel
     @EnvironmentObject var startedTemplatesModel:StartedTemplatesModel
     @EnvironmentObject var readyTemplatesModel:ReadyTemplatesModel
+    @EnvironmentObject var currentProgram:ProgramModel
     
+    @State var showProgram = false
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
     
@@ -23,25 +27,49 @@ struct HomeView: View {
             
             VStack(alignment: .leading) {
                 
-                // Select Program from "Ready" programs
-                Text(Constants.selectProgramText)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.leading)
-                
-                
-                // List of programs that are in a Ready status
-                List (readyTemplatesModel.readyTemplates) { rpt in
-                    //Text(rpt.programName)
-                    NavigationLink(destination: Text("Todo")) {
-                        VStack(alignment: .leading) {
-                            Text(rpt.programName)
-                                .font(.title2)
-                            //Text(pt.programDescription).font(.body)
+                // Show "Ready Programs" if there is not a current program for the user (no program id)
+                if user.currentProgramId == "" {
+                    VStack(alignment: .leading) {
+                        // Select Program from "Ready" programs
+                        Text(Constants.selectProgramText)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.leading)
+                        
+                        // List of programs that are in a Ready status
+                        List (readyTemplatesModel.readyPrograms) { rp in
+                            Button {
+                                showProgram.toggle()
+                            } label: {
+                                Text(rp.programName)
+                                    .font(.title2)
+                                    .padding(.leading)
+                            }
+                            .sheet(isPresented: $showProgram) {
+                                VStack {
+                                    ProgramView(program: rp, letUserBegin: true)
+                                }
+                            }
                         }
+                        .listStyle(PlainListStyle())
                     }
                 }
-                .listStyle(PlainListStyle())
+                // Show a button to display the current program
+                else {
+                    Button("Current Program - \(UserService.shared.user.currentProgramName)") {
+                        showProgram.toggle()
+                    }
+                    .sheet(isPresented: $showProgram) {
+                        ProgramView(program: currentProgram.currentProgram, letUserBegin: false)
+                    }
+                    .onAppear {
+                        if user.currentProgramId != "" {
+                            currentProgram.getProgram(programDocIdToGet: user.currentProgramId)
+                        }
+                    }
+                    .padding(.leading)
+                    .padding(.vertical)
+                }
                 
                 
                 // Edit or Create a Program
@@ -95,7 +123,7 @@ struct HomeView: View {
         }
         .onAppear {
             startedTemplatesModel.getProgramTemplates()
-            readyTemplatesModel.getReadyProgramTemplates()
+            readyTemplatesModel.getReadyPrograms()
         }
         
     }

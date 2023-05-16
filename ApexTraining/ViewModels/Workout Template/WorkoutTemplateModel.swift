@@ -105,7 +105,7 @@ class WorkoutTemplateModel: ObservableObject {
             let db = Firestore.firestore()
             let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
             let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
-            workoutTemplateDoc.collection("exerciseSetTemplates").getDocuments { snapshot, error in
+            workoutTemplateDoc.collection(Constants.exerciseSetTemplateCollection).getDocuments { snapshot, error in
                 if error == nil {
                     if let snapshot = snapshot {
                         // Update the startedTemplates property in the main thread

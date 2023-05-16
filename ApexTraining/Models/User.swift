@@ -10,5 +10,7 @@ import Foundation
 class User {
     
     var name:String = ""
+    var currentProgramId = ""
+    var currentProgramName = ""
     
 }

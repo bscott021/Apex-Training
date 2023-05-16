@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     
-    // MARK: User
+    // User
     static let signIn = "Sign In"
     static let signOut = "Sign Out"
     static let createAccount = "Create Account"
@@ -25,7 +25,7 @@ struct Constants {
     
     static let submitText = "Submit"
     
-    // MARK: Tab and Navigation
+    // Tab and Navigation
     static let home = "Home"
     static let homeTabImage = "house"
     static let history = "History"
@@ -35,8 +35,6 @@ struct Constants {
         case homeView
         case historyView
     }
-    
-    // MARK: General
     
     // Fields
     static let nameText = "Name"
@@ -62,15 +60,13 @@ struct Constants {
     // Error
     static let customeErrorTextPrefix = "Custom Error Message: "
     
-    // MARK: Home View
+    // Home View
     static let selectProgramText = "Select a Program"
     static let editProgramsText = "Edit Programs"
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
     
-    // MARK: Program Template
-    // Collections
-    static let programTemplateCollection = "programTemplates"
+    
     
     static let markReadyText = "Ready"
     
@@ -89,13 +85,16 @@ struct Constants {
         
     }
     
-    // MARK: Workout Template
-    // Collections
-    static let workoutTemplateCollection = "workoutTemplates"
+    static let beginProgramText = "Begin Program"
     
-    // MARK: Exercise Set Template
-    // Collections
+    // MARK: Collections
+    static let usersCollection = "users"
+    static let programTemplateCollection = "programTemplates"
+    static let workoutTemplateCollection = "workoutTemplates"
     static let exerciseSetTemplateCollection = "exerciseSetTemplates"
+    static let programsCollection = "programs"
+    static let programWorkoutsCollection = "programWorkouts"
+    static let exercisesCollection = "exercises"
     
     // Exercise Set
     static let exerciseNameText = "Exercise Name"

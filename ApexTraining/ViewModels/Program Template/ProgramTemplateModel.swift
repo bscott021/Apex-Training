@@ -27,7 +27,9 @@ class ProgramTemplateModel: ObservableObject {
     // Load program template by document id
     init(programTemplateDocId: String) {
         // Get an existing document
-        getProgramTemplate(docId: programTemplateDocId)
+        if programTemplateDocId != "" {
+            getProgramTemplate(docId: programTemplateDocId)
+        }
     }
     
     // MARK: Methods
