@@ -37,6 +37,8 @@ class UserService {
             // Set Properties for Current Program Info
             self.user.currentProgramId = data?["currentProgramId"] as? String ?? ""
             self.user.currentProgramName = data?["currentProgramName"] as? String ?? ""
+            self.user.currentWorkoutId = data?["currentWorkoutId"] as? String ?? ""
+            self.user.currentWorktoutName = data?["currentWorkoutName"] as? String ?? ""
         }
         
     }
@@ -54,6 +56,24 @@ class UserService {
             userDoc.setData([
                 "currentProgramId" : programDocId,
                 "currentProgramName" : programName
+            ], merge: true)
+        }
+        
+    }
+    
+    // Set current workout
+    func setCurrentWorkout(workoutDocId: String, workoutName: String) {
+        
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        if workoutDocId != "", workoutName != "" {
+            let db = Firestore.firestore()
+            let userDoc = db.collection(Constants.usersCollection).document(Auth.auth().currentUser!.uid)
+            userDoc.setData([
+                "currentWorkoutId" : workoutDocId,
+                "currentWorkoutName" : workoutName
             ], merge: true)
         }
         

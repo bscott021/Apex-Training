@@ -31,6 +31,8 @@ struct Constants {
     static let history = "History"
     static let historyTabImage = "doc"
     
+    static let startText = "Start"
+    
     enum tabSelectionId {
         case homeView
         case historyView

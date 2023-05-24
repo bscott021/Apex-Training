@@ -9,8 +9,14 @@ import SwiftUI
 
 struct ProgramView: View {
     
+    let user = UserService.shared.user
+    
     @State var program = Program()
     @State var letUserBegin:Bool
+    
+    @Binding var currentWorkout:Workout
+    @Binding var showProgram:Bool
+    @Binding var takeUserToWorkout:Bool
     
     var body: some View {
         
@@ -32,11 +38,11 @@ struct ProgramView: View {
                 }
                 
                 Spacer()
+                
                 if letUserBegin {
                     Button {
                         // Set the current Program. This generates the progarm object
                         UserService.shared.beginProgram(programToBegin: program)
-                        
                     } label: {
                         Text(Constants.beginProgramText)
                     }
@@ -47,14 +53,19 @@ struct ProgramView: View {
             // List of Workouts and their Exercises
             List(program.workouts) { w in
                 Section(header: Text(w.workoutName)) {
-                    // This should be for setting the current workout. Needs modification
-                    /*Button {
-                        // Set the currewnt workout
-                        UserService.shared.beginProgram(programToBegin: program)
-                        
-                    } label: {
-                        Text("Begin")
-                    }*/
+                    // This sets the current workout
+                    if letUserBegin == false {
+                        Button {
+                            // Set the current workout if this is a Start. This doesn't need to happen to Resume
+                            UserService.shared.setCurrentWorkout(workoutDocId: w.id, workoutName: w.workoutName)
+                            self.currentWorkout = w
+                            self.takeUserToWorkout = true
+                            self.showProgram = false
+                            
+                        } label: {
+                            Text(Constants.startText)
+                        }
+                    }
                     ForEach(w.exercises) { w in
                         HStack {
                             Text(w.exerciseName)

@@ -17,9 +17,20 @@ struct HomeView: View {
     @EnvironmentObject var readyTemplatesModel:ReadyTemplatesModel
     @EnvironmentObject var currentProgram:ProgramModel
     
+    @State var currentWorktout = Workout()
     @State var showProgram = false
+    @State var showWorkout = false
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
+    
+    var computedWorkoutName: String {
+        if currentWorktout.workoutName == "" {
+            return UserService.shared.user.currentWorktoutName
+        }
+        else {
+            return currentWorktout.workoutName
+        }
+    }
     
     var body: some View {
         
@@ -47,7 +58,7 @@ struct HomeView: View {
                             }
                             .sheet(isPresented: $showProgram) {
                                 VStack {
-                                    ProgramView(program: rp, letUserBegin: true)
+                                    ProgramView(program: rp, letUserBegin: true, currentWorkout: $currentWorktout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
                                 }
                             }
                         }
@@ -56,19 +67,39 @@ struct HomeView: View {
                 }
                 // Show a button to display the current program
                 else {
-                    Button("Current Program - \(UserService.shared.user.currentProgramName)") {
-                        showProgram.toggle()
-                    }
-                    .sheet(isPresented: $showProgram) {
-                        ProgramView(program: currentProgram.currentProgram, letUserBegin: false)
-                    }
-                    .onAppear {
-                        if user.currentProgramId != "" {
-                            currentProgram.getProgram(programDocIdToGet: user.currentProgramId)
+                    VStack(alignment: .leading) {
+                        // View Current Program Button
+                        Button(UserService.shared.user.currentProgramName) {
+                            showProgram.toggle()
+                        }
+                        .sheet(isPresented: $showProgram) {
+                            ProgramView(program: currentProgram.currentProgram, letUserBegin: false, currentWorkout: $currentWorktout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
+                        }
+                        .onAppear {
+                            if user.currentProgramId != "" {
+                                currentProgram.getProgram(programDocIdToGet: user.currentProgramId)
+                            }
+                        }
+                        // View Current Workout Button
+                        VStack {
+                            NavigationLink(destination: WorkoutView(workout: $currentWorktout).onDisappear {
+                                //print("Current Workout: \(currentWorktout.workoutName)")
+                                //print("Current Program - Current Workout: \(currentProgram.currentWorkout.workoutName)")
+                                //print("User - Current Workout Name: \(user.currentWorktoutName)")
+                                self.currentProgram.currentWorkout = self.currentWorktout
+                            }, isActive: $showWorkout) { EmptyView() }
+                            Button(computedWorkoutName) {
+                                // If this is empty look it up from the user value
+                                if currentProgram.currentWorkout.id == "" {
+                                    self.currentProgram.assignCurrentWorkout()
+                                    self.currentWorktout = currentProgram.currentWorkout
+                                }
+                                // Show Workout View
+                                self.showWorkout = true
+                            }
                         }
                     }
-                    .padding(.leading)
-                    .padding(.vertical)
+                    .padding(20)
                 }
                 
                 
@@ -122,8 +153,8 @@ struct HomeView: View {
             
         }
         .onAppear {
-            startedTemplatesModel.getProgramTemplates()
-            readyTemplatesModel.getReadyPrograms()
+            self.startedTemplatesModel.getProgramTemplates()
+            self.readyTemplatesModel.getReadyPrograms()
         }
         
     }

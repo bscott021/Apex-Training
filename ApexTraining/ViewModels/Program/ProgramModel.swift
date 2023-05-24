@@ -15,7 +15,10 @@ class ProgramModel: ObservableObject {
     
     // MARK: Properties
     
+    var user = UserService.shared.user
+    
     @Published var currentProgram = Program()
+    @Published var currentWorkout = Workout()
     
     init() {
         
@@ -23,6 +26,7 @@ class ProgramModel: ObservableObject {
     
     init(programDocId: String) {
         getProgram(programDocIdToGet: programDocId)
+        assignCurrentWorkout()
     }
     
     // Get the Program and set the values into currentProgram
@@ -95,6 +99,15 @@ class ProgramModel: ObservableObject {
                 
             }
             
+        }
+        
+    }
+    
+    // Assign the currentWorkout Published property to be a quick access copy of the current workout
+    func assignCurrentWorkout() {
+        
+        if let filtered = currentProgram.workouts.first(where: { $0.id == user.currentWorkoutId }) {
+            currentWorkout = filtered
         }
         
     }

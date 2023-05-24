@@ -12,5 +12,7 @@ class User {
     var name:String = ""
     var currentProgramId = ""
     var currentProgramName = ""
+    var currentWorkoutId = ""
+    var currentWorktoutName = ""
     
 }
