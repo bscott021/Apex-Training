@@ -17,18 +17,18 @@ struct HomeView: View {
     @EnvironmentObject var readyTemplatesModel:ReadyTemplatesModel
     @EnvironmentObject var currentProgram:ProgramModel
     
-    @State var currentWorktout = Workout()
+    @State var currentWorkout = Workout()
     @State var showProgram = false
     @State var showWorkout = false
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
     
     var computedWorkoutName: String {
-        if currentWorktout.workoutName == "" {
+        if currentWorkout.workoutName == "" {
             return UserService.shared.user.currentWorktoutName
         }
         else {
-            return currentWorktout.workoutName
+            return currentWorkout.workoutName
         }
     }
     
@@ -58,7 +58,7 @@ struct HomeView: View {
                             }
                             .sheet(isPresented: $showProgram) {
                                 VStack {
-                                    ProgramView(program: rp, letUserBegin: true, currentWorkout: $currentWorktout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
+                                    ProgramView(program: rp, letUserBegin: true, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
                                 }
                             }
                         }
@@ -73,7 +73,7 @@ struct HomeView: View {
                             showProgram.toggle()
                         }
                         .sheet(isPresented: $showProgram) {
-                            ProgramView(program: currentProgram.currentProgram, letUserBegin: false, currentWorkout: $currentWorktout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
+                            ProgramView(program: currentProgram.currentProgram, letUserBegin: false, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
                         }
                         .onAppear {
                             if user.currentProgramId != "" {
@@ -82,20 +82,16 @@ struct HomeView: View {
                         }
                         // View Current Workout Button
                         VStack {
-                            NavigationLink(destination: WorkoutView(workout: $currentWorktout).onDisappear {
-                                //print("Current Workout: \(currentWorktout.workoutName)")
-                                //print("Current Program - Current Workout: \(currentProgram.currentWorkout.workoutName)")
-                                //print("User - Current Workout Name: \(user.currentWorktoutName)")
-                                self.currentProgram.currentWorkout = self.currentWorktout
-                            }, isActive: $showWorkout) { EmptyView() }
+                            NavigationLink(destination: WorkoutView(currentWorkout: self.$currentWorkout).environmentObject(WorkoutModel(workoutIn: self.currentWorkout)), isActive: $showWorkout) { EmptyView() }
                             Button(computedWorkoutName) {
-                                // If this is empty look it up from the user value
-                                if currentProgram.currentWorkout.id == "" {
-                                    self.currentProgram.assignCurrentWorkout()
-                                    self.currentWorktout = currentProgram.currentWorkout
-                                }
                                 // Show Workout View
                                 self.showWorkout = true
+                            }
+                        }
+                        .onAppear {
+                            // Check current workout to see if it has values. This is what's passed back and forth between this view and the workut view
+                            if currentWorkout.id == "" || currentWorkout.workoutName == "" {
+                                self.currentWorkout = UserService.shared.getWorkout(workoutDocIdToGet: user.currentWorkoutId)
                             }
                         }
                     }

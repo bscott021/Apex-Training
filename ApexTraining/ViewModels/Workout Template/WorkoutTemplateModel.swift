@@ -70,7 +70,7 @@ class WorkoutTemplateModel: ObservableObject {
                 // We have a document id for a Program Template
                 
                 if workoutTemplate.id != "" {
-                    // Update Existing Wokrout Template
+                    // Update Existing Workout Template
                     let workoutTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId).collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
                     workoutTemplateDoc.setData(["workoutName": name], merge: true)
                 }

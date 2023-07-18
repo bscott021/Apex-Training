@@ -38,6 +38,11 @@ struct Constants {
         case historyView
     }
     
+    // Images
+    static let completedIndicator = "checkmark.circle.fill"
+    static let editImage = "pencil.circle"
+    static let setRepSpacer = "multiply"
+    
     // Fields
     static let nameText = "Name"
     static let descriptionText = "Description"
@@ -68,6 +73,11 @@ struct Constants {
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
     
+    // Workout View
+    static let setText = "Set"
+    static let repsText = "Reps"
+    static let weightText = "Weight"
+    static let editSetText = "Edit Set"
     
     
     static let markReadyText = "Ready"
@@ -97,6 +107,9 @@ struct Constants {
     static let programsCollection = "programs"
     static let programWorkoutsCollection = "programWorkouts"
     static let exercisesCollection = "exercises"
+    static let workoutCollection = "workouts"
+    static let exerciseSetCollection = "exerciseSets"
+    static let setsCollection = "sets"
     
     // Exercise Set
     static let exerciseNameText = "Exercise Name"

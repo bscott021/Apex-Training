@@ -9,7 +9,6 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
-import SwiftUI
 
 class ProgramModel: ObservableObject {
     
@@ -18,15 +17,12 @@ class ProgramModel: ObservableObject {
     var user = UserService.shared.user
     
     @Published var currentProgram = Program()
-    @Published var currentWorkout = Workout()
     
     init() {
-        
     }
     
     init(programDocId: String) {
         getProgram(programDocIdToGet: programDocId)
-        assignCurrentWorkout()
     }
     
     // Get the Program and set the values into currentProgram
@@ -71,11 +67,11 @@ class ProgramModel: ObservableObject {
                                             if let snapshot3 = snapshot3 {
                                                 workoutTemp.exercises = snapshot3.documents.map { f in
                                                     // Create an Exercise for each doc returned
-                                                    let exerciseTemp = Exercise()
+                                                    let exerciseTemp = ExerciseSet()
                                                     exerciseTemp.id = f.documentID
                                                     exerciseTemp.exerciseName = f["exerciseName"] as? String ?? ""
                                                     exerciseTemp.numSets = f["numSets"] as? Int ?? 0
-                                                    
+                                                    exerciseTemp.numReps = f["numReps"] as? Int ?? 0
                                                     return exerciseTemp
                                                 }
                                             }
@@ -103,13 +99,5 @@ class ProgramModel: ObservableObject {
         
     }
     
-    // Assign the currentWorkout Published property to be a quick access copy of the current workout
-    func assignCurrentWorkout() {
-        
-        if let filtered = currentProgram.workouts.first(where: { $0.id == user.currentWorkoutId }) {
-            currentWorkout = filtered
-        }
-        
-    }
     
 }

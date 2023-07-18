@@ -56,11 +56,17 @@ struct ProgramView: View {
                     // This sets the current workout
                     if letUserBegin == false {
                         Button {
-                            // Set the current workout if this is a Start. This doesn't need to happen to Resume
-                            UserService.shared.setCurrentWorkout(workoutDocId: w.id, workoutName: w.workoutName)
-                            self.currentWorkout = w
-                            self.takeUserToWorkout = true
-                            self.showProgram = false
+                            // Create a new workout in the database and assign it to the current workout. This starts a workout
+                            let returnedWorkout = UserService.shared.createWorkout(workout: w)
+                            
+                            // If we got an id back then it was created in Firestore
+                            if returnedWorkout.id != "" {
+                                // Pass returned id instead of w.id
+                                UserService.shared.setCurrentWorkout(workoutDocId: returnedWorkout.id, workoutName: w.workoutName)
+                                self.currentWorkout = returnedWorkout
+                                self.takeUserToWorkout = true
+                                self.showProgram = false
+                            }
                             
                         } label: {
                             Text(Constants.startText)

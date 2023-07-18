@@ -60,7 +60,7 @@ class ReadyTemplatesModel: ObservableObject {
                                                             //DispatchQueue.main.async {
                                                                 workoutTemp.exercises = snapshot.documents.map { g in
                                                                     // Create a ProgramTemplate for each document returned
-                                                                    let exerciseTemp = Exercise()
+                                                                    let exerciseTemp = ExerciseSet()
                                                                     exerciseTemp.id = g.documentID
                                                                     exerciseTemp.exerciseName = g["exerciseName"] as? String ?? ""
                                                                     exerciseTemp.numSets = g["numSets"] as? Int ?? 0
