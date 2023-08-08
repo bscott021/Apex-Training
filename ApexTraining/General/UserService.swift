@@ -223,8 +223,9 @@ class UserService {
         /* Loop through the exercises and create them in the database. At this point the exercise sets should be created for this since the workout has been started. */
         for e in workout.exercises {
             let exercisesRef = db.collection(Constants.exercisesCollection).addDocument(data: [
-                "exerciseName":e.exerciseName,
-                "numSets":e.numSets
+                "exerciseName" : e.exerciseName,
+                "numSets" : e.numSets,
+                "status" : Constants.inProgressExerciseStatus
             ]) { error in
                 if let e = error {
                     // Error adding Exercise
@@ -309,6 +310,7 @@ class UserService {
                                     // Set ExerciseSet Properties
                                     tempExerciseSet.exerciseName = exerciseData?["exerciseName"] as? String ?? ""
                                     tempExerciseSet.numSets = exerciseData?["numSets"] as? Int ?? 0
+                                    tempExerciseSet.status = exerciseData?["status"] as? String ?? ""
                                 }
                                 // Get and assign Set level data
                                 db.collection(Constants.exercisesCollection).document(exerciseId).collection(Constants.setsCollection).getDocuments() { snapshot4, error4 in
@@ -345,6 +347,31 @@ class UserService {
         
     }
     
+    
+    func completeWorkout(workoutDocId: String) {
+        
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        if workoutDocId != "" {
+            
+            let db = Firestore.firestore()
+            
+            // Update Workout Status
+            db.collection(Constants.workoutCollection).document(workoutDocId).setData([
+                "status" : "Complete"
+            ], merge: true)
+            
+            // Clear Current Workout for User
+            db.collection(Constants.usersCollection).document(Auth.auth().currentUser!.uid).setData([
+                "currentWorkoutId" : "",
+                "currentWorkoutName" : ""
+            ], merge: true)
+            
+        }
+        
+    }
     
     
 }

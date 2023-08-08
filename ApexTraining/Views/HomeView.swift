@@ -82,7 +82,7 @@ struct HomeView: View {
                         }
                         // View Current Workout Button
                         VStack {
-                            NavigationLink(destination: WorkoutView(currentWorkout: self.$currentWorkout).environmentObject(WorkoutModel(workoutIn: self.currentWorkout)), isActive: $showWorkout) { EmptyView() }
+                            NavigationLink(destination: WorkoutView(currentWorkout: self.$currentWorkout, showWorkout: $showWorkout).environmentObject(WorkoutModel(workoutIn: self.currentWorkout)), isActive: $showWorkout) { EmptyView() }
                             Button(computedWorkoutName) {
                                 // Show Workout View
                                 self.showWorkout = true

@@ -11,6 +11,7 @@ class ExerciseSet: Identifiable {
     
     var id:String = ""
     var exerciseName:String = ""
+    var status:String = ""
     var numSets:Int = 0
     var numReps:Int = 0
     var sets:[Set] = [Set]()

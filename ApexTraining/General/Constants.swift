@@ -40,6 +40,7 @@ struct Constants {
     
     // Images
     static let completedIndicator = "checkmark.circle.fill"
+    static let skippedIndicator = "x.circle.fill"
     static let editImage = "pencil.circle"
     static let setRepSpacer = "multiply"
     
@@ -77,8 +78,18 @@ struct Constants {
     static let setText = "Set"
     static let repsText = "Reps"
     static let weightText = "Weight"
-    static let editSetText = "Edit Set"
+    static let editSetsText = "Edit Sets"
+    static let completeWorkoutText = "Complete Workout"
+    static let skipText = "Skip"
+    static let resumeText = "Resume"
     
+    // Exercise Completion Status'
+    static let inProgressExerciseStatus = "InProgress"
+    static let skippedExerciseStatus = "Skipped"
+    static let completedExerciseStatus = "Completed"
+    
+    // Workout Completion Status'
+    static let completedWorkoutStatus = "Completed"
     
     static let markReadyText = "Ready"
     

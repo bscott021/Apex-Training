@@ -13,14 +13,12 @@ import Foundation
 class WorkoutModel: ObservableObject {
     
     @Published var workout = Workout()
-    @Published var currentExercise = ExerciseSet()
     
     init() {
     }
     
     init(workoutIn: Workout) {
         self.workout = workoutIn
-        self.setCurrentExercise(exerciseId: workoutIn.exercises.first?.id ?? "")
     }
     
     // Update Set (Number of Reps and Weight)
@@ -40,20 +38,34 @@ class WorkoutModel: ObservableObject {
                     "weight": s.weight
                 ], merge: true)
             }
+            
+            if exercise.status != Constants.skippedExerciseStatus {
+                if Int(self.countCompletedSets(exercise: exercise)) == exercise.numSets {
+                    exercise.status = Constants.completedExerciseStatus
+                } else {
+                    exercise.status = Constants.inProgressExerciseStatus
+                }
+            }
+            
+            // Save a status of the exercise
+            db.collection(Constants.exercisesCollection).document(exercise.id).setData([
+                "status": exercise.status
+            ], merge: true)
+            
         }
         
     }
     
     
     // Set Current Exercises
-    func setCurrentExercise(exerciseId: String) {
+    func getCurrentExercise(exerciseId: String) -> ExerciseSet {
         // Loop through exercises to look for the correct one
         for e in workout.exercises {
             if e.id == exerciseId {
-                currentExercise = e
-                return
+                return e
             }
         }
+        return ExerciseSet()
     }
     
     
