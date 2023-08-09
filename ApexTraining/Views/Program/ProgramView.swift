@@ -35,11 +35,11 @@ struct ProgramView: View {
                         .font(.title2)
                     
                     // Number of Weeks
-                    Text("\(program.numCycles) Total Weeks")
+                    Text("\(program.numCycles) Weeks")
                     
                     // Complete Program Button
                     if program.cyclesCompleted >= Int(program.numCycles) ?? 0 {
-                        Button("Complete Program") {
+                        Button(Constants.completeProgramText) {
                             UserService.shared.completeProgram()
                             programCompleted = true
                             showProgram = false

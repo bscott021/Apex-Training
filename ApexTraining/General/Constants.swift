@@ -74,6 +74,9 @@ struct Constants {
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
     
+    // Program View
+    static let completeProgramText = "Complete Program"
+    
     // Workout View
     static let setText = "Set"
     static let repsText = "Reps"
