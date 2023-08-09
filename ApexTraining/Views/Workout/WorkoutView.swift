@@ -16,6 +16,7 @@ struct WorkoutView: View {
     // Biding that allows the workout to be passed back to the parent view
     @Binding var currentWorkout:Workout
     @Binding var showWorkout:Bool
+    @Binding var workoutCompleted:Bool
     
     @State var currentExerciseId:String = ""
     @State var currentExercise:ExerciseSet = ExerciseSet()
@@ -43,8 +44,9 @@ struct WorkoutView: View {
                 // Ensure current exercises is saved
                 currentWorkoutModel.saveExercise(exercise: currentExercise)
                 // Complete the workout
-                UserService.shared.completeWorkout(workoutDocId: currentWorkout.id)
+                UserService.shared.completeWorkout(workoutDocId: currentWorkout.id, workoutName: currentWorkout.workoutName)
                 // Navigate back
+                workoutCompleted = true
                 showWorkout = false
             }
             

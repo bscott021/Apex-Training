@@ -17,6 +17,7 @@ struct ProgramView: View {
     @Binding var currentWorkout:Workout
     @Binding var showProgram:Bool
     @Binding var takeUserToWorkout:Bool
+    @Binding var programCompleted:Bool
     
     var body: some View {
         
@@ -34,7 +35,16 @@ struct ProgramView: View {
                         .font(.title2)
                     
                     // Number of Weeks
-                    Text("\(program.numCycles) Weeks")
+                    Text("\(program.numCycles) Total Weeks")
+                    
+                    // Complete Program Button
+                    if program.cyclesCompleted >= Int(program.numCycles) ?? 0 {
+                        Button("Complete Program") {
+                            UserService.shared.completeProgram()
+                            programCompleted = true
+                            showProgram = false
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -55,21 +65,28 @@ struct ProgramView: View {
                 Section(header: Text(w.workoutName)) {
                     // This sets the current workout
                     if letUserBegin == false {
-                        Button {
-                            // Create a new workout in the database and assign it to the current workout. This starts a workout
-                            let returnedWorkout = UserService.shared.createWorkout(workout: w)
-                            
-                            // If we got an id back then it was created in Firestore
-                            if returnedWorkout.id != "" {
-                                // Pass returned id instead of w.id
-                                UserService.shared.setCurrentWorkout(workoutDocId: returnedWorkout.id, workoutName: w.workoutName)
-                                self.currentWorkout = returnedWorkout
-                                self.takeUserToWorkout = true
-                                self.showProgram = false
+                        HStack {
+                            // Start Workout Button
+                            Button {
+                                // Create a new workout in the database and assign it to the current workout. This starts a workout
+                                let returnedWorkout = UserService.shared.createWorkout(workout: w)
+                                
+                                // If we got an id back then it was created in Firestore
+                                if returnedWorkout.id != "" {
+                                    // Pass returned id instead of w.id
+                                    UserService.shared.setCurrentWorkout(workoutDocId: returnedWorkout.id, workoutName: w.workoutName)
+                                    self.currentWorkout = returnedWorkout
+                                    self.takeUserToWorkout = true
+                                    self.showProgram = false
+                                }
+                            } label: {
+                                Text(Constants.startText)
                             }
                             
-                        } label: {
-                            Text(Constants.startText)
+                            Spacer()
+                            
+                            // Completion Count
+                            Text("\(w.timesCompleted) / \(program.numCycles)")
                         }
                     }
                     ForEach(w.exercises) { w in

@@ -11,6 +11,7 @@ class Workout: Identifiable {
     
     var id:String = ""
     var workoutName:String = ""
+    var timesCompleted:Int = 0
     var exercises:[ExerciseSet] = [ExerciseSet]()
     
 }

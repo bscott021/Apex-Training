@@ -18,10 +18,15 @@ struct HomeView: View {
     @EnvironmentObject var currentProgram:ProgramModel
     
     @State var currentWorkout = Workout()
+    
     @State var showProgram = false
     @State var showWorkout = false
+    
     @State var showingProgramTemplateView = false
     @State var showingNewProgramTemplateView = false
+    
+    @State var workoutReturnedCompleted = false
+    @State var programReturnedCompleted = false
     
     var computedWorkoutName: String {
         if currentWorkout.workoutName == "" {
@@ -58,7 +63,7 @@ struct HomeView: View {
                             }
                             .sheet(isPresented: $showProgram) {
                                 VStack {
-                                    ProgramView(program: rp, letUserBegin: true, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
+                                    ProgramView(program: rp, letUserBegin: true, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout, programCompleted: $programReturnedCompleted)
                                 }
                             }
                         }
@@ -73,7 +78,15 @@ struct HomeView: View {
                             showProgram.toggle()
                         }
                         .sheet(isPresented: $showProgram) {
-                            ProgramView(program: currentProgram.currentProgram, letUserBegin: false, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout)
+                            ProgramView(program: currentProgram.currentProgram, letUserBegin: false, currentWorkout: $currentWorkout, showProgram: $showProgram, takeUserToWorkout: $showWorkout, programCompleted: $programReturnedCompleted).onDisappear() {
+                                if programReturnedCompleted == true {
+                                    // Clear the values
+                                    currentProgram.currentProgram = Program()
+                                    currentWorkout = Workout()
+                                    UserService.shared.getCurrentProgramInfo()
+                                    user.currentProgramId = ""
+                                }
+                            }
                         }
                         .onAppear {
                             if user.currentProgramId != "" {
@@ -82,7 +95,15 @@ struct HomeView: View {
                         }
                         // View Current Workout Button
                         VStack {
-                            NavigationLink(destination: WorkoutView(currentWorkout: self.$currentWorkout, showWorkout: $showWorkout).environmentObject(WorkoutModel(workoutIn: self.currentWorkout)), isActive: $showWorkout) { EmptyView() }
+                            NavigationLink(destination: WorkoutView(currentWorkout: self.$currentWorkout, showWorkout: $showWorkout, workoutCompleted: $workoutReturnedCompleted).environmentObject(WorkoutModel(workoutIn: self.currentWorkout)).onDisappear() {
+                                // When the WorkoutView disappears
+                                if workoutReturnedCompleted == true {
+                                    currentProgram.getProgram(programDocIdToGet: user.currentProgramId)
+                                    // Reset
+                                    workoutReturnedCompleted = false
+                                }
+                                
+                            }, isActive: $showWorkout) { EmptyView() }
                             Button(computedWorkoutName) {
                                 // Show Workout View
                                 self.showWorkout = true

@@ -48,6 +48,7 @@ class ProgramModel: ObservableObject {
                 self.currentProgram.programName = data?["programName"] as? String ?? ""
                 self.currentProgram.programDescription = data?["programDescription"] as? String ?? ""
                 self.currentProgram.numCycles = data?["numCycles"] as? String ?? ""
+                self.currentProgram.cyclesCompleted = data?["cyclesCompleted"] as? Int ?? 0
                 
                 // Get the workouts in the collection for the program
                 programDoc.collection(Constants.programWorkoutsCollection).getDocuments { snapshot2, error2 in
@@ -59,6 +60,7 @@ class ProgramModel: ObservableObject {
                                     let workoutTemp = Workout()
                                     workoutTemp.id = e.documentID
                                     workoutTemp.workoutName = e["workoutName"] as? String ?? ""
+                                    workoutTemp.timesCompleted = e["timesCompleted"] as? Int ?? 0
                                     
                                     // Get the exercises for the programWorkout
                                     let workoutDoc = programDoc.collection(Constants.programWorkoutsCollection).document(e.documentID)

@@ -13,6 +13,7 @@ class Program: Identifiable {
     var programName:String = ""
     var programDescription:String = ""
     var numCycles:String = ""
+    var cyclesCompleted:Int = 0
     var workouts:[Workout] = [Workout]()
     
 }

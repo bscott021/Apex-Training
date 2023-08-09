@@ -200,7 +200,7 @@ class UserService {
         
     }
     
-    
+    // Create Workout
     func createWorkout(workout: Workout) -> Workout {
         
         let db = Firestore.firestore()
@@ -347,14 +347,14 @@ class UserService {
         
     }
     
-    
-    func completeWorkout(workoutDocId: String) {
+    // Complete Workout
+    func completeWorkout(workoutDocId: String, workoutName: String) {
         
         guard Auth.auth().currentUser != nil else {
             return
         }
         
-        if workoutDocId != "" {
+        if workoutDocId != "", workoutName != "" {
             
             let db = Firestore.firestore()
             
@@ -363,6 +363,68 @@ class UserService {
                 "status" : "Complete"
             ], merge: true)
             
+            // Update the Program Workout complete count
+            var programWorkoutDocId = ""
+            var programWorkoutCompleteCount = 0
+            let programWorkoutCol = db.collection(Constants.programsCollection).document(user.currentProgramId).collection(Constants.programWorkoutsCollection)
+            programWorkoutCol.whereField("workoutName", isEqualTo: workoutName).getDocuments { ( snapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in snapshot!.documents {
+                        // Get values from returned document. Should only be one based on logic but loop is required by code
+                        let data = document.data()
+                        programWorkoutDocId = document.documentID
+                        programWorkoutCompleteCount = data["timesCompleted"] as? Int ?? 0
+                    }
+                    
+                    // Check to see if it was looked up
+                    if programWorkoutDocId != "" {
+                        // Add 1 to the current completed value
+                        programWorkoutCompleteCount += 1
+                        // Set in the database
+                        programWorkoutCol.document(programWorkoutDocId).setData([
+                            "timesCompleted" : programWorkoutCompleteCount
+                        ], merge: true)
+                    }
+                }
+            }
+
+            // TODO: Find the new lowest completed workout count and update in the Program
+            var lowestCount = 0
+            programWorkoutCol.getDocuments() { snapshot2, error2 in
+                if error2 == nil {
+                    if let snapshot2 = snapshot2 {
+                        // Track the highest completion count
+                        snapshot2.documents.map { f in
+                            let returnedCount = f["timesCompleted"] as? Int ?? 0
+                            let returnedWorkoutName = f["workoutName"] as? String ?? ""
+                            if (lowestCount > returnedCount) || ((lowestCount == 0) && (returnedCount > 0)) {
+                                if returnedWorkoutName == workoutName {
+                                    lowestCount = returnedCount + 1
+                                } else {
+                                    lowestCount = returnedCount
+                                }
+                            }
+                        }
+                        
+                        // In case the value is not updated yet in the data base yet and this is 0, make it 1 to count this run
+                        if lowestCount == 0 {
+                            lowestCount = 1
+                        }
+                            
+                        // Update the program to have the new value for completed cycles
+                        db.collection(Constants.programsCollection).document(self.user.currentProgramId).setData([
+                            "cyclesCompleted" : lowestCount
+                        ], merge: true)
+                    }
+                }
+                else {
+                    // Handle Error
+                    print("\(Constants.customeErrorTextPrefix)\(error2.debugDescription)")
+                }
+            }
+            
             // Clear Current Workout for User
             db.collection(Constants.usersCollection).document(Auth.auth().currentUser!.uid).setData([
                 "currentWorkoutId" : "",
@@ -370,6 +432,28 @@ class UserService {
             ], merge: true)
             
         }
+        
+    }
+    
+    // Complete the Program
+    func completeProgram() {
+        
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        // Set Program Status to Complete
+        db.collection(Constants.programsCollection).document(user.currentProgramId).setData([
+            "programStatus" : "Complete"
+        ], merge: true)
+        
+        // Reset the Current Program for the User
+        db.collection(Constants.usersCollection).document(Auth.auth().currentUser!.uid).setData([
+            "currentProgramId" : "",
+            "currentProgramName" : ""
+        ], merge: true)
         
     }
     
