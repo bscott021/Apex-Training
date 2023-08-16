@@ -31,6 +31,10 @@ struct LaunchView: View {
                     .tag(Constants.tabSelectionId.homeView)
                     .environmentObject(StartedTemplatesModel())
                     .environmentObject(ReadyTemplatesModel())
+                    .environmentObject(ProgramModel())
+                    .onAppear {
+                        UserService.shared.getCurrentProgramInfo()
+                    }
                 
                 HistoryView()
                     .tabItem {
