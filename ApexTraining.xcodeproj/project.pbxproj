@@ -29,6 +29,8 @@
 		5BA715C82A009B48005F5306 /* ExerciseSetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */; };
 		5BA91A332A108863007EBF67 /* ProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA91A322A108863007EBF67 /* ProgramView.swift */; };
 		5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */; };
+		5BCD676F2A915F010039F13C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCD676E2A915F010039F13C /* FirebaseAuth */; };
+		5BCD67712A915F010039F13C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCD67702A915F010039F13C /* FirebaseFirestore */; };
 		5BCDEE7629F62B8D006F2343 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDEE7529F62B8D006F2343 /* WorkoutTemplate.swift */; };
 		5BCDEE7929F62FC8006F2343 /* WorkoutTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCDEE7829F62FC8006F2343 /* WorkoutTemplateView.swift */; };
 		5BE065902A1184DB0059FCAE /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE0658F2A1184DB0059FCAE /* Program.swift */; };
@@ -37,11 +39,9 @@
 		5BE065972A11DAC90059FCAE /* ProgramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE065962A11DAC90059FCAE /* ProgramModel.swift */; };
 		5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */; };
 		5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */; };
-		CD3E01948632D62C4E6C0A41 /* Pods_ApexTraining.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApexTraining.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartedTemplatesModel.swift; sourceTree = "<group>"; };
 		5B2AB9F729FF2FE400C9B9E2 /* ProgramTemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateModel.swift; sourceTree = "<group>"; };
 		5B3458FF29ECCC4700364936 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -73,8 +73,6 @@
 		5BE065962A11DAC90059FCAE /* ProgramModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramModel.swift; sourceTree = "<group>"; };
 		5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplate.swift; sourceTree = "<group>"; };
 		5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyTemplatesModel.swift; sourceTree = "<group>"; };
-		61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.debug.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.debug.xcconfig"; sourceTree = "<group>"; };
-		A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApexTraining.release.xcconfig"; path = "Target Support Files/Pods-ApexTraining/Pods-ApexTraining.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,21 +80,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD3E01948632D62C4E6C0A41 /* Pods_ApexTraining.framework in Frameworks */,
+				5BCD676F2A915F010039F13C /* FirebaseAuth in Frameworks */,
+				5BCD67712A915F010039F13C /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		24F529C265E0B1DB482CAB82 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3799561094B3D4C7B17BE72D /* Pods_ApexTraining.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5B34590529ECEE1F00364936 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,8 +153,6 @@
 			children = (
 				5B48E0CD29D9056300A29142 /* ApexTraining */,
 				5B48E0CC29D9056300A29142 /* Products */,
-				6D5C3CA828874F94066C7A9B /* Pods */,
-				24F529C265E0B1DB482CAB82 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -272,15 +261,6 @@
 			path = Program;
 			sourceTree = "<group>";
 		};
-		6D5C3CA828874F94066C7A9B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */,
-				A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -288,17 +268,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B48E0D929D9056400A29142 /* Build configuration list for PBXNativeTarget "ApexTraining" */;
 			buildPhases = (
-				6B54D0FCDBE280E0EB744658 /* [CP] Check Pods Manifest.lock */,
 				5B48E0C729D9056300A29142 /* Sources */,
 				5B48E0C829D9056300A29142 /* Frameworks */,
 				5B48E0C929D9056300A29142 /* Resources */,
-				8613CA974EF513EB26A82E6E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = ApexTraining;
+			packageProductDependencies = (
+				5BCD676E2A915F010039F13C /* FirebaseAuth */,
+				5BCD67702A915F010039F13C /* FirebaseFirestore */,
+			);
 			productName = ApexTraining;
 			productReference = 5B48E0CB29D9056300A29142 /* ApexTraining.app */;
 			productType = "com.apple.product-type.application";
@@ -327,6 +309,9 @@
 				Base,
 			);
 			mainGroup = 5B48E0C229D9056300A29142;
+			packageReferences = (
+				5BCD676D2A915F010039F13C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5B48E0CC29D9056300A29142 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -348,48 +333,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		6B54D0FCDBE280E0EB744658 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ApexTraining-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8613CA974EF513EB26A82E6E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ApexTraining/Pods-ApexTraining-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ApexTraining/Pods-ApexTraining-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ApexTraining/Pods-ApexTraining-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B48E0C729D9056300A29142 /* Sources */ = {
@@ -545,7 +488,6 @@
 		};
 		5B48E0DA29D9056400A29142 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61AC5389BA8E1157FAB02AA4 /* Pods-ApexTraining.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -575,7 +517,6 @@
 		};
 		5B48E0DB29D9056400A29142 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A112334D3A5319216D04D368 /* Pods-ApexTraining.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -625,6 +566,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5BCD676D2A915F010039F13C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5BCD676E2A915F010039F13C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BCD676D2A915F010039F13C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		5BCD67702A915F010039F13C /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5BCD676D2A915F010039F13C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B48E0C329D9056300A29142 /* Project object */;
 }
