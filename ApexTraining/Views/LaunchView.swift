@@ -42,6 +42,7 @@ struct LaunchView: View {
                         Text(Constants.history)
                     }
                     .tag(Constants.tabSelectionId.historyView)
+                    .environmentObject(WorkoutHistoryModel())
                 
             }
         

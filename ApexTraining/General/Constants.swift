@@ -74,6 +74,10 @@ struct Constants {
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
     
+    // History
+    static let historyNavigationText = "History"
+    static let completedWorkoutsText = "Completed Workouts"
+    
     // Program View
     static let completeProgramText = "Complete Program"
     

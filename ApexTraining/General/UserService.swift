@@ -290,6 +290,7 @@ class UserService {
                 // Set Workout Properties
                 tempWorkout.id = workoutDocIdToGet
                 tempWorkout.workoutName = data?["workoutName"] as? String ?? ""
+                tempWorkout.dateTimeCompleted = data?["dateTimeCompleted"] as? Date ?? Date()
             }
             
             // Get the ExerciseSet data from the exercises collection
@@ -360,7 +361,8 @@ class UserService {
             
             // Update Workout Status
             db.collection(Constants.workoutCollection).document(workoutDocId).setData([
-                "status" : "Complete"
+                "status" : "Complete",
+                "dateTimeCompleted" : Date.now
             ], merge: true)
             
             // Update the Program Workout complete count

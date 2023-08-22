@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct HistoryView: View {
+    
+    @EnvironmentObject var completedWorkoutModel:WorkoutHistoryModel
+    
     var body: some View {
-        Text("History View")
+        
+        NavigationView {
+            
+            VStack {
+                // Display Completed Workouts
+                WorkoutHistoryView(completedWorkouts: $completedWorkoutModel.completedWorkouts)
+            }
+            .onAppear() {
+                self.completedWorkoutModel.getCompletedWorkouts()
+            }
+            
+        }
+        .navigationBarTitle(Constants.historyNavigationText)
+        
     }
+    
 }
 
+/*
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         HistoryView()
     }
 }
+*/
