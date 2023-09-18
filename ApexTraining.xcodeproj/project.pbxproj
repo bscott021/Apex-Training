@@ -29,6 +29,9 @@
 		5BA715C82A009B48005F5306 /* ExerciseSetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */; };
 		5BA91A332A108863007EBF67 /* ProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA91A322A108863007EBF67 /* ProgramView.swift */; };
 		5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */; };
+		5BC4E2E82AB2A05900C4BC98 /* ProgramHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */; };
+		5BC4E2EA2AB2A44100C4BC98 /* ProgramHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */; };
+		5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E2EB2AB2A7F800C4BC98 /* ProgramSummaryView.swift */; };
 		5BCD676F2A915F010039F13C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCD676E2A915F010039F13C /* FirebaseAuth */; };
 		5BCD67712A915F010039F13C /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5BCD67702A915F010039F13C /* FirebaseFirestore */; };
 		5BCD67752A92EB8F0039F13C /* WorkoutHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCD67742A92EB8F0039F13C /* WorkoutHistoryView.swift */; };
@@ -68,6 +71,9 @@
 		5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplateView.swift; sourceTree = "<group>"; };
 		5BA91A322A108863007EBF67 /* ProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramView.swift; sourceTree = "<group>"; };
 		5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateView.swift; sourceTree = "<group>"; };
+		5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramHistoryView.swift; sourceTree = "<group>"; };
+		5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramHistoryModel.swift; sourceTree = "<group>"; };
+		5BC4E2EB2AB2A7F800C4BC98 /* ProgramSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramSummaryView.swift; sourceTree = "<group>"; };
 		5BCD67742A92EB8F0039F13C /* WorkoutHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryView.swift; sourceTree = "<group>"; };
 		5BCD67762A92EBC60039F13C /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
 		5BCD67782A92ED940039F13C /* WorkoutHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryModel.swift; sourceTree = "<group>"; };
@@ -223,9 +229,9 @@
 		5BA08EF22A147C4B009BA470 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
-				5BA08EF32A147C5E009BA470 /* WorkoutView.swift */,
 				5BCD67742A92EB8F0039F13C /* WorkoutHistoryView.swift */,
 				5BCD67762A92EBC60039F13C /* WorkoutSummaryView.swift */,
+				5BA08EF32A147C5E009BA470 /* WorkoutView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -242,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				5BA91A322A108863007EBF67 /* ProgramView.swift */,
+				5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */,
+				5BC4E2EB2AB2A7F800C4BC98 /* ProgramSummaryView.swift */,
 			);
 			path = Program;
 			sourceTree = "<group>";
@@ -266,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				5BE065962A11DAC90059FCAE /* ProgramModel.swift */,
+				5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */,
 			);
 			path = Program;
 			sourceTree = "<group>";
@@ -350,6 +359,7 @@
 			files = (
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
 				5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */,
+				5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */,
 				5B6241632A296E8B000594CE /* Set.swift in Sources */,
 				5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */,
 				5B2AB9F829FF2FE400C9B9E2 /* ProgramTemplateModel.swift in Sources */,
@@ -358,10 +368,12 @@
 				5BCDEE7629F62B8D006F2343 /* WorkoutTemplate.swift in Sources */,
 				5BA91A332A108863007EBF67 /* ProgramView.swift in Sources */,
 				5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */,
+				5BC4E2E82AB2A05900C4BC98 /* ProgramHistoryView.swift in Sources */,
 				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
 				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
 				5BE065902A1184DB0059FCAE /* Program.swift in Sources */,
 				5B34590229ECCC6000364936 /* HistoryView.swift in Sources */,
+				5BC4E2EA2AB2A44100C4BC98 /* ProgramHistoryModel.swift in Sources */,
 				5B34590729ECEEE900364936 /* ApexTrainingModel.swift in Sources */,
 				5BA08EF42A147C5E009BA470 /* WorkoutView.swift in Sources */,
 				5BE065972A11DAC90059FCAE /* ProgramModel.swift in Sources */,

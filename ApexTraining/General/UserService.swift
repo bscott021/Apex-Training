@@ -92,6 +92,7 @@ class UserService {
         let ref = db.collection(Constants.programsCollection).addDocument(data: [
             "programName": programToBegin.programName,
             "programDescription": programToBegin.programDescription,
+            "status": "In Progress",
             "numCycles": programToBegin.numCycles
         ]) { error in
             if let e = error {
@@ -201,69 +202,81 @@ class UserService {
     }
     
     // Create Workout
-    func createWorkout(workout: Workout) -> Workout {
+    func createWorkout(programId: String, workout: Workout) -> Workout {
         
-        let db = Firestore.firestore()
-        
-        /* Create the workout in the workout collection */
-        let workoutRef = db.collection(Constants.workoutCollection).addDocument(data: [
-                "workoutName" : workout.workoutName
-            ]) { error in
-            if let e = error {
-                // Error adding workout
-                print("\(Constants.customeErrorTextPrefix)\(e)")
-            }
+        guard Auth.auth().currentUser != nil else {
+            return Workout()
         }
         
-        // Set the id so it's picked correct to the created workout when the object is returned back for the view to pass around
-        if workoutRef.documentID != "" {
-            workout.id = workoutRef.documentID
-        }
-        
-        /* Loop through the exercises and create them in the database. At this point the exercise sets should be created for this since the workout has been started. */
-        for e in workout.exercises {
-            let exercisesRef = db.collection(Constants.exercisesCollection).addDocument(data: [
-                "exerciseName" : e.exerciseName,
-                "numSets" : e.numSets,
-                "status" : Constants.inProgressExerciseStatus
+        if programId != "", workout.id != "" {
+            
+            let db = Firestore.firestore()
+            
+            /* Create the workout in the workout collection */
+            let workoutRef = db.collection(Constants.workoutCollection).addDocument(data: [
+                "programId" : programId,
+                "workoutName" : workout.workoutName,
+                "status" : "In Progress",
             ]) { error in
                 if let e = error {
-                    // Error adding Exercise
+                    // Error adding workout
                     print("\(Constants.customeErrorTextPrefix)\(e)")
                 }
             }
             
-            // Set the id so it's returned correct when the workout is passed back
-            if exercisesRef.documentID != "" {
-                e.id = exercisesRef.documentID
+            // Set the id so it's picked correct to the created workout when the object is returned back for the view to pass around
+            if workoutRef.documentID != "" {
+                workout.id = workoutRef.documentID
             }
             
-            // Create new sets for the Exercise
-            for i in 1 ..< (e.numSets + 1) {
-                // Create in db
-                let returnDoc = exercisesRef.collection(Constants.setsCollection).addDocument(data: [
-                    "setNum" : i,
-                    "numReps" : e.numReps,
-                    "weight" : 0
+            /* Loop through the exercises and create them in the database. At this point the exercise sets should be created for this since the workout has been started. */
+            for e in workout.exercises {
+                let exercisesRef = db.collection(Constants.exercisesCollection).addDocument(data: [
+                    "exerciseName" : e.exerciseName,
+                    "numSets" : e.numSets,
+                    "status" : Constants.inProgressExerciseStatus
+                ]) { error in
+                    if let e = error {
+                        // Error adding Exercise
+                        print("\(Constants.customeErrorTextPrefix)\(e)")
+                    }
+                }
+                
+                // Set the id so it's returned correct when the workout is passed back
+                if exercisesRef.documentID != "" {
+                    e.id = exercisesRef.documentID
+                }
+                
+                // Create new sets for the Exercise
+                for i in 1 ..< (e.numSets + 1) {
+                    // Create in db
+                    let returnDoc = exercisesRef.collection(Constants.setsCollection).addDocument(data: [
+                        "setNum" : i,
+                        "numReps" : e.numReps,
+                        "weight" : 0
+                    ])
+                    
+                    // Create in workout object
+                    let tempSet = Set()
+                    tempSet.id = returnDoc.documentID
+                    tempSet.setNum = i
+                    tempSet.numReps = e.numReps
+                    tempSet.weight = 0
+                    workout.exercises.first(where: { $0.id == e.id })?.sets.append(tempSet)
+                }
+                
+                // Save the Exercise Id to the Workout
+                workoutRef.collection(Constants.exercisesCollection).addDocument(data: [
+                    "exerciseId" : exercisesRef.documentID
                 ])
                 
-                // Create in workout object
-                let tempSet = Set()
-                tempSet.id = returnDoc.documentID
-                tempSet.setNum = i
-                tempSet.numReps = e.numReps
-                tempSet.weight = 0
-                workout.exercises.first(where: { $0.id == e.id })?.sets.append(tempSet)
             }
             
-            // Save the Exercise Id to the Workout
-            workoutRef.collection(Constants.exercisesCollection).addDocument(data: [
-                "exerciseId" : exercisesRef.documentID
-            ])
-            
+            return workout
+
         }
         
-        return workout
+        return Workout()
         
     }
     
@@ -290,7 +303,10 @@ class UserService {
                 // Set Workout Properties
                 tempWorkout.id = workoutDocIdToGet
                 tempWorkout.workoutName = data?["workoutName"] as? String ?? ""
-                tempWorkout.dateTimeCompleted = data?["dateTimeCompleted"] as? Date ?? Date()
+                let returnedTimestamp = data?["dateTimeCompleted"] as? Timestamp ?? Timestamp()
+                tempWorkout.dateTimeCompleted = returnedTimestamp.dateValue()
+                //tempWorkout.dateTimeCompleted = data?["dateTimeCompleted"] as? Date ?? Date()
+                tempWorkout.status = data?["status"] as? String ?? ""
             }
             
             // Get the ExerciseSet data from the exercises collection
@@ -392,7 +408,6 @@ class UserService {
                 }
             }
 
-            // TODO: Find the new lowest completed workout count and update in the Program
             var lowestCount = 0
             programWorkoutCol.getDocuments() { snapshot2, error2 in
                 if error2 == nil {
@@ -448,7 +463,7 @@ class UserService {
         
         // Set Program Status to Complete
         db.collection(Constants.programsCollection).document(user.currentProgramId).setData([
-            "programStatus" : "Complete"
+            "status" : "Complete"
         ], merge: true)
         
         // Reset the Current Program for the User

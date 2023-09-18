@@ -36,7 +36,8 @@ class WorkoutHistoryModel: ObservableObject {
                         let tempWorkout = Workout()
                         tempWorkout.id = e.documentID
                         tempWorkout.workoutName = e["workoutName"] as? String ?? ""
-                        tempWorkout.dateTimeCompleted = e["dateTimeCompleted"] as? Date ?? Date()
+                        let returnedTimestamp = e["dateTimeCompleted"] as? Timestamp ?? Timestamp()
+                        tempWorkout.dateTimeCompleted = returnedTimestamp.dateValue()
                         
                         return tempWorkout
                     }

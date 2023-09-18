@@ -13,7 +13,7 @@ struct WorkoutSummaryView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(alignment: .leading, spacing: 10) {
             
             // Workout Name
             Text(workoutToView.workoutName)
@@ -23,6 +23,12 @@ struct WorkoutSummaryView: View {
             
             // Date Completed
             Text(workoutToView.dateTimeCompleted, format: .dateTime.day().month().year())
+                .font(.callout)
+                .fontWeight(.bold)
+                .padding(.leading)
+            
+            // Status
+            Text(workoutToView.status)
                 .font(.callout)
                 .fontWeight(.bold)
                 .padding(.leading)

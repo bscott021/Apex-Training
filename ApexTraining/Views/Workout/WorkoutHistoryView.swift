@@ -17,7 +17,7 @@ struct WorkoutHistoryView: View {
             
             // Title
             Text(Constants.completedWorkoutsText)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(.bold)
                 .padding(.leading)
             
