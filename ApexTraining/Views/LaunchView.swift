@@ -23,13 +23,19 @@ struct LaunchView: View {
         else {
             TabView(selection: $tabSelectionId) {
                 
+                TemplateView()
+                    .tabItem {
+                        Image(systemName: Constants.templateTabImage)
+                        Text(Constants.templates)
+                    }
+                    .environmentObject(StartedTemplatesModel())
+                
                 HomeView()
                     .tabItem {
                         Image(systemName: Constants.homeTabImage)
                         Text(Constants.home)
                     }
                     .tag(Constants.tabSelectionId.homeView)
-                    .environmentObject(StartedTemplatesModel())
                     .environmentObject(ReadyTemplatesModel())
                     .environmentObject(ProgramModel())
                     .onAppear {

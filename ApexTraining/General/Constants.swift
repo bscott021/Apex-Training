@@ -26,10 +26,15 @@ struct Constants {
     static let submitText = "Submit"
     
     // Tab and Navigation
+    static let templates = "Programs"
+    static let templateTabImage = "list.bullet"
     static let home = "Home"
-    static let homeTabImage = "house"
+    static let homeTabImage = "pencil"
     static let history = "History"
-    static let historyTabImage = "doc"
+    static let historyTabImage = "book.closed.fill"
+    static let settingsImage = "gearshape.fill"
+    static let logoImage = "dumbbell.fill"
+    static let profileImage = "person.fill"
     
     static let startText = "Start"
     
@@ -70,7 +75,7 @@ struct Constants {
     
     // Home View
     static let selectProgramText = "Select a Program"
-    static let editProgramsText = "Edit Programs"
+    static let editProgramsText = "Edit"
     static let editProgramText = "Edit Program"
     static let createProgramText = "Create a Program"
     

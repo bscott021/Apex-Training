@@ -24,6 +24,7 @@
 		5B6241662A296F67000594CE /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6241652A296F67000594CE /* WorkoutModel.swift */; };
 		5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9106DE29F75D2F000608A5 /* ProgramTemplate.swift */; };
 		5B9106E129F77783000608A5 /* WorkoutTemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9106E029F77783000608A5 /* WorkoutTemplateModel.swift */; };
+		5B951D372AF0713D00883A97 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B951D362AF0713C00883A97 /* TemplateView.swift */; };
 		5BA08EF42A147C5E009BA470 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA08EF32A147C5E009BA470 /* WorkoutView.swift */; };
 		5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */; };
 		5BA715C82A009B48005F5306 /* ExerciseSetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */; };
@@ -66,6 +67,7 @@
 		5B6241652A296F67000594CE /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		5B9106DE29F75D2F000608A5 /* ProgramTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplate.swift; sourceTree = "<group>"; };
 		5B9106E029F77783000608A5 /* WorkoutTemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateModel.swift; sourceTree = "<group>"; };
+		5B951D362AF0713C00883A97 /* TemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		5BA08EF32A147C5E009BA470 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplateView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				5B34590829ECEF4900364936 /* LaunchView.swift */,
+				5B951D362AF0713C00883A97 /* TemplateView.swift */,
 				5B3458FF29ECCC4700364936 /* HomeView.swift */,
 				5B34590129ECCC6000364936 /* HistoryView.swift */,
 				5BA91A312A1087F1007EBF67 /* Program */,
@@ -371,6 +374,7 @@
 				5BC4E2E82AB2A05900C4BC98 /* ProgramHistoryView.swift in Sources */,
 				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
 				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
+				5B951D372AF0713D00883A97 /* TemplateView.swift in Sources */,
 				5BE065902A1184DB0059FCAE /* Program.swift in Sources */,
 				5B34590229ECCC6000364936 /* HistoryView.swift in Sources */,
 				5BC4E2EA2AB2A44100C4BC98 /* ProgramHistoryModel.swift in Sources */,

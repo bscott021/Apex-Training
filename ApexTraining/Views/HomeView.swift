@@ -13,7 +13,6 @@ struct HomeView: View {
     let user = UserService.shared.user
     
     @EnvironmentObject var model:ApexTrainingModel
-    @EnvironmentObject var startedTemplatesModel:StartedTemplatesModel
     @EnvironmentObject var readyTemplatesModel:ReadyTemplatesModel
     @EnvironmentObject var currentProgram:ProgramModel
     
@@ -23,7 +22,8 @@ struct HomeView: View {
     @State var showWorkout = false
     
     @State var showingProgramTemplateView = false
-    @State var showingNewProgramTemplateView = false
+    @State var showSettings = false
+    @State var showProfile = false
     
     @State var workoutReturnedCompleted = false
     @State var programReturnedCompleted = false
@@ -119,58 +119,53 @@ struct HomeView: View {
                     .padding(20)
                 }
                 
-                
-                // Edit or Create a Program
-                HStack {
-                    // Edit Programs
-                    Text(Constants.editProgramsText)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                    
-                    Spacer()
-                    
-                    // Link to "Create a Program"
-                    VStack {
-                        NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel()), isActive:$showingNewProgramTemplateView) { EmptyView() }
-                        Button(Constants.createProgramText) {
-                            self.showingNewProgramTemplateView = true
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                
-                
-                // List of "Started Templates"
-                List (startedTemplatesModel.startedTemplates) { pt in
-                    NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel(programTemplateDocId: pt.id))) {
-                        VStack(alignment: .leading) {
-                            Text(pt.programName)
-                                .font(.title2)
-                            Text(pt.programDescription)
-                                .font(.body)
-                        }
-                    }
-                }
-                .listStyle(PlainListStyle())
-                
                 Spacer()
                 
             }
             .navigationViewStyle(.stack)
             .navigationTitle(Constants.home)
-            .navigationBarItems(trailing:
-                // "Sign Out" Button
-                Button {
-                    try! Auth.auth().signOut()
-                    model.checkSignIn()
-                } label: {
-                    Text(Constants.signOut)
+            .toolbar {
+                // Settings
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showSettings.toggle()
+                        }) {
+                            Image(systemName: Constants.settingsImage)
+                                .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $showSettings) {
+                        Text("Settings: TODO")
+                    }
                 }
-            )
+                // Logo
+                ToolbarItem(placement: .principal) {
+                    Image(systemName: Constants.logoImage)
+                }
+                // Profile
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showProfile.toggle()
+                        }) {
+                            Image(systemName: Constants.profileImage)
+                                .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $showProfile) {
+                        VStack {
+                            Text("Profile: TODO")
+                            // "Sign Out" Button
+                            Button {
+                                try! Auth.auth().signOut()
+                                model.checkSignIn()
+                            } label: {
+                                Text(Constants.signOut)
+                            }
+                        }
+                    }
+                }
+            }
             
         }
         .onAppear {
-            self.startedTemplatesModel.getProgramTemplates()
             self.readyTemplatesModel.getReadyPrograms()
         }
         

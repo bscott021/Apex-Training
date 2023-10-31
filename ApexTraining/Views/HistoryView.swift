@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 // TODO: Move Me
 enum Tab {
@@ -22,11 +23,15 @@ struct TabInfo: Identifiable {
 
 struct HistoryView: View {
     
+    @EnvironmentObject var model:ApexTrainingModel
     @EnvironmentObject var completedWorkoutModel:WorkoutHistoryModel
     @EnvironmentObject var completedProgramModel:ProgramHistoryModel
      
     @State var tabs = [TabInfo]()
     @State var selectedTab = Tab.Workouts
+    
+    @State var showSettings = false
+    @State var showProfile = false
     
     var body: some View {
         
@@ -77,6 +82,49 @@ struct HistoryView: View {
                 Spacer()
                 
             }
+            .navigationTitle(Constants.historyNavigationText)
+            .toolbar {
+                // Settings
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showSettings.toggle()
+                        }) {
+                            Image(systemName: Constants.settingsImage)
+                                .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $showSettings) {
+                        Text("Settings: TODO")
+                    }
+                    .onDisappear() {
+                        
+                    }
+                }
+                // Logo
+                ToolbarItem(placement: .principal) {
+                    Image(systemName: Constants.logoImage)
+                }
+                // Profile
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showProfile.toggle()
+                        }) {
+                            Image(systemName: Constants.profileImage)
+                                .foregroundColor(.black)
+                    }
+                    .sheet(isPresented: $showProfile) {
+                        VStack {
+                            Text("Profile: TODO")
+                            // "Sign Out" Button
+                            Button {
+                                try! Auth.auth().signOut()
+                                model.checkSignIn()
+                            } label: {
+                                Text(Constants.signOut)
+                            }
+                        }
+                    }
+                }
+            }
             .onAppear() {
                 
                 // Create Tabs
@@ -96,7 +144,6 @@ struct HistoryView: View {
             }
             
         }
-        .navigationBarTitle(Constants.historyNavigationText)
         
     }
     

@@ -15,11 +15,7 @@ struct WorkoutHistoryView: View {
         
         VStack {
             
-            // Title
-            Text(Constants.completedWorkoutsText)
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading)
+            
             
             // List of Completed Workouts
             List(completedWorkouts) { cw in
