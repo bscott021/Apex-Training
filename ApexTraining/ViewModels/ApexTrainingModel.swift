@@ -11,8 +11,14 @@ import FirebaseAuth
 
 class ApexTrainingModel: ObservableObject {
     
+    // MARK: Properties
+    
     @Published var signedIn = false
 
+    
+    // MARK: Methods
+    
+    /// Get user data if there is a signed in user
     func checkSignIn() {
         
         signedIn = Auth.auth().currentUser != nil ? true : false
@@ -24,6 +30,7 @@ class ApexTrainingModel: ObservableObject {
     }
     
     
+    /// Get the current users data from database
     func getUserData() {
         
         guard Auth.auth().currentUser != nil else {
@@ -42,5 +49,8 @@ class ApexTrainingModel: ObservableObject {
         }
         
     }
+    
+    
+    // MARK: End
     
 }

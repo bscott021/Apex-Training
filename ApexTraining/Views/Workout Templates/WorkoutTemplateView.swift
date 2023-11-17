@@ -96,7 +96,7 @@ struct WorkoutTemplateView: View {
                         Button {
                             workoutTemplateModel.deleteExerciseSetTemplate(exerciseSetTemplateToDelete: est)
                         } label: {
-                            Label(Constants.deleteText, systemImage: Constants.deleteImage)
+                            Label(Constants.deleteText, systemImage: Symbols.deleteImage)
                         }
                         .tint(.red)
                     }

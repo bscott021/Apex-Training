@@ -12,24 +12,39 @@ import FirebaseFirestore
 class WorkoutTemplateModel: ObservableObject {
     
     // MARK: Properties
+    
     @Published var programTemplateDocId = ""
     @Published var workoutTemplate = WorkoutTemplate()
     @Published var exerciseSetTemplates = [ExerciseSetTemplate]()
     
     // MARK: Init
-    // Create blank
+    
+    ///  Create from just a program template id
+    ///
+    ///  - Parameter programTemplateDocId: Program template document id
     init(programTemplateDocId: String) {
         self.programTemplateDocId = programTemplateDocId
     }
     
-    // Passed in from parent
+    
+    /// Passed in from parent
+    ///
+    /// - Parameters:
+    ///     - programTemplateDocId: Program template document id
+    ///     - workoutTemplate: Workout template object when there's already an object for it
     init(programTemplateDocId: String, workoutTemplate: WorkoutTemplate) {
         self.programTemplateDocId = programTemplateDocId
         self.workoutTemplate = workoutTemplate
     }
     
+    
     // MARK: Methods
-    // Get a single Program Template
+    
+    ///  Get a single Program Template
+    ///
+    ///  - Parameters:
+    ///     - programTemplateDocId:Program template document id
+    ///     - workoutTemplateDocId:
     func getWorkoutTemplate(programTemplateDocId: String, workoutTemplateDocId: String) {
         
         guard Auth.auth().currentUser != nil else {
@@ -38,8 +53,8 @@ class WorkoutTemplateModel: ObservableObject {
         
         // Get Program Template Document
         let db = Firestore.firestore()
-        let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
-        let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplateDocId)
+        let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId)
+        let workoutTemplateDoc = programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplateDocId)
         workoutTemplateDoc.getDocument { snapshot, error in
             guard error == nil, snapshot != nil else {
                 return
@@ -52,7 +67,12 @@ class WorkoutTemplateModel: ObservableObject {
         
     }
     
-    // Save a Wokrout Template to the View Model and the database if the scenario requires it. If there is already a document, update it. Otherwise create a new document.
+    
+    /// Save a Wokrout Template to the View Model and the database
+    ///
+    /// - Parameters:
+    ///     - saveDB: Boolean value of if the save should be for the local copy only or write to the database as well
+    ///     - name: Name of workout to be saved
     func saveWorkoutTemplate(saveDB: Bool, name: String) {
         
         guard Auth.auth().currentUser != nil else {
@@ -71,12 +91,12 @@ class WorkoutTemplateModel: ObservableObject {
                 
                 if workoutTemplate.id != "" {
                     // Update Existing Workout Template
-                    let workoutTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId).collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+                    let workoutTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId).collection(Collections.workoutTemplateCollection).document(workoutTemplate.id)
                     workoutTemplateDoc.setData(["workoutName": name], merge: true)
                 }
                 else {
                     // Add New Workout Template
-                    let ref = db.collection(Constants.programTemplateCollection).document(programTemplateDocId).collection(Constants.workoutTemplateCollection).addDocument(data: ["workoutName": name]) { error in
+                    let ref = db.collection(Collections.programTemplateCollection).document(programTemplateDocId).collection(Collections.workoutTemplateCollection).addDocument(data: ["workoutName": name]) { error in
                         if let e = error {
                             // Error adding program template
                             print("\(Constants.customeErrorTextPrefix)\(e)")
@@ -93,7 +113,8 @@ class WorkoutTemplateModel: ObservableObject {
         
     }
     
-    // Get all the Exercise Set Tempaltes for the Workout Template
+    
+    /// Get all the Exercise Set Templates for the Workout Template
     func getExerciseSetTemplates() {
         
         if programTemplateDocId != "", workoutTemplate.id != "" {
@@ -103,9 +124,9 @@ class WorkoutTemplateModel: ObservableObject {
             }
             
             let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
-            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
-            workoutTemplateDoc.collection(Constants.exerciseSetTemplateCollection).getDocuments { snapshot, error in
+            let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplate.id)
+            workoutTemplateDoc.collection(Collections.exerciseSetTemplateCollection).getDocuments { snapshot, error in
                 if error == nil {
                     if let snapshot = snapshot {
                         // Update the startedTemplates property in the main thread
@@ -133,7 +154,14 @@ class WorkoutTemplateModel: ObservableObject {
         
     }
     
-    // Add New Exercise Set Template
+    
+    /// Add New Exercise Set Template
+    ///
+    /// - Parameters:
+    ///     - saveDB: Boolean to determine if the save should also write to the db
+    ///     - name: Name of the exercise and it's sets
+    ///     - numSets: Number of sets for the exercise
+    ///     - numReps: Number of reps for the sets
     func addExerciseSetTemplate(saveDB: Bool, name: String, numSets: Int, numReps: Int) {
         
         if programTemplateDocId != "", workoutTemplate.id != "" {
@@ -145,8 +173,8 @@ class WorkoutTemplateModel: ObservableObject {
             if saveDB {
                 
                 let db = Firestore.firestore()
-                let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
-                let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+                let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId)
+                let workoutTemplateDoc = programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplate.id)
                 
                 // Create New Exercise Set Template
                 workoutTemplateDoc.collection("exerciseSetTemplates").addDocument(data: [
@@ -166,7 +194,14 @@ class WorkoutTemplateModel: ObservableObject {
 
     }
     
-    // Update Existing Exercise Set Template
+    
+    ///  Update Existing Exercise Set Template
+    ///
+    ///  - Parameters:
+    ///     - exerciseSetTemplateId: Exercise set template document id
+    ///     - name : Exercise set template name
+    ///     - numSets: Numnber of sets for the exercise set
+    ///     - numReps: Number of reps for the exercise set
     func updateExerciseSetTemplate(exerciseSetTemplateId: String, name: String, numSets: Int, numReps: Int) {
         
         if programTemplateDocId != "", workoutTemplate.id != "" {
@@ -176,8 +211,8 @@ class WorkoutTemplateModel: ObservableObject {
             }
             
             let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
-            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+            let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplate.id)
             let exerciseSetTemplateDoc = workoutTemplateDoc.collection("exerciseSetTemplates").document(exerciseSetTemplateId)
             exerciseSetTemplateDoc.setData([
                 "exerciseName": name,
@@ -189,7 +224,10 @@ class WorkoutTemplateModel: ObservableObject {
         
     }
     
-    // Delete Exercise Sert Template
+    
+    /// Delete Exercise Sert Template
+    ///
+    /// - Parameter exerciseSetTemplateToDelete: Exercise set template object that is to be deleted
     func deleteExerciseSetTemplate(exerciseSetTemplateToDelete: ExerciseSetTemplate) {
         
         if programTemplateDocId != "", workoutTemplate.id != "" {
@@ -199,8 +237,8 @@ class WorkoutTemplateModel: ObservableObject {
             }
             
             let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplateDocId)
-            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplate.id)
+            let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplateDocId)
+            let workoutTemplateDoc = programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplate.id)
             workoutTemplateDoc.collection("exerciseSetTemplates").document(exerciseSetTemplateToDelete.id).delete() { error in
                 // Check for errors
                 if error == nil {
@@ -222,6 +260,7 @@ class WorkoutTemplateModel: ObservableObject {
         }
         
     }
+    
     
     // MARK: End
     

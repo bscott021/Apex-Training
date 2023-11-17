@@ -58,10 +58,10 @@ struct WorkoutView: View {
                         HStack {
                             Text("\(e.exerciseName) - \(currentWorkoutModel.countCompletedSets(exercise: e))/\(e.numSets)")
                             if Int(currentWorkoutModel.countCompletedSets(exercise: e)) == e.numSets {
-                                Image(systemName: Constants.completedIndicator)
+                                Image(systemName: Symbols.completedIndicator)
                             }
                             if e.status == Constants.skippedExerciseStatus {
-                                Image(systemName: Constants.skippedIndicator)
+                                Image(systemName: Symbols.skippedIndicator)
                             }
                         }
                     }
@@ -102,14 +102,14 @@ struct WorkoutView: View {
                         // Toggle skip exercise state value
                         skipExercise.toggle()
                     } label: {
-                        Label(computedSkipButtonText, systemImage: Constants.skippedIndicator)
+                        Label(computedSkipButtonText, systemImage: Symbols.skippedIndicator)
                     }
                 }
                 // Edit Sets Button
                 Button {
                     editReps.toggle()
                 } label: {
-                    Label(Constants.editSetsText, systemImage: Constants.editImage)
+                    Label(Constants.editSetsText, systemImage: Symbols.editImage)
                 }
             }
             // List of Sets
@@ -134,7 +134,7 @@ struct WorkoutView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .disabled(skipExercise)
                     }
-                    Image(systemName: Constants.setRepSpacer)
+                    Image(systemName: Symbols.setRepSpacer)
                     // Weight performed for the set
                     TextField(String(s.weight), value: weightFieldBindings[getSetIndex(setId: s.id)], formatter: NumberFormatter())
                         .textFieldStyle(RoundedBorderTextFieldStyle())

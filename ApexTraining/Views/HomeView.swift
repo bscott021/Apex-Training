@@ -20,7 +20,6 @@ struct HomeView: View {
     
     @State var showProgram = false
     @State var showWorkout = false
-    
     @State var showingProgramTemplateView = false
     @State var showSettings = false
     @State var showProfile = false
@@ -112,7 +111,7 @@ struct HomeView: View {
                         .onAppear {
                             // Check current workout to see if it has values. This is what's passed back and forth between this view and the workut view
                             if currentWorkout.id == "" || currentWorkout.workoutName == "" {
-                                self.currentWorkout = UserService.shared.getWorkout(workoutDocIdToGet: user.currentWorkoutId)
+                                self.currentWorkout = ProgramService.shared.getWorkout(workoutDocIdToGet: user.currentWorkoutId)
                             }
                         }
                     }
@@ -130,7 +129,7 @@ struct HomeView: View {
                     Button(action: {
                         showSettings.toggle()
                         }) {
-                            Image(systemName: Constants.settingsImage)
+                            Image(systemName: Symbols.settingsImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showSettings) {
@@ -139,14 +138,14 @@ struct HomeView: View {
                 }
                 // Logo
                 ToolbarItem(placement: .principal) {
-                    Image(systemName: Constants.logoImage)
+                    Image(systemName: Symbols.logoImage)
                 }
                 // Profile
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showProfile.toggle()
                         }) {
-                            Image(systemName: Constants.profileImage)
+                            Image(systemName: Symbols.profileImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showProfile) {

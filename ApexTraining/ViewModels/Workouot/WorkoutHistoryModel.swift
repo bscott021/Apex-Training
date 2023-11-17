@@ -12,13 +12,22 @@ import Foundation
 
 class WorkoutHistoryModel: ObservableObject {
     
+    // MARK: Properties
+    
     @Published var completedWorkouts:[Workout]
     
+    
+    // MARK: Init
+    
+    /// Blank initializer
     init() {
         completedWorkouts = [Workout]()
     }
     
-    // Get Completed Workouts
+    
+    // MARK: Methods
+    
+    /// Get Completed Workouts
     func getCompletedWorkouts() {
         
         guard Auth.auth().currentUser != nil else {
@@ -28,7 +37,7 @@ class WorkoutHistoryModel: ObservableObject {
         let db = Firestore.firestore()
         
         // Look up workouts with status of complete
-        db.collection(Constants.workoutCollection).whereField("status", isEqualTo: "Complete").getDocuments { snapshot, error in
+        db.collection(Collections.workoutCollection).whereField("status", isEqualTo: "Complete").getDocuments { snapshot, error in
             if error == nil {
                 if let snapshot = snapshot {
                     self.completedWorkouts = snapshot.documents.map { e in
@@ -53,6 +62,8 @@ class WorkoutHistoryModel: ObservableObject {
         
     }
     
+    
+    // MARK: End
     
 }
 

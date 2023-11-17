@@ -18,14 +18,26 @@ class ProgramModel: ObservableObject {
     
     @Published var currentProgram = Program()
     
+    
+    // MARK: Init
+    
+    /// Empty initializer
     init() {
     }
     
+    /// Initializer for program document id
+    ///
+    /// - Parameter programDocId: Program document id to load
     init(programDocId: String) {
         getProgram(programDocIdToGet: programDocId)
     }
     
-    // Get the Program and set the values into currentProgram
+    
+    // MARK: Methods 
+    
+    /// Get the Program and set the values into currentProgram
+    ///
+    /// - Parameter programDocIdToGet: Program document id to retrieve from the database
     func getProgram(programDocIdToGet: String) {
         
         guard Auth.auth().currentUser != nil else {
@@ -37,7 +49,7 @@ class ProgramModel: ObservableObject {
             let db = Firestore.firestore()
             
             // Set the Program Level Info
-            let programDoc = db.collection(Constants.programsCollection).document(programDocIdToGet)
+            let programDoc = db.collection(Collections.programsCollection).document(programDocIdToGet)
             programDoc.getDocument { snapshot, error in
                 guard error == nil, snapshot != nil else {
                     return
@@ -51,7 +63,7 @@ class ProgramModel: ObservableObject {
                 self.currentProgram.cyclesCompleted = data?["cyclesCompleted"] as? Int ?? 0
                 
                 // Get the workouts in the collection for the program
-                programDoc.collection(Constants.programWorkoutsCollection).getDocuments { snapshot2, error2 in
+                programDoc.collection(Collections.programWorkoutsCollection).getDocuments { snapshot2, error2 in
                     if error2 == nil {
                         if let snapshot2 = snapshot2 {
                             DispatchQueue.main.async {
@@ -63,8 +75,8 @@ class ProgramModel: ObservableObject {
                                     workoutTemp.timesCompleted = e["timesCompleted"] as? Int ?? 0
                                     
                                     // Get the exercises for the programWorkout
-                                    let workoutDoc = programDoc.collection(Constants.programWorkoutsCollection).document(e.documentID)
-                                    workoutDoc.collection(Constants.exercisesCollection).getDocuments { snapshot3, error3 in
+                                    let workoutDoc = programDoc.collection(Collections.programWorkoutsCollection).document(e.documentID)
+                                    workoutDoc.collection(Collections.exercisesCollection).getDocuments { snapshot3, error3 in
                                         if error3 == nil {
                                             if let snapshot3 = snapshot3 {
                                                 workoutTemp.exercises = snapshot3.documents.map { f in
@@ -101,5 +113,7 @@ class ProgramModel: ObservableObject {
         
     }
     
+    
+    // MARK: End
     
 }

@@ -17,14 +17,18 @@ class ProgramTemplateModel: ObservableObject {
     @Published var programTemplate = ProgramTemplate()
     @Published var workoutTemplates = [WorkoutTemplate]()
     
+    
     // MARK: Init
     
-    // Create New Program Template
+    /// Create New Program Template
     init() {
         // Don't fetch anything
     }
     
-    // Load program template by document id
+    
+    /// Load program template by document id
+    ///
+    /// - Parameter programTemplateDocId: Program template document id to load
     init(programTemplateDocId: String) {
         // Get an existing document
         if programTemplateDocId != "" {
@@ -32,9 +36,12 @@ class ProgramTemplateModel: ObservableObject {
         }
     }
     
+    
     // MARK: Methods
     
-    // Get a single Program Template
+    /// Get a single Program Template
+    ///
+    /// - Parameter docid: Program template document id
     func getProgramTemplate(docId: String) {
         
         guard Auth.auth().currentUser != nil else {
@@ -42,7 +49,7 @@ class ProgramTemplateModel: ObservableObject {
         }
         
         let db = Firestore.firestore()
-        let doc = db.collection(Constants.programTemplateCollection).document(docId)
+        let doc = db.collection(Collections.programTemplateCollection).document(docId)
         doc.getDocument { snapshot, error in
             guard error == nil, snapshot != nil else {
                 return
@@ -58,7 +65,15 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    // Save a program template to the view model and the database if the scenario requires it. If there is already a document, update it. Otherwise create a new document.
+    
+    /// Save a program template to the database
+    ///
+    /// - Parameters:
+    ///     - saveDB: Boolean values for if there should be a save made to the databse
+    ///     - name: Program name
+    ///     - description:Program description
+    ///     - numWeeks: Number of weeks for the program
+    ///     - status: Program status
     func saveProgramTemplate(saveDB: Bool, name: String, description: String, numWeeks: String, status: String) {
         
         guard Auth.auth().currentUser != nil else {
@@ -75,7 +90,7 @@ class ProgramTemplateModel: ObservableObject {
             let db = Firestore.firestore()
             // Update an existing Program Template by document id
             if programTemplate.id != "" {
-                let doc = db.collection(Constants.programTemplateCollection).document(programTemplate.id)
+                let doc = db.collection(Collections.programTemplateCollection).document(programTemplate.id)
                 doc.setData([
                     "programName": name,
                     "programDescription": description,
@@ -85,7 +100,7 @@ class ProgramTemplateModel: ObservableObject {
             }
             // Create a new Program Template in the db
             else {
-                let ref = db.collection(Constants.programTemplateCollection).addDocument(data: [
+                let ref = db.collection(Collections.programTemplateCollection).addDocument(data: [
                     "programName": name,
                     "programDescription": description,
                     "numCycles": numWeeks,
@@ -102,7 +117,8 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    // Get Workout Templates
+    
+    /// Get Workout Templates
     func getWorkoutTemplates() {
         
         if programTemplate.id != "" {
@@ -112,8 +128,8 @@ class ProgramTemplateModel: ObservableObject {
             }
             
             let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplate.id)
-            programTemplateDoc.collection(Constants.workoutTemplateCollection).getDocuments { snapshot, error in
+            let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplate.id)
+            programTemplateDoc.collection(Collections.workoutTemplateCollection).getDocuments { snapshot, error in
                 if error == nil {
                     if let snapshot = snapshot {
                         // Update the startedTemplates property in the main thread
@@ -139,7 +155,10 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    // Delete Workout Template
+    
+    /// Delete Workout Template
+    ///
+    /// - Parameter workoutTemplateToDelete: Workout template object that is to be deleted
     func deleteWorkoutTemplate(workoutTemplateToDelete: WorkoutTemplate) {
         
         if programTemplate.id != "" {
@@ -149,8 +168,8 @@ class ProgramTemplateModel: ObservableObject {
             }
             
             let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplate.id)
-            programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplateToDelete.id).delete() { error in
+            let programTemplateDoc = db.collection(Collections.programTemplateCollection).document(programTemplate.id)
+            programTemplateDoc.collection(Collections.workoutTemplateCollection).document(workoutTemplateToDelete.id).delete() { error in
                 // Check for errors
                 if error == nil {
                     // No errors
@@ -172,8 +191,15 @@ class ProgramTemplateModel: ObservableObject {
         
     }
     
-    // Check to see if the program template is valid. This requires at least one workout template to exist. Each workout template must have at least one exercise set template.
+    
+    ///  Check to see if the program template is valid
+    ///
+    ///  - Parameter programName: Name of program to check
+    ///  - Returns _:  Boolean value of true for valid programs and false for invalid programs
     func checkValid(programName: String) -> Bool {
+        
+        // This requires at least one workout template to exist.
+        // Each workout template must have at least one exercise set template.
         
         var valid = true
         
@@ -201,48 +227,6 @@ class ProgramTemplateModel: ObservableObject {
         return valid
         
     }
-    
-    // Return the number of exercise set templates for a workout template
-    // This is commented out because I kept having issues with getting the status to be correct. This will be added and fixed later
-    /*func validExerciseSetTemplates(workoutTemplateDocId: String) -> Bool {
-        
-        var validExerciseSetTemplate = false
-        var returnedValue = false
-        
-        if programTemplate.id != "", workoutTemplateDocId != "" {
-        
-            guard Auth.auth().currentUser != nil else {
-                return false
-            }
-            
-            let db = Firestore.firestore()
-            let programTemplateDoc = db.collection(Constants.programTemplateCollection).document(programTemplate.id)
-            let workoutTemplateDoc = programTemplateDoc.collection(Constants.workoutTemplateCollection).document(workoutTemplateDocId)
-            let col = workoutTemplateDoc.collection(Constants.exerciseSetTemplateCollection)
-            
-            col.getDocuments { (querySnapshot, error) in
-                if let error = error {
-                    print("Error getting documents: \(error)")
-                } else {
-                    print("Query Snapshot is Empty (\(querySnapshot.do)): \(querySnapshot?.isEmpty ?? true)")
-                    if querySnapshot?.isEmpty == false {
-                        // We do have a snapshot if it's false
-                        returnedValue = true
-                    }
-                }
-            }
-            
-            // print("\(Constants.programTemplateCollection) > \(programTemplate.id) > \(Constants.workoutTemplateCollection) >  \(workoutTemplateDocId) > \(Constants.exerciseSetTemplateCollection)")
-            
-        }
-        
-        if returnedValue {
-            validExerciseSetTemplate = true
-        }
-        
-        return validExerciseSetTemplate
-        
-    } */
     
     
     // MARK: End

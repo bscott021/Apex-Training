@@ -10,7 +10,7 @@ import SwiftUI
 struct LaunchView: View {
     
     @EnvironmentObject var model:ApexTrainingModel
-    @State var tabSelectionId = Constants.tabSelectionId.homeView
+    @State var tabSelectionId = TabSelectionId.homeView
     
     var body: some View {
         
@@ -25,17 +25,17 @@ struct LaunchView: View {
                 
                 TemplateView()
                     .tabItem {
-                        Image(systemName: Constants.templateTabImage)
+                        Image(systemName: Symbols.templateTabImage)
                         Text(Constants.templates)
                     }
                     .environmentObject(StartedTemplatesModel())
                 
                 HomeView()
                     .tabItem {
-                        Image(systemName: Constants.homeTabImage)
+                        Image(systemName: Symbols.homeTabImage)
                         Text(Constants.home)
                     }
-                    .tag(Constants.tabSelectionId.homeView)
+                    .tag(TabSelectionId.homeView)
                     .environmentObject(ReadyTemplatesModel())
                     .environmentObject(ProgramModel())
                     .onAppear {
@@ -44,10 +44,10 @@ struct LaunchView: View {
                 
                 HistoryView()
                     .tabItem {
-                        Image(systemName: Constants.historyTabImage)
+                        Image(systemName: Symbols.historyTabImage)
                         Text(Constants.history)
                     }
-                    .tag(Constants.tabSelectionId.historyView)
+                    .tag(TabSelectionId.historyView)
                     .environmentObject(WorkoutHistoryModel())
                     .environmentObject(ProgramHistoryModel())
                 
@@ -59,8 +59,11 @@ struct LaunchView: View {
     
 }
 
+/*
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchView()
     }
 }
+*/
+

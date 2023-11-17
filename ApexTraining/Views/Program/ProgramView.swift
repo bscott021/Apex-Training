@@ -35,7 +35,7 @@ struct ProgramView: View {
                         .font(.title2)
                     
                     // Number of Weeks
-                    Text("\(program.numCycles) Weeks")
+                    Text("\(program.numCycles) \(Constants.weeksText)")
                     
                     // Complete Program Button
                     if program.cyclesCompleted >= Int(program.numCycles) ?? 0 {
@@ -69,7 +69,7 @@ struct ProgramView: View {
                             // Start Workout Button
                             Button {
                                 // Create a new workout in the database and assign it to the current workout. This starts a workout
-                                let returnedWorkout = UserService.shared.createWorkout(programId: program.id, workout: w)
+                                let returnedWorkout = ProgramService.shared.createWorkout(programId: program.id, workout: w)
                                 
                                 // If we got an id back then it was created in Firestore
                                 if returnedWorkout.id != "" {

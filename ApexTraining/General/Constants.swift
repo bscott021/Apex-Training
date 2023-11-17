@@ -9,69 +9,43 @@ import Foundation
 
 struct Constants {
     
-    // User
+    // MARK: Button Text
     static let signIn = "Sign In"
     static let signOut = "Sign Out"
     static let createAccount = "Create Account"
-    
-    static let email = "Email"
-    static let name = "Name"
-    static let password = "Password"
-    
-    enum signInMode {
-        case signIn
-        case createAccount
-    }
-    
-    static let submitText = "Submit"
-    
-    // Tab and Navigation
-    static let templates = "Programs"
-    static let templateTabImage = "list.bullet"
-    static let home = "Home"
-    static let homeTabImage = "pencil"
-    static let history = "History"
-    static let historyTabImage = "book.closed.fill"
-    static let settingsImage = "gearshape.fill"
-    static let logoImage = "dumbbell.fill"
-    static let profileImage = "person.fill"
-    
     static let startText = "Start"
+    static let submitText = "Submit"
+    static let markReadyText = "Ready"
+    static let beginProgramText = "Begin Program"
+    static let completeProgramText = "Complete Program"
     
-    enum tabSelectionId {
-        case homeView
-        case historyView
-    }
-    
-    // Images
-    static let completedIndicator = "checkmark.circle.fill"
-    static let skippedIndicator = "x.circle.fill"
-    static let editImage = "pencil.circle"
-    static let setRepSpacer = "multiply"
-    
-    // Fields
-    static let nameText = "Name"
-    static let descriptionText = "Description"
-    static let numWeeksText = "Number of Weeks"
-    
-    // Text Field Labels
+    // MARK: Text Field Labels
     static let nameLabel = "Name: "
     static let descriptionLabel = "Description: "
     static let numWeeksLabel = "Number of Weeks: "
     static let numSetsLabel = "Sets: "
     static let numRepsLabel = "Reps: "
     
-    // Delete Related
+    // MARK: Tab and Navigation
+    static let templates = "Programs"
+    static let home = "Home"
+    static let history = "History"
+    
+    // MARK: Text
+    static let appName = "Apex Training"
+    static let email = "Email"
+    static let name = "Name"
+    static let password = "Password"
+    static let nameText = "Name"
+    static let descriptionText = "Description"
+    static let numWeeksText = "Number of Weeks"
+    static let weeksText = "Weeks"
     static let deleteText = "Delete"
-    static let deleteImage = "trash"
     
     // Workout Verbage
     static let workoutsText = "Workouts"
     static let addWorkoutText = "Add Workout"
     static let editWorkoutText = "Edit Workout"
-    
-    // Error
-    static let customeErrorTextPrefix = "Custom Error Message: "
     
     // Home View
     static let selectProgramText = "Select a Program"
@@ -82,9 +56,7 @@ struct Constants {
     // History
     static let historyNavigationText = "History"
     static let completedWorkoutsText = "Completed Workouts"
-    
-    // Program View
-    static let completeProgramText = "Complete Program"
+    static let completedProgramsText = "Completed Programs"
     
     // Workout View
     static let setText = "Set"
@@ -95,45 +67,6 @@ struct Constants {
     static let skipText = "Skip"
     static let resumeText = "Resume"
     
-    // Exercise Completion Status'
-    static let inProgressExerciseStatus = "InProgress"
-    static let skippedExerciseStatus = "Skipped"
-    static let completedExerciseStatus = "Completed"
-    
-    // Workout Completion Status'
-    static let completedWorkoutStatus = "Completed"
-    
-    static let markReadyText = "Ready"
-    
-    enum programTemplateStatus {
-        case Ready
-        case Started
-        
-        var stringValue: String {
-            switch self {
-                case .Ready:
-                    return "Ready"
-                case .Started:
-                    return "In Progress"
-            }
-        }
-        
-    }
-    
-    static let beginProgramText = "Begin Program"
-    
-    // MARK: Collections
-    static let usersCollection = "users"
-    static let programTemplateCollection = "programTemplates"
-    static let workoutTemplateCollection = "workoutTemplates"
-    static let exerciseSetTemplateCollection = "exerciseSetTemplates"
-    static let programsCollection = "programs"
-    static let programWorkoutsCollection = "programWorkouts"
-    static let exercisesCollection = "exercises"
-    static let workoutCollection = "workouts"
-    static let exerciseSetCollection = "exerciseSets"
-    static let setsCollection = "sets"
-    
     // Exercise Set
     static let exerciseNameText = "Exercise Name"
     static var numSetsText = "Number of Sets"
@@ -141,6 +74,15 @@ struct Constants {
     static let exercisesText = "Exercises"
     static let addExercisesText = "Add Exercises"
     static let updateExerciseText = "Update Exercise"
+    
+    // MARK: Status
+    static let inProgressExerciseStatus = "InProgress"
+    static let skippedExerciseStatus = "Skipped"
+    static let completedExerciseStatus = "Completed"
+    static let completedWorkoutStatus = "Completed"
+    
+    // MARK: Error
+    static let customeErrorTextPrefix = "Custom Error Message: "
     
     
 }

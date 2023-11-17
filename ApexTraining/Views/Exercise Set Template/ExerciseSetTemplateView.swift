@@ -21,14 +21,17 @@ struct ExerciseSetTemplateView: View {
                 .font(.title2)
                 .fontWeight(.bold)
             List {
+                // Exercise Name
                 HStack {
                     Text(Constants.nameLabel)
                     TextField(Constants.exerciseNameText, text: $exerciseName)
                 }
+                // Number of Sets
                 HStack {
                     Text(Constants.numSetsLabel)
                     TextField(Constants.numSetsText, text: $numSets)
                 }
+                // Number of Reps
                 HStack {
                     Text(Constants.numRepsLabel)
                     TextField(Constants.numRepsText, text: $numReps)

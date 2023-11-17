@@ -16,7 +16,7 @@ struct ProgramHistoryView: View {
         VStack {
             
             // Title
-            Text("Completed Programs")
+            Text(Constants.completedProgramsText)
                 .font(.title3)
                 .fontWeight(.bold)
                 .padding(.leading)

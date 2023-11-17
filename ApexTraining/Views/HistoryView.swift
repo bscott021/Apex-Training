@@ -8,18 +8,6 @@
 import SwiftUI
 import FirebaseAuth
 
-// TODO: Move Me
-enum Tab {
-    case Workouts
-    case Programs
-}
-
-// TODO: Move Me
-struct TabInfo: Identifiable {
-    var id = UUID()
-    var view: Tab
-    var name: String
-}
 
 struct HistoryView: View {
     
@@ -89,7 +77,7 @@ struct HistoryView: View {
                     Button(action: {
                         showSettings.toggle()
                         }) {
-                            Image(systemName: Constants.settingsImage)
+                            Image(systemName: Symbols.settingsImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showSettings) {
@@ -101,14 +89,14 @@ struct HistoryView: View {
                 }
                 // Logo
                 ToolbarItem(placement: .principal) {
-                    Image(systemName: Constants.logoImage)
+                    Image(systemName: Symbols.logoImage)
                 }
                 // Profile
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showProfile.toggle()
                         }) {
-                            Image(systemName: Constants.profileImage)
+                            Image(systemName: Symbols.profileImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showProfile) {

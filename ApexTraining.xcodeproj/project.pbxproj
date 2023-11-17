@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B1B56532AFC7A68004ADBE0 /* TabInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56522AFC7A68004ADBE0 /* TabInfo.swift */; };
+		5B1B56552AFC7B58004ADBE0 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56542AFC7B58004ADBE0 /* Tab.swift */; };
+		5B1B56582AFC9320004ADBE0 /* ProgramService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56572AFC9320004ADBE0 /* ProgramService.swift */; };
+		5B1B565A2B081C4F004ADBE0 /* SignInMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56592B081C4F004ADBE0 /* SignInMode.swift */; };
+		5B1B565E2B081C90004ADBE0 /* TabSelectionId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B565D2B081C90004ADBE0 /* TabSelectionId.swift */; };
+		5B1B56602B081CB5004ADBE0 /* ProgramTemplateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B565F2B081CB5004ADBE0 /* ProgramTemplateStatus.swift */; };
+		5B1B56622B081D32004ADBE0 /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56612B081D32004ADBE0 /* Symbols.swift */; };
+		5B1B56642B08211F004ADBE0 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B56632B08211F004ADBE0 /* Collections.swift */; };
 		5B1B953529F613A000EA3C40 /* StartedTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */; };
 		5B2AB9F829FF2FE400C9B9E2 /* ProgramTemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AB9F729FF2FE400C9B9E2 /* ProgramTemplateModel.swift */; };
 		5B34590029ECCC4700364936 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3458FF29ECCC4700364936 /* HomeView.swift */; };
@@ -49,6 +57,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B1B56522AFC7A68004ADBE0 /* TabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabInfo.swift; sourceTree = "<group>"; };
+		5B1B56542AFC7B58004ADBE0 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		5B1B56572AFC9320004ADBE0 /* ProgramService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramService.swift; sourceTree = "<group>"; };
+		5B1B56592B081C4F004ADBE0 /* SignInMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInMode.swift; sourceTree = "<group>"; };
+		5B1B565D2B081C90004ADBE0 /* TabSelectionId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabSelectionId.swift; sourceTree = "<group>"; };
+		5B1B565F2B081CB5004ADBE0 /* ProgramTemplateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateStatus.swift; sourceTree = "<group>"; };
+		5B1B56612B081D32004ADBE0 /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		5B1B56632B08211F004ADBE0 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		5B1B953429F613A000EA3C40 /* StartedTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartedTemplatesModel.swift; sourceTree = "<group>"; };
 		5B2AB9F729FF2FE400C9B9E2 /* ProgramTemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateModel.swift; sourceTree = "<group>"; };
 		5B3458FF29ECCC4700364936 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -102,6 +118,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B1B56562AFC7B8E004ADBE0 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				5B1B56542AFC7B58004ADBE0 /* Tab.swift */,
+				5B1B56592B081C4F004ADBE0 /* SignInMode.swift */,
+				5B1B565D2B081C90004ADBE0 /* TabSelectionId.swift */,
+				5B1B565F2B081CB5004ADBE0 /* ProgramTemplateStatus.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
+		5B1B56652B0823E3004ADBE0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5B34590F29EE28CA00364936 /* UserService.swift */,
+				5B1B56572AFC9320004ADBE0 /* ProgramService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		5B34590529ECEE1F00364936 /* Account */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				5B34590B29ECF53000364936 /* Constants.swift */,
-				5B34590F29EE28CA00364936 /* UserService.swift */,
+				5B1B56612B081D32004ADBE0 /* Symbols.swift */,
+				5B1B56632B08211F004ADBE0 /* Collections.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -140,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				5B34590D29EE27FF00364936 /* User.swift */,
+				5B1B56522AFC7A68004ADBE0 /* TabInfo.swift */,
 				5B9106DE29F75D2F000608A5 /* ProgramTemplate.swift */,
 				5BCDEE7529F62B8D006F2343 /* WorkoutTemplate.swift */,
 				5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */,
@@ -186,7 +224,9 @@
 				5B3A295129DBC8A6005DDD9D /* Views */,
 				5B3A295329DBC8C2005DDD9D /* ViewModels */,
 				5B3A295229DBC8B9005DDD9D /* Models */,
+				5B1B56562AFC7B8E004ADBE0 /* Enumerations */,
 				5B34590A29ECF51100364936 /* General */,
+				5B1B56652B0823E3004ADBE0 /* Services */,
 				5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */,
 				5B48E0D229D9056400A29142 /* Assets.xcassets */,
 				5B48E0D429D9056400A29142 /* Preview Content */,
@@ -365,6 +405,8 @@
 				5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */,
 				5B6241632A296E8B000594CE /* Set.swift in Sources */,
 				5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */,
+				5B1B56622B081D32004ADBE0 /* Symbols.swift in Sources */,
+				5B1B56582AFC9320004ADBE0 /* ProgramService.swift in Sources */,
 				5B2AB9F829FF2FE400C9B9E2 /* ProgramTemplateModel.swift in Sources */,
 				5B1B953529F613A000EA3C40 /* StartedTemplatesModel.swift in Sources */,
 				5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */,
@@ -372,8 +414,11 @@
 				5BA91A332A108863007EBF67 /* ProgramView.swift in Sources */,
 				5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */,
 				5BC4E2E82AB2A05900C4BC98 /* ProgramHistoryView.swift in Sources */,
+				5B1B56532AFC7A68004ADBE0 /* TabInfo.swift in Sources */,
+				5B1B565A2B081C4F004ADBE0 /* SignInMode.swift in Sources */,
 				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
 				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
+				5B1B56552AFC7B58004ADBE0 /* Tab.swift in Sources */,
 				5B951D372AF0713D00883A97 /* TemplateView.swift in Sources */,
 				5BE065902A1184DB0059FCAE /* Program.swift in Sources */,
 				5B34590229ECCC6000364936 /* HistoryView.swift in Sources */,
@@ -386,6 +431,9 @@
 				5BCD67752A92EB8F0039F13C /* WorkoutHistoryView.swift in Sources */,
 				5B34590E29EE27FF00364936 /* User.swift in Sources */,
 				5B34590C29ECF53000364936 /* Constants.swift in Sources */,
+				5B1B56602B081CB5004ADBE0 /* ProgramTemplateStatus.swift in Sources */,
+				5B1B565E2B081C90004ADBE0 /* TabSelectionId.swift in Sources */,
+				5B1B56642B08211F004ADBE0 /* Collections.swift in Sources */,
 				5BE065922A1185670059FCAE /* Workout.swift in Sources */,
 				5B9106E129F77783000608A5 /* WorkoutTemplateModel.swift in Sources */,
 				5BCD67792A92ED940039F13C /* WorkoutHistoryModel.swift in Sources */,

@@ -15,11 +15,9 @@ struct WorkoutHistoryView: View {
         
         VStack {
             
-            
-            
             // List of Completed Workouts
             List(completedWorkouts) { cw in
-                NavigationLink(destination: WorkoutSummaryView(workoutToView: UserService.shared.getWorkout(workoutDocIdToGet: cw.id))) {
+                NavigationLink(destination: WorkoutSummaryView(workoutToView: ProgramService.shared.getWorkout(workoutDocIdToGet: cw.id))) {
                     HStack {
                         Text(cw.workoutName)
                         Spacer()

@@ -14,7 +14,6 @@ struct TemplateView: View {
     @EnvironmentObject var startedTemplatesModel:StartedTemplatesModel
     
     @State var showingNewProgramTemplateView = false
-    
     @State var showSettings = false
     @State var showProfile = false
     
@@ -33,7 +32,7 @@ struct TemplateView: View {
                     
                     Spacer()
                     
-                    // Link to "Create a Program"
+                    // Button to "Create a Program"
                     VStack {
                         NavigationLink(destination: ProgramTemplateView(programTemplateModel: ProgramTemplateModel()), isActive:$showingNewProgramTemplateView) { EmptyView() }
                         Button(Constants.createProgramText) {
@@ -65,7 +64,7 @@ struct TemplateView: View {
                     Button(action: {
                         showSettings.toggle()
                         }) {
-                            Image(systemName: Constants.settingsImage)
+                            Image(systemName: Symbols.settingsImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showSettings) {
@@ -74,14 +73,14 @@ struct TemplateView: View {
                 }
                 // Logo
                 ToolbarItem(placement: .principal) {
-                    Image(systemName: Constants.logoImage)
+                    Image(systemName: Symbols.logoImage)
                 }
                 // Profile
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showProfile.toggle()
                         }) {
-                            Image(systemName: Constants.profileImage)
+                            Image(systemName: Symbols.profileImage)
                                 .foregroundColor(.black)
                     }
                     .sheet(isPresented: $showProfile) {
@@ -109,8 +108,10 @@ struct TemplateView: View {
     
 }
 
+/*
 struct TemplateView_Previews: PreviewProvider {
     static var previews: some View {
         TemplateView()
     }
 }
+*/

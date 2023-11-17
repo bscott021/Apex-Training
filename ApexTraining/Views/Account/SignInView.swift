@@ -12,14 +12,15 @@ import FirebaseFirestore
 struct SignInView: View {
     
     @EnvironmentObject var model:ApexTrainingModel
-    @State var signInMode = Constants.signInMode.signIn
+    
+    @State var signInMode = SignInMode.signIn
     @State var email = ""
     @State var name = ""
     @State var password = ""
     @State var errorMessage:String?
     
     var buttonText:String {
-        if signInMode == Constants.signInMode.signIn {
+        if signInMode == SignInMode.signIn {
             return Constants.signIn
         }
         else {
@@ -40,14 +41,14 @@ struct SignInView: View {
             
             VStack {
                 
-                Text("Apex Training")
+                Text(Constants.appName)
                     .font(.title)
                 
                 // Email
                 TextField(Constants.email, text: $email)
                     .textFieldStyle(.roundedBorder)
                     .shadow(radius: 2)
-                if signInMode == Constants.signInMode.createAccount {
+                if signInMode == SignInMode.createAccount {
                     TextField(Constants.name, text: $name)
                         .textFieldStyle(.roundedBorder)
                         .shadow(radius: 2)
@@ -61,10 +62,10 @@ struct SignInView: View {
                 Picker(selection: $signInMode, label: Text("Placeholder")) {
                     // Sign In Option
                     Text(Constants.signIn)
-                        .tag(Constants.signInMode.signIn)
+                        .tag(SignInMode.signIn)
                     // Create Account Option
                     Text(Constants.createAccount)
-                        .tag(Constants.signInMode.createAccount)
+                        .tag(SignInMode.createAccount)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 
@@ -75,7 +76,7 @@ struct SignInView: View {
                 
                 // Sign In / Create Account Button
                 Button {
-                    if signInMode == Constants.signInMode.signIn {
+                    if signInMode == SignInMode.signIn {
                         Auth.auth().signIn(withEmail: email, password: password) { result, error in
                             guard error == nil else {
                                 errorMessage = error!.localizedDescription
@@ -128,8 +129,11 @@ struct SignInView: View {
     
 }
 
+/*
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
     }
 }
+*/
+

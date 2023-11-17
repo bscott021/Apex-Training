@@ -12,16 +12,31 @@ import Foundation
 
 class WorkoutModel: ObservableObject {
     
+    // MARK: Properties
+    
     @Published var workout = Workout()
     
+    
+    // MARK: Init
+    
+    /// Blank initializer
     init() {
     }
     
+    
+    /// Initialize from a passed in workout
+    ///
+    /// - Parameter workoutIn: Workout object for new instance
     init(workoutIn: Workout) {
         self.workout = workoutIn
     }
     
-    // Update Set (Number of Reps and Weight)
+    
+    // MARK: Methods 
+    
+    /// Save an exercise to the database
+    ///
+    /// - Parameter exercise: Exercise set object to save
     func saveExercise(exercise: ExerciseSet) {
         
         guard Auth.auth().currentUser != nil else {
@@ -30,7 +45,7 @@ class WorkoutModel: ObservableObject {
         
         let db = Firestore.firestore()
         if exercise.id != "" {
-            let ref = db.collection(Constants.exercisesCollection).document(exercise.id).collection(Constants.setsCollection)
+            let ref = db.collection(Collections.exercisesCollection).document(exercise.id).collection(Collections.setsCollection)
             // Loop through sets and save them to the db
             for s in exercise.sets {
                 ref.document(s.id).setData([
@@ -48,7 +63,7 @@ class WorkoutModel: ObservableObject {
             }
             
             // Save a status of the exercise
-            db.collection(Constants.exercisesCollection).document(exercise.id).setData([
+            db.collection(Collections.exercisesCollection).document(exercise.id).setData([
                 "status": exercise.status
             ], merge: true)
             
@@ -57,7 +72,10 @@ class WorkoutModel: ObservableObject {
     }
     
     
-    // Set Current Exercises
+    /// Set Current Exercises
+    ///
+    /// - Parameter exerciseId: Id of the exercise set object that is wanted
+    /// - Returns ExerciseSet: Exercise set for the passed in id
     func getCurrentExercise(exerciseId: String) -> ExerciseSet {
         // Loop through exercises to look for the correct one
         for e in workout.exercises {
@@ -69,7 +87,10 @@ class WorkoutModel: ObservableObject {
     }
     
     
-    // Get ExerciseSet Completion
+    /// Get ExerciseSet Completion
+    ///
+    /// - Parameter exercise: Exercise set object
+    /// - Returns String value for the number of sets in a completed status
     func countCompletedSets(exercise: ExerciseSet) -> String {
         
         var numCompleted = 0
@@ -85,6 +106,8 @@ class WorkoutModel: ObservableObject {
         
     }
     
+    
+    // MARK: End 
     
 }
 

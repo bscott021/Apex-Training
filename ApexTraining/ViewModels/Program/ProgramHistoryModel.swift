@@ -12,13 +12,22 @@ import Foundation
 
 class ProgramHistoryModel: ObservableObject {
     
+    // MARK: Properties
+    
     @Published var completedPrograms:[Program]
     
+    
+    // MARK: Init
+    
+    /// Empty initializer
     init() {
         completedPrograms = [Program]()
     }
     
-    // Get Completed Workouts
+    
+    // MARK: Methods 
+    
+    /// Get Completed Workouts
     func getCompletedPrograms() {
         
         guard Auth.auth().currentUser != nil else {
@@ -30,7 +39,7 @@ class ProgramHistoryModel: ObservableObject {
         let db = Firestore.firestore()
         
         // Look up workouts with status of complete
-        db.collection(Constants.programsCollection).whereField("status", isEqualTo: "Complete").getDocuments { snapshot, error in
+        db.collection(Collections.programsCollection).whereField("status", isEqualTo: "Complete").getDocuments { snapshot, error in
             if error == nil {
                 if let snapshot = snapshot {
                     self.completedPrograms = snapshot.documents.map { e in
@@ -43,7 +52,7 @@ class ProgramHistoryModel: ObservableObject {
                         tempProgram.numCycles = e["numCycles"] as? String ?? ""
                         tempProgram.cyclesCompleted = e["cyclesCompleted"] as? Int ?? 0
                         
-                        db.collection(Constants.workoutCollection).whereField("programId", isEqualTo: tempProgram.id).getDocuments { snapshot2, error2 in
+                        db.collection(Collections.workoutCollection).whereField("programId", isEqualTo: tempProgram.id).getDocuments { snapshot2, error2 in
                             
                             if error2 == nil {
                                 if let snapshot2 = snapshot2 {
@@ -76,5 +85,7 @@ class ProgramHistoryModel: ObservableObject {
         
     }
     
+    
+    // MARK: End
     
 }

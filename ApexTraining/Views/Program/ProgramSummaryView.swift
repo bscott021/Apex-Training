@@ -44,7 +44,7 @@ struct ProgramSummaryView: View {
             
             // List of Completed Workouts
             List(completedProgram.workouts) { w in
-                NavigationLink(destination: WorkoutSummaryView(workoutToView: UserService.shared.getWorkout(workoutDocIdToGet: w.id))) {
+                NavigationLink(destination: WorkoutSummaryView(workoutToView: ProgramService.shared.getWorkout(workoutDocIdToGet: w.id))) {
                     HStack {
                         Text(w.workoutName)
                         Spacer()

@@ -12,13 +12,12 @@ struct ProgramTemplateView: View {
     @EnvironmentObject var model:ApexTrainingModel
     @ObservedObject var programTemplateModel:ProgramTemplateModel
     
-    @State var showingNewWorkoutTempalteView = false
-    
     @State var programName = ""
     @State var programDescription = ""
     @State var numberOfWeeks = ""
-    @State var programTemplateStatus: Constants.programTemplateStatus = .Started
+    @State var programTemplateStatus: ProgramTemplateStatus = .Started
     @State var statusToggleEnabled = true
+    @State var showingNewWorkoutTempalteView = false
     
     var body: some View {
         
@@ -105,7 +104,7 @@ struct ProgramTemplateView: View {
                         Button {
                             programTemplateModel.deleteWorkoutTemplate(workoutTemplateToDelete: wt)
                         } label: {
-                            Label(Constants.deleteText, systemImage: Constants.deleteImage)
+                            Label(Constants.deleteText, systemImage: Symbols.deleteImage)
                         }
                         .tint(.red)
                     }

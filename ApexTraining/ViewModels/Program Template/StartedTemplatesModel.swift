@@ -11,9 +11,14 @@ import FirebaseFirestore
 
 class StartedTemplatesModel: ObservableObject {
     
+    // MARK: Properties
+    
     @Published var startedTemplates = [ProgramTemplate]()
     
-    // Get all the started Program Templates
+    
+    // MARK: Methods 
+    
+    /// Get all the started Program Templates
     func getProgramTemplates() {
         
         guard Auth.auth().currentUser != nil else {
@@ -21,7 +26,7 @@ class StartedTemplatesModel: ObservableObject {
         }
         
         let db = Firestore.firestore()
-        db.collection(Constants.programTemplateCollection).getDocuments { snapshot, error in
+        db.collection(Collections.programTemplateCollection).getDocuments { snapshot, error in
 
             if error == nil {
                 if let snapshot = snapshot {
@@ -46,8 +51,9 @@ class StartedTemplatesModel: ObservableObject {
         
         }
         
-        
-        
     }
+    
+    
+    // MARK: End
     
 }
