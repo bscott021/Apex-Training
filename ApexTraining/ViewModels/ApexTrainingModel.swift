@@ -38,7 +38,7 @@ class ApexTrainingModel: ObservableObject {
         }
         
         let db = Firestore.firestore()
-        let ref = db.collection("users").document(Auth.auth().currentUser!.uid)
+        let ref = db.collection(Collections.usersCollection).document(Auth.auth().currentUser!.uid)
         ref.getDocument { snapshot, error in
             guard error == nil, snapshot != nil else {
                 return

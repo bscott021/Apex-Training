@@ -15,24 +15,29 @@ struct ProgramHistoryView: View {
         
         VStack {
             
-            // Title
-            Text(Constants.completedProgramsText)
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading)
-            
             // List of Completed Programs
             List(completedPrograms) { cp in
                 NavigationLink(destination: ProgramSummaryView(completedProgram : cp)) {
-                    HStack {
-                        VStack (alignment: .leading) {
+                    VStack (alignment: .leading) {
+                        HStack {
+                            // Program Name
                             Text(cp.programName)
+                                .font(.title3)
+                                .foregroundColor(Color(ApexColors.primary))
+                                .padding(.bottom, 2)
                             Spacer()
+                            // Number of Weeks
                             Text("\(cp.cyclesCompleted)/\(cp.numCycles)")
+                                .foregroundColor(Color(ApexColors.secondary))
+                                .font(.caption)
                         }
-                        .padding(.vertical)
+                        // Program Description
                         Text(cp.programDescription)
+                            .font(.body)
+                            .foregroundColor(Color(ApexColors.primary))
+                            .padding(.bottom)
                     }
+                    .padding(.trailing)
                 }
             }
             .listStyle(PlainListStyle())

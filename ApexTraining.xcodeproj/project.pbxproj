@@ -26,12 +26,15 @@
 		5B34590E29EE27FF00364936 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590D29EE27FF00364936 /* User.swift */; };
 		5B34591029EE28CA00364936 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B34590F29EE28CA00364936 /* UserService.swift */; };
 		5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B48E0CE29D9056300A29142 /* ApexTraining.swift */; };
-		5B48E0D329D9056400A29142 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D229D9056400A29142 /* Assets.xcassets */; };
 		5B48E0D629D9056400A29142 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D529D9056400A29142 /* Preview Assets.xcassets */; };
 		5B6241632A296E8B000594CE /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6241622A296E8B000594CE /* Set.swift */; };
 		5B6241662A296F67000594CE /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6241652A296F67000594CE /* WorkoutModel.swift */; };
+		5B7D75452B2BF9C500406C40 /* ApexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7D75442B2BF9C500406C40 /* ApexColors.swift */; };
+		5B7D75482B2C146600406C40 /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7D75472B2C146600406C40 /* ToolBarView.swift */; };
+		5B8BF2062B0ABF8200CA2BF3 /* ApexTrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8BF2052B0ABF8200CA2BF3 /* ApexTrainingTests.swift */; };
 		5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9106DE29F75D2F000608A5 /* ProgramTemplate.swift */; };
 		5B9106E129F77783000608A5 /* WorkoutTemplateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9106E029F77783000608A5 /* WorkoutTemplateModel.swift */; };
+		5B939D4E2B29589F0025C1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B48E0D229D9056400A29142 /* Assets.xcassets */; };
 		5B951D372AF0713D00883A97 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B951D362AF0713C00883A97 /* TemplateView.swift */; };
 		5BA08EF42A147C5E009BA470 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA08EF32A147C5E009BA470 /* WorkoutView.swift */; };
 		5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */; };
@@ -55,6 +58,16 @@
 		5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */; };
 		5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B8BF2072B0ABF8200CA2BF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B48E0C329D9056300A29142 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B48E0CA29D9056300A29142;
+			remoteInfo = ApexTraining;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5B1B56522AFC7A68004ADBE0 /* TabInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabInfo.swift; sourceTree = "<group>"; };
@@ -81,6 +94,10 @@
 		5B48E0D529D9056400A29142 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B6241622A296E8B000594CE /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		5B6241652A296F67000594CE /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		5B7D75442B2BF9C500406C40 /* ApexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexColors.swift; sourceTree = "<group>"; };
+		5B7D75472B2C146600406C40 /* ToolBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		5B8BF2032B0ABF8200CA2BF3 /* ApexTrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApexTrainingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B8BF2052B0ABF8200CA2BF3 /* ApexTrainingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexTrainingTests.swift; sourceTree = "<group>"; };
 		5B9106DE29F75D2F000608A5 /* ProgramTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplate.swift; sourceTree = "<group>"; };
 		5B9106E029F77783000608A5 /* WorkoutTemplateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplateModel.swift; sourceTree = "<group>"; };
 		5B951D362AF0713C00883A97 /* TemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
@@ -112,6 +129,13 @@
 			files = (
 				5BCD676F2A915F010039F13C /* FirebaseAuth in Frameworks */,
 				5BCD67712A915F010039F13C /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B8BF2002B0ABF8200CA2BF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,9 +173,10 @@
 		5B34590A29ECF51100364936 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				5B7D75442B2BF9C500406C40 /* ApexColors.swift */,
+				5B1B56632B08211F004ADBE0 /* Collections.swift */,
 				5B34590B29ECF53000364936 /* Constants.swift */,
 				5B1B56612B081D32004ADBE0 /* Symbols.swift */,
-				5B1B56632B08211F004ADBE0 /* Collections.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -169,6 +194,7 @@
 				5BCDEE7729F62FAE006F2343 /* Workout Templates */,
 				5BA715C62A009B03005F5306 /* Exercise Set Template */,
 				5B34590529ECEE1F00364936 /* Account */,
+				5B7D75462B2C144800406C40 /* Common */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,7 +222,7 @@
 				5B9106E229F77794000608A5 /* Program Template */,
 				5B9106E329F777A9000608A5 /* Workout Template */,
 				5BE065952A11DA7D0059FCAE /* Program */,
-				5B6241642A296F41000594CE /* Workouot */,
+				5B6241642A296F41000594CE /* Workout */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				5B48E0CD29D9056300A29142 /* ApexTraining */,
+				5B8BF2042B0ABF8200CA2BF3 /* ApexTrainingTests */,
 				5B48E0CC29D9056300A29142 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -213,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				5B48E0CB29D9056300A29142 /* ApexTraining.app */,
+				5B8BF2032B0ABF8200CA2BF3 /* ApexTrainingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,13 +270,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		5B6241642A296F41000594CE /* Workouot */ = {
+		5B6241642A296F41000594CE /* Workout */ = {
 			isa = PBXGroup;
 			children = (
 				5B6241652A296F67000594CE /* WorkoutModel.swift */,
 				5BCD67782A92ED940039F13C /* WorkoutHistoryModel.swift */,
 			);
-			path = Workouot;
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		5B7D75462B2C144800406C40 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5B7D75472B2C146600406C40 /* ToolBarView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5B8BF2042B0ABF8200CA2BF3 /* ApexTrainingTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B8BF2052B0ABF8200CA2BF3 /* ApexTrainingTests.swift */,
+			);
+			path = ApexTrainingTests;
 			sourceTree = "<group>";
 		};
 		5B9106E229F77794000608A5 /* Program Template */ = {
@@ -272,9 +316,9 @@
 		5BA08EF22A147C4B009BA470 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
+				5BA08EF32A147C5E009BA470 /* WorkoutView.swift */,
 				5BCD67742A92EB8F0039F13C /* WorkoutHistoryView.swift */,
 				5BCD67762A92EBC60039F13C /* WorkoutSummaryView.swift */,
-				5BA08EF32A147C5E009BA470 /* WorkoutView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -346,6 +390,24 @@
 			productReference = 5B48E0CB29D9056300A29142 /* ApexTraining.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5B8BF2022B0ABF8200CA2BF3 /* ApexTrainingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B8BF20B2B0ABF8200CA2BF3 /* Build configuration list for PBXNativeTarget "ApexTrainingTests" */;
+			buildPhases = (
+				5B8BF1FF2B0ABF8200CA2BF3 /* Sources */,
+				5B8BF2002B0ABF8200CA2BF3 /* Frameworks */,
+				5B8BF2012B0ABF8200CA2BF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B8BF2082B0ABF8200CA2BF3 /* PBXTargetDependency */,
+			);
+			name = ApexTrainingTests;
+			productName = ApexTrainingTests;
+			productReference = 5B8BF2032B0ABF8200CA2BF3 /* ApexTrainingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -353,11 +415,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					5B48E0CA29D9056300A29142 = {
 						CreatedOnToolsVersion = 13.4.1;
+					};
+					5B8BF2022B0ABF8200CA2BF3 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = 5B48E0CA29D9056300A29142;
 					};
 				};
 			};
@@ -378,6 +444,7 @@
 			projectRoot = "";
 			targets = (
 				5B48E0CA29D9056300A29142 /* ApexTraining */,
+				5B8BF2022B0ABF8200CA2BF3 /* ApexTrainingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -388,8 +455,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B48E0D629D9056400A29142 /* Preview Assets.xcassets in Resources */,
-				5B48E0D329D9056400A29142 /* Assets.xcassets in Resources */,
+				5B939D4E2B29589F0025C1AC /* Assets.xcassets in Resources */,
 				5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B8BF2012B0ABF8200CA2BF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
+				5B7D75452B2BF9C500406C40 /* ApexColors.swift in Sources */,
 				5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */,
 				5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */,
 				5B6241632A296E8B000594CE /* Set.swift in Sources */,
@@ -441,11 +516,28 @@
 				5B34590029ECCC4700364936 /* HomeView.swift in Sources */,
 				5B6241662A296F67000594CE /* WorkoutModel.swift in Sources */,
 				5BCD67772A92EBC60039F13C /* WorkoutSummaryView.swift in Sources */,
+				5B7D75482B2C146600406C40 /* ToolBarView.swift in Sources */,
 				5BA715C82A009B48005F5306 /* ExerciseSetTemplateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B8BF1FF2B0ABF8200CA2BF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B8BF2062B0ABF8200CA2BF3 /* ApexTrainingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B8BF2082B0ABF8200CA2BF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B48E0CA29D9056300A29142 /* ApexTraining */;
+			targetProxy = 5B8BF2072B0ABF8200CA2BF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5B48E0D729D9056400A29142 /* Debug */ = {
@@ -620,6 +712,46 @@
 			};
 			name = Release;
 		};
+		5B8BF2092B0ABF8200CA2BF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W62ZSTD7G2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sandbox.ApexTrainingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApexTraining.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ApexTraining";
+			};
+			name = Debug;
+		};
+		5B8BF20A2B0ABF8200CA2BF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W62ZSTD7G2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sandbox.ApexTrainingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApexTraining.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ApexTraining";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -637,6 +769,15 @@
 			buildConfigurations = (
 				5B48E0DA29D9056400A29142 /* Debug */,
 				5B48E0DB29D9056400A29142 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B8BF20B2B0ABF8200CA2BF3 /* Build configuration list for PBXNativeTarget "ApexTrainingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B8BF2092B0ABF8200CA2BF3 /* Debug */,
+				5B8BF20A2B0ABF8200CA2BF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

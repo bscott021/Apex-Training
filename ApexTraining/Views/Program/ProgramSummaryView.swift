@@ -16,46 +16,56 @@ struct ProgramSummaryView: View {
         VStack(alignment: .leading, spacing: 10) {
             
             VStack(alignment: .leading, spacing: 10) {
-                // Program Name
-                Text(completedProgram.programName)
-                    .font(.title)
+                
+                HStack {
+                    
+                    // Program Name
+                    Text(completedProgram.programName)
+                        .font(.title)
+                        .foregroundColor(Color(ApexColors.primary))
+                    
+                    Spacer()
+                    
+                    // Completed vs Cycles
+                    Text("\(completedProgram.cyclesCompleted)/\(completedProgram.numCycles)")
+                        .font(.caption)
+                        .foregroundColor(Color(ApexColors.secondary))
+                    
+                    // Status
+                    Text(completedProgram.status)
+                        .foregroundColor(Color(ApexColors.secondary))
+                        .font(.caption)
+                    
+                }
                 
                 // Program Description
                 Text(completedProgram.programDescription)
+                    .foregroundColor(Color(ApexColors.primary))
                     .font(.body)
                 
-                // Status
-                Text(completedProgram.status)
-                    .font(.callout)
-                    .fontWeight(.bold)
-                
-                // Completed vs Cycles
-                Text("\(completedProgram.cyclesCompleted)/\(completedProgram.numCycles)")
-                    .font(.callout)
-                    .fontWeight(.bold)
             }
             .padding(.leading)
             
-            // Title
-            Text(Constants.completedWorkoutsText)
-                .font(.title3)
-                .fontWeight(.bold)
-                .padding(.leading)
-            
             // List of Completed Workouts
-            List(completedProgram.workouts) { w in
+            List(completedProgram.workouts.sorted { $0.dateTimeCompleted > $1.dateTimeCompleted } ) { w in
                 NavigationLink(destination: WorkoutSummaryView(workoutToView: ProgramService.shared.getWorkout(workoutDocIdToGet: w.id))) {
                     HStack {
+                        // Workout Name
                         Text(w.workoutName)
+                            .font(.subheadline)
+                            .foregroundColor(Color(ApexColors.primary))
                         Spacer()
+                        // Completion Date
                         Text(w.dateTimeCompleted, format: .dateTime.day().month().year())
+                            .font(.caption)
+                            .foregroundColor(Color(ApexColors.secondary))
                     }
                 }
             }
             .listStyle(PlainListStyle())
-            .padding(.trailing)
         
         }
+        .padding(.trailing)
         
     }
     

@@ -13,47 +13,52 @@ struct WorkoutSummaryView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading, spacing: 10) {
-            
-            // Workout Name
-            Text(workoutToView.workoutName)
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.leading)
+        VStack(alignment: .center, spacing: 10) {
             
             // Date Completed
             Text(workoutToView.dateTimeCompleted, format: .dateTime.day().month().year())
-                .font(.callout)
-                .fontWeight(.bold)
                 .padding(.leading)
-            
-            // Status
-            Text(workoutToView.status)
-                .font(.callout)
-                .fontWeight(.bold)
-                .padding(.leading)
-            
+                .foregroundColor(Color(ApexColors.secondary))
+                .font(.body)
+   
             // Exercises List
             List(workoutToView.exercises) { e in
-                Section(header: Text(e.exerciseName)) {
-                    ForEach(e.sets) { s in
+                Section(header: Text(e.exerciseName).foregroundColor(Color(ApexColors.secondary))) {
+                    HStack {
+                        // Set Texts 
+                        Text(Constants.setText)
+                            .font(.caption)
+                        Spacer()
+                        // Reps Text
+                        Text(Constants.repsText)
+                            .font(.caption)
+                        Spacer()
+                        // Weight Used Text
+                        Text(Constants.weightText)
+                            .font(.caption)
+                    }
+                    ForEach(e.sets.sorted { $0.setNum < $1.setNum } ) { s in
                         HStack {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.red)
-                                    .frame(width: 30, height: 30)
-                                Text(String(s.setNum))
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
-                            }
-                            Text("\(s.numReps) x \(s.weight)")
+                            // Set Value
+                            Text(String(s.setNum))
+                            Spacer()
+                            // Number of Reps
+                            Text(String(s.numReps))
+                            Spacer()
+                            // Weight Used
+                            Text(String(s.weight))
                         }
                     }
                 }
+                .foregroundColor(Color(ApexColors.primary))
             }
             .listStyle(PlainListStyle())
+            .padding(.trailing)
+            
+            Spacer()
             
         }
+        .navigationBarTitle(workoutToView.workoutName, displayMode: .inline)
         
     }
     

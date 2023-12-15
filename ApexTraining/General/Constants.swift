@@ -55,8 +55,6 @@ struct Constants {
     
     // History
     static let historyNavigationText = "History"
-    static let completedWorkoutsText = "Completed Workouts"
-    static let completedProgramsText = "Completed Programs"
     
     // Workout View
     static let setText = "Set"
