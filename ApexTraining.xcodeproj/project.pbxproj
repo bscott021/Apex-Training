@@ -40,6 +40,9 @@
 		5BA0D01429D9110400B10A43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */; };
 		5BA715C82A009B48005F5306 /* ExerciseSetTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */; };
 		5BA91A332A108863007EBF67 /* ProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA91A322A108863007EBF67 /* ProgramView.swift */; };
+		5BAA3ACB2B2D4012001EEC42 /* ButtonBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA3ACA2B2D4012001EEC42 /* ButtonBackground.swift */; };
+		5BAA3ACF2B2FB882001EEC42 /* ApexTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA3ACE2B2FB882001EEC42 /* ApexTextField.swift */; };
+		5BAA3AD22B2FB8C9001EEC42 /* ApexSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA3AD12B2FB8C9001EEC42 /* ApexSecureTextField.swift */; };
 		5BB7164A29EF83BC00AE0C9B /* ProgramTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */; };
 		5BC4E2E82AB2A05900C4BC98 /* ProgramHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */; };
 		5BC4E2EA2AB2A44100C4BC98 /* ProgramHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */; };
@@ -105,6 +108,9 @@
 		5BA0D01329D9110400B10A43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BA715C72A009B48005F5306 /* ExerciseSetTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplateView.swift; sourceTree = "<group>"; };
 		5BA91A322A108863007EBF67 /* ProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramView.swift; sourceTree = "<group>"; };
+		5BAA3ACA2B2D4012001EEC42 /* ButtonBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBackground.swift; sourceTree = "<group>"; };
+		5BAA3ACE2B2FB882001EEC42 /* ApexTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexTextField.swift; sourceTree = "<group>"; };
+		5BAA3AD12B2FB8C9001EEC42 /* ApexSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApexSecureTextField.swift; sourceTree = "<group>"; };
 		5BB7164929EF83BC00AE0C9B /* ProgramTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramTemplateView.swift; sourceTree = "<group>"; };
 		5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramHistoryView.swift; sourceTree = "<group>"; };
 		5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramHistoryModel.swift; sourceTree = "<group>"; };
@@ -282,6 +288,9 @@
 		5B7D75462B2C144800406C40 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5BAA3ACE2B2FB882001EEC42 /* ApexTextField.swift */,
+				5BAA3AD12B2FB8C9001EEC42 /* ApexSecureTextField.swift */,
+				5BAA3ACA2B2D4012001EEC42 /* ButtonBackground.swift */,
 				5B7D75472B2C146600406C40 /* ToolBarView.swift */,
 			);
 			path = Common;
@@ -477,6 +486,7 @@
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
 				5B7D75452B2BF9C500406C40 /* ApexColors.swift in Sources */,
 				5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */,
+				5BAA3ACF2B2FB882001EEC42 /* ApexTextField.swift in Sources */,
 				5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */,
 				5B6241632A296E8B000594CE /* Set.swift in Sources */,
 				5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */,
@@ -506,6 +516,7 @@
 				5BCD67752A92EB8F0039F13C /* WorkoutHistoryView.swift in Sources */,
 				5B34590E29EE27FF00364936 /* User.swift in Sources */,
 				5B34590C29ECF53000364936 /* Constants.swift in Sources */,
+				5BAA3AD22B2FB8C9001EEC42 /* ApexSecureTextField.swift in Sources */,
 				5B1B56602B081CB5004ADBE0 /* ProgramTemplateStatus.swift in Sources */,
 				5B1B565E2B081C90004ADBE0 /* TabSelectionId.swift in Sources */,
 				5B1B56642B08211F004ADBE0 /* Collections.swift in Sources */,
@@ -513,6 +524,7 @@
 				5B9106E129F77783000608A5 /* WorkoutTemplateModel.swift in Sources */,
 				5BCD67792A92ED940039F13C /* WorkoutHistoryModel.swift in Sources */,
 				5B34590429ECEE1A00364936 /* SignInView.swift in Sources */,
+				5BAA3ACB2B2D4012001EEC42 /* ButtonBackground.swift in Sources */,
 				5B34590029ECCC4700364936 /* HomeView.swift in Sources */,
 				5B6241662A296F67000594CE /* WorkoutModel.swift in Sources */,
 				5BCD67772A92EBC60039F13C /* WorkoutSummaryView.swift in Sources */,

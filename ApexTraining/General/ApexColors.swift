@@ -12,6 +12,7 @@ struct ApexColors {
     static let accent = "Accent"
     static let primary = "Primary"
     static let secondary = "Secondary"
+    static let nearWhite = "NearWhite"
     static let inactive = "Inactive"
     
 }

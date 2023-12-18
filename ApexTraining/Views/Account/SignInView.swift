@@ -30,100 +30,104 @@ struct SignInView: View {
     
     var body: some View {
         
-        ZStack {
-            
-            // Create the box around the Sign In
-            Rectangle()
-                .frame(height: 275)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-            
-            VStack {
+        GeometryReader { geo in
+        
+            ZStack {
                 
-                Text(Constants.appName)
-                    .font(.title)
+                // Background
+                Rectangle()
+                    .foregroundColor(Color(ApexColors.primary))
+                    .ignoresSafeArea()
                 
-                // Email
-                TextField(Constants.email, text: $email)
-                    .textFieldStyle(.roundedBorder)
-                    .shadow(radius: 2)
-                if signInMode == SignInMode.createAccount {
-                    TextField(Constants.name, text: $name)
-                        .textFieldStyle(.roundedBorder)
-                        .shadow(radius: 2)
-                }
-                // Password
-                SecureField(Constants.password, text: $password)
-                    .textFieldStyle(.roundedBorder)
-                    .shadow(radius: 2)
-                
-                // Sign In / Create Account Picker
-                Picker(selection: $signInMode, label: Text("Placeholder")) {
-                    // Sign In Option
-                    Text(Constants.signIn)
-                        .tag(SignInMode.signIn)
-                    // Create Account Option
-                    Text(Constants.createAccount)
-                        .tag(SignInMode.createAccount)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                
-                // Display the error message if there is one
-                if errorMessage != nil {
-                    Text(errorMessage!)
-                }
-                
-                // Sign In / Create Account Button
-                Button {
-                    if signInMode == SignInMode.signIn {
-                        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-                            guard error == nil else {
-                                errorMessage = error!.localizedDescription
-                                return
-                            }
-                            self.errorMessage = nil
-                            
-                            self.model.getUserData()
-                            
-                            self.model.checkSignIn()
-                        }
-                    } else {
-                        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                            guard error == nil else {
-                                errorMessage = error!.localizedDescription
-                                return
-                            }
-                            self.errorMessage = nil
-                            
-                            // Save User
-                            let firebaseUser = Auth.auth().currentUser
-                            let db = Firestore.firestore()
-                            let ref = db.collection("users").document(firebaseUser!.uid)
-                            
-                            ref.setData(["name":name], merge: true)
-                            
-                            let user = UserService.shared.user
-                            user.name = name
-                            
-                            model.checkSignIn()
-                            
-                        }
+                VStack (spacing: 10) {
+                    
+                    // App Name
+                    Text(Constants.appName)
+                        .foregroundColor(Color(ApexColors.nearWhite))
+                        .font(.title)
+                    
+                    // MARK: Text Fields
+                    
+                    // Name
+                    if signInMode == SignInMode.createAccount {
+                        ApexTextField(field: $name, labelText: Constants.name, image: Symbols.profileImage)
                     }
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.red)
-                            .frame(height: 30)
-                            .cornerRadius(10)
-                        Text(buttonText)
-                            .foregroundColor(.white)
+                    
+                    // Email
+                    ApexTextField(field: $email, labelText: Constants.email, image: Symbols.emailImage)
+                    
+                    // Password
+                    ApexSecureTextField(field: $password, labelText: Constants.password, image: Symbols.passwordImage)
+                    
+                    // Display the error message if there is one
+                    if errorMessage != nil {
+                        Text(errorMessage!)
+                            .foregroundColor(Color(ApexColors.nearWhite))
                     }
+                    
+                    // MARK: Buttons
+                    
+                    // Change Button based on Sin In mode
+                    switch(signInMode) {
+                    case SignInMode.signIn:
+                        
+                        // Sign in
+                        Button {
+                            self.model.signInUser(email: email, password: password)
+                            errorMessage = self.model.signInError
+                        } label: {
+                                ButtonBackground(buttonText: Constants.signIn)
+                        }
+                        
+                        // Sign in With Google Button
+                        Button {
+                            // TODO: Future Task
+                        } label: {
+                            ButtonBackground(buttonText: Constants.signInWithGoogle)
+                        }
+                        
+                        // Create Account Screen
+                        Button {
+                            signInMode = SignInMode.createAccount
+                        } label: {
+                            ButtonBackground(buttonText: Constants.createAccount)
+                        }
+                        
+                    case SignInMode.createAccount:
+                        
+                        // Create Account
+                        Button {
+                            self.model.createUser(name: name, email: email, password: password)
+                            errorMessage = self.model.signInError
+                        } label: {
+                            ButtonBackground(buttonText: Constants.submitText)
+                        }
+                        
+                        // Sign in With Google Button
+                        Button {
+                            // TODO: Future Task
+                        } label: {
+                            ButtonBackground(buttonText: Constants.signUpWithGoogle)
+                        }
+                        
+                        // Back to Login
+                        Button {
+                            signInMode = SignInMode.signIn
+                        } label: {
+                            ButtonBackground(buttonText: Constants.backToLoginTest)
+                        }
+                        
+                    }
+                    
+                    Spacer()
+                    
                 }
+                .padding(.horizontal, 20)
+                .padding(.top, (geo.size.height * 0.25))
+                
             }
-            .padding(.horizontal, 20)
+        
         }
-        .padding(.horizontal, 20)
         
     }
     

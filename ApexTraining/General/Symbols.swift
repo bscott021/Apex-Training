@@ -17,6 +17,8 @@ struct Symbols {
     static let settingsImage = "gearshape.fill"
     static let logoImage = "dumbbell.fill"
     static let profileImage = "person.fill"
+    static let emailImage = "envelope.fill"
+    static let passwordImage = "lock.fill"
     static let completedIndicator = "checkmark.circle.fill"
     static let skippedIndicator = "x.circle.fill"
     static let editImage = "pencil.circle"

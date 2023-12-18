@@ -14,9 +14,61 @@ class ApexTrainingModel: ObservableObject {
     // MARK: Properties
     
     @Published var signedIn = false
-
+    @Published var signInError = ""
     
     // MARK: Methods
+    
+    /// Create a User
+    ///
+    /// - Parameters:
+    ///     - name: Users name
+    ///     - email: email address entered
+    ///     - password: Password entered
+    func createUser(name: String, email: String, password: String) {
+        
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            guard error == nil else {
+                self.signInError = error!.localizedDescription
+                return
+            }
+            self.signInError = ""
+            
+            // Save User
+            let firebaseUser = Auth.auth().currentUser
+            let db = Firestore.firestore()
+            let ref = db.collection(Collections.usersCollection).document(firebaseUser!.uid)
+            
+            ref.setData(["name":name], merge: true)
+            
+            let user = UserService.shared.user
+            user.name = name
+            
+            self.checkSignIn()
+            
+        }
+        
+    }
+    
+    
+    /// Sign In User
+    ///
+    /// - Parameters:
+    ///     - email: String value of email address entered
+    ///     - password: Password entered
+    func signInUser(email: String, password: String) {
+        
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            guard error == nil else {
+                self.signInError = error!.localizedDescription
+                return
+            }
+            self.signInError = ""
+            self.getUserData()
+            self.checkSignIn()
+        }
+        
+    }
+    
     
     /// Get user data if there is a signed in user
     func checkSignIn() {

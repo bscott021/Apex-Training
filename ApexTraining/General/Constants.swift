@@ -12,9 +12,12 @@ struct Constants {
     // MARK: Button Text
     static let signIn = "Sign In"
     static let signOut = "Sign Out"
+    static let signInWithGoogle = "Sign in with Google"
+    static let signUpWithGoogle = "Sign up with Google"
     static let createAccount = "Create Account"
     static let startText = "Start"
     static let submitText = "Submit"
+    static let backToLoginTest = "Back to Login"
     static let markReadyText = "Ready"
     static let beginProgramText = "Begin Program"
     static let completeProgramText = "Complete Program"
@@ -32,7 +35,7 @@ struct Constants {
     static let history = "History"
     
     // MARK: Text
-    static let appName = "Apex Training"
+    static let appName = "Apex"
     static let email = "Email"
     static let name = "Name"
     static let password = "Password"
