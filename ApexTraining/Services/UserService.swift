@@ -168,7 +168,7 @@ class UserService {
             
             // Update Workout Status
             db.collection(Collections.workoutCollection).document(workoutDocId).setData([
-                "status" : "Complete",
+                "status" : Constants.completedStatus,
                 "dateTimeCompleted" : Date.now
             ], merge: true)
             

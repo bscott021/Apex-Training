@@ -60,6 +60,12 @@
 		5BE065972A11DAC90059FCAE /* ProgramModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE065962A11DAC90059FCAE /* ProgramModel.swift */; };
 		5BED92B529FF510A0027FC53 /* ExerciseSetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */; };
 		5BFDF9E12A09B9C2009B5939 /* ReadyTemplatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */; };
+		5BFF3E002B746C9D008505A2 /* WorkoutSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3DFF2B746C9D008505A2 /* WorkoutSectionHeaderView.swift */; };
+		5BFF3E022B78352C008505A2 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3E012B78352C008505A2 /* CustomDividerView.swift */; };
+		5BFF3E052B783F7F008505A2 /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3E042B783F7F008505A2 /* ExerciseView.swift */; };
+		5BFF3E072B7842C0008505A2 /* RowNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3E062B7842C0008505A2 /* RowNumberView.swift */; };
+		5BFF3E092B784E14008505A2 /* ReadyProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3E082B784E14008505A2 /* ReadyProgramView.swift */; };
+		5BFF3E0B2B785796008505A2 /* ReadyProgramHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFF3E0A2B785796008505A2 /* ReadyProgramHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +132,12 @@
 		5BE065962A11DAC90059FCAE /* ProgramModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramModel.swift; sourceTree = "<group>"; };
 		5BED92B429FF510A0027FC53 /* ExerciseSetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTemplate.swift; sourceTree = "<group>"; };
 		5BFDF9E02A09B9C2009B5939 /* ReadyTemplatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyTemplatesModel.swift; sourceTree = "<group>"; };
+		5BFF3DFF2B746C9D008505A2 /* WorkoutSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionHeaderView.swift; sourceTree = "<group>"; };
+		5BFF3E012B78352C008505A2 /* CustomDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDividerView.swift; sourceTree = "<group>"; };
+		5BFF3E042B783F7F008505A2 /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		5BFF3E062B7842C0008505A2 /* RowNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowNumberView.swift; sourceTree = "<group>"; };
+		5BFF3E082B784E14008505A2 /* ReadyProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyProgramView.swift; sourceTree = "<group>"; };
+		5BFF3E0A2B785796008505A2 /* ReadyProgramHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyProgramHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +208,7 @@
 				5B34590129ECCC6000364936 /* HistoryView.swift */,
 				5BA91A312A1087F1007EBF67 /* Program */,
 				5BA08EF22A147C4B009BA470 /* Workout */,
+				5BFF3E032B783F5C008505A2 /* Exercise */,
 				5BB7164829EF839100AE0C9B /* Program Templates */,
 				5BCDEE7729F62FAE006F2343 /* Workout Templates */,
 				5BA715C62A009B03005F5306 /* Exercise Set Template */,
@@ -292,6 +305,8 @@
 				5BAA3AD12B2FB8C9001EEC42 /* ApexSecureTextField.swift */,
 				5BAA3ACA2B2D4012001EEC42 /* ButtonBackground.swift */,
 				5B7D75472B2C146600406C40 /* ToolBarView.swift */,
+				5BFF3E012B78352C008505A2 /* CustomDividerView.swift */,
+				5BFF3E062B7842C0008505A2 /* RowNumberView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -328,6 +343,7 @@
 				5BA08EF32A147C5E009BA470 /* WorkoutView.swift */,
 				5BCD67742A92EB8F0039F13C /* WorkoutHistoryView.swift */,
 				5BCD67762A92EBC60039F13C /* WorkoutSummaryView.swift */,
+				5BFF3DFF2B746C9D008505A2 /* WorkoutSectionHeaderView.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -346,6 +362,8 @@
 				5BA91A322A108863007EBF67 /* ProgramView.swift */,
 				5BC4E2E72AB2A05900C4BC98 /* ProgramHistoryView.swift */,
 				5BC4E2EB2AB2A7F800C4BC98 /* ProgramSummaryView.swift */,
+				5BFF3E082B784E14008505A2 /* ReadyProgramView.swift */,
+				5BFF3E0A2B785796008505A2 /* ReadyProgramHeaderView.swift */,
 			);
 			path = Program;
 			sourceTree = "<group>";
@@ -373,6 +391,14 @@
 				5BC4E2E92AB2A44100C4BC98 /* ProgramHistoryModel.swift */,
 			);
 			path = Program;
+			sourceTree = "<group>";
+		};
+		5BFF3E032B783F5C008505A2 /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				5BFF3E042B783F7F008505A2 /* ExerciseView.swift */,
+			);
+			path = Exercise;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,6 +512,8 @@
 				5B48E0CF29D9056300A29142 /* ApexTraining.swift in Sources */,
 				5B7D75452B2BF9C500406C40 /* ApexColors.swift in Sources */,
 				5B9106DF29F75D2F000608A5 /* ProgramTemplate.swift in Sources */,
+				5BFF3E022B78352C008505A2 /* CustomDividerView.swift in Sources */,
+				5BFF3E052B783F7F008505A2 /* ExerciseView.swift in Sources */,
 				5BAA3ACF2B2FB882001EEC42 /* ApexTextField.swift in Sources */,
 				5BC4E2EC2AB2A7F800C4BC98 /* ProgramSummaryView.swift in Sources */,
 				5B6241632A296E8B000594CE /* Set.swift in Sources */,
@@ -502,6 +530,7 @@
 				5B1B56532AFC7A68004ADBE0 /* TabInfo.swift in Sources */,
 				5B1B565A2B081C4F004ADBE0 /* SignInMode.swift in Sources */,
 				5B34590929ECEF4900364936 /* LaunchView.swift in Sources */,
+				5BFF3E072B7842C0008505A2 /* RowNumberView.swift in Sources */,
 				5B34591029EE28CA00364936 /* UserService.swift in Sources */,
 				5B1B56552AFC7B58004ADBE0 /* Tab.swift in Sources */,
 				5B951D372AF0713D00883A97 /* TemplateView.swift in Sources */,
@@ -512,12 +541,15 @@
 				5BA08EF42A147C5E009BA470 /* WorkoutView.swift in Sources */,
 				5BE065972A11DAC90059FCAE /* ProgramModel.swift in Sources */,
 				5BCDEE7929F62FC8006F2343 /* WorkoutTemplateView.swift in Sources */,
+				5BFF3E002B746C9D008505A2 /* WorkoutSectionHeaderView.swift in Sources */,
+				5BFF3E092B784E14008505A2 /* ReadyProgramView.swift in Sources */,
 				5BE065942A1185B90059FCAE /* ExerciseSet.swift in Sources */,
 				5BCD67752A92EB8F0039F13C /* WorkoutHistoryView.swift in Sources */,
 				5B34590E29EE27FF00364936 /* User.swift in Sources */,
 				5B34590C29ECF53000364936 /* Constants.swift in Sources */,
 				5BAA3AD22B2FB8C9001EEC42 /* ApexSecureTextField.swift in Sources */,
 				5B1B56602B081CB5004ADBE0 /* ProgramTemplateStatus.swift in Sources */,
+				5BFF3E0B2B785796008505A2 /* ReadyProgramHeaderView.swift in Sources */,
 				5B1B565E2B081C90004ADBE0 /* TabSelectionId.swift in Sources */,
 				5B1B56642B08211F004ADBE0 /* Collections.swift in Sources */,
 				5BE065922A1185670059FCAE /* Workout.swift in Sources */,

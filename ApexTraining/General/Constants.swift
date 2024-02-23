@@ -77,10 +77,17 @@ struct Constants {
     static let updateExerciseText = "Update Exercise"
     
     // MARK: Status
-    static let inProgressExerciseStatus = "InProgress"
-    static let skippedExerciseStatus = "Skipped"
-    static let completedExerciseStatus = "Completed"
+    static let newStatus = "New"
+    static let notStartedStatus = "Not Started"
+    static let inProgressStatus = "In Progress"
+    static let completedStatus = "Completed"
     static let completedWorkoutStatus = "Completed"
+    
+    // Status Text
+    static let notStartedText = "Not Started"
+    static let inProgressText = "In Progress"
+    static let completedText = "Completed"
+    static let completeText = "Complete"
     
     // MARK: Error
     static let customeErrorTextPrefix = "Custom Error Message: "

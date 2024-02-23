@@ -48,18 +48,28 @@ class WorkoutModel: ObservableObject {
             let ref = db.collection(Collections.exercisesCollection).document(exercise.id).collection(Collections.setsCollection)
             // Loop through sets and save them to the db
             for s in exercise.sets {
-                ref.document(s.id).setData([
-                    "numReps": s.numReps,
-                    "weight": s.weight
-                ], merge: true)
+                if s.id != "" {
+                    ref.document(s.id).setData([
+                        "setNum": s.setNum,
+                        "numReps": s.numReps,
+                        "weight": s.weight
+                    ], merge: true)
+                }
+                else {
+                    let newSetDocId = ref.addDocument(data: [
+                        "setNum": s.setNum,
+                        "numReps": s.numReps,
+                        "weight": s.weight
+                    ]).documentID
+                    
+                    s.id = newSetDocId
+                }
             }
             
-            if exercise.status != Constants.skippedExerciseStatus {
-                if Int(self.countCompletedSets(exercise: exercise)) == exercise.numSets {
-                    exercise.status = Constants.completedExerciseStatus
-                } else {
-                    exercise.status = Constants.inProgressExerciseStatus
-                }
+            if Int(self.countCompletedSets(exercise: exercise)) ?? 0 >= exercise.numSets {
+                exercise.status = Constants.completedStatus
+            } else {
+                exercise.status = Constants.inProgressStatus
             }
             
             // Save a status of the exercise

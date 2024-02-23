@@ -132,7 +132,7 @@ class ProgramService {
             let workoutRef = db.collection(Collections.workoutCollection).addDocument(data: [
                 "programId" : programId,
                 "workoutName" : workout.workoutName,
-                "status" : "In Progress",
+                "status" : Constants.newStatus
             ]) { error in
                 if let e = error {
                     // Error adding workout
@@ -145,12 +145,15 @@ class ProgramService {
                 workout.id = workoutRef.documentID
             }
             
+            // Set the status to new
+            workout.status = Constants.newStatus
+            
             /* Loop through the exercises and create them in the database. At this point the exercise sets should be created for this since the workout has been started. */
             for e in workout.exercises {
                 let exercisesRef = db.collection(Collections.exercisesCollection).addDocument(data: [
                     "exerciseName" : e.exerciseName,
                     "numSets" : e.numSets,
-                    "status" : Constants.inProgressExerciseStatus
+                    "status" : Constants.notStartedStatus
                 ]) { error in
                     if let e = error {
                         // Error adding Exercise
@@ -163,23 +166,8 @@ class ProgramService {
                     e.id = exercisesRef.documentID
                 }
                 
-                // Create new sets for the Exercise
-                for i in 1 ..< (e.numSets + 1) {
-                    // Create in db
-                    let returnDoc = exercisesRef.collection(Collections.setsCollection).addDocument(data: [
-                        "setNum" : i,
-                        "numReps" : e.numReps,
-                        "weight" : 0
-                    ])
-                    
-                    // Create in workout object
-                    let tempSet = Set()
-                    tempSet.id = returnDoc.documentID
-                    tempSet.setNum = i
-                    tempSet.numReps = e.numReps
-                    tempSet.weight = 0
-                    workout.exercises.first(where: { $0.id == e.id })?.sets.append(tempSet)
-                }
+                // Set the status for the exercise
+                e.status = Constants.notStartedStatus
                 
                 // Save the Exercise Id to the Workout
                 workoutRef.collection(Collections.exercisesCollection).addDocument(data: [
@@ -284,6 +272,43 @@ class ProgramService {
     }
     
     
+    ///     Update the workout status in Firebase
+    ///
+    ///     - Parameters
+    ///         - workoutDocId: String value for the workout doucment id
+    ///         - newStatusString: Status that the workout should be set to 
+    func updateWorkoutStatus(workoutDocId: String, newStatusString: String) {
+        
+        guard Auth.auth().currentUser != nil else {
+            return
+        }
+        
+        if workoutDocId != "" && newStatusString != "" {
+            
+            var statusValue = ""
+            
+            if newStatusString == Constants.newStatus {
+                statusValue = Constants.newStatus
+            }
+            if newStatusString == Constants.inProgressStatus {
+                statusValue = Constants.inProgressStatus
+            }
+            if newStatusString == Constants.completedStatus {
+                statusValue = Constants.completedStatus
+            }
+            
+            let db = Firestore.firestore()
+            
+            /* Create the workout in the workout collection */
+            let workoutDoc = db.collection(Collections.workoutCollection).document(workoutDocId)
+            workoutDoc.setData([
+                "status" : statusValue
+            ], merge: true)
+            
+        }
+        
+    }
+     
     // MARK: End
     
 }
